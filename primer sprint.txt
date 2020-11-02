@@ -1,0 +1,6 @@
+- Diseño del juego
+- Diseño UML del juego contemplando todos los aspectos generales del sistema y la incorporación de patrones de diseño: jugador, infectados y premios.
+- Diseñar en pseudocódigo (general) la generación del mapa.
+- Diseñar el movimiento del jugador e infectados (pseudocódigo).
+- Tener pensado como interactuar entre el jugador, los infectados y el mapa.
+- Tener funcionando el GitHub con los archivos generados.
