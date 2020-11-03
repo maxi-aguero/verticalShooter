@@ -38,9 +38,8 @@ public class ZombieBody {
    
 
     public void drawAlpha(Graphics g) {      
-    	
-    	 
-        ImageIcon imgCredits=new ImageIcon("img/alpha.png");	       
+    	    	 
+	    ImageIcon imgCredits=new ImageIcon(getClass().getClassLoader().getResource("mapa/img/alpha.png"));      
         g.drawImage(imgCredits.getImage(), x , y , null);
         g.setColor(Color.RED);
         g.fillOval(x+11, y+11, GameConfig.UNIT_SIZE-6, GameConfig.UNIT_SIZE-6);
@@ -53,7 +52,8 @@ public class ZombieBody {
     }
     
     public void drawBeta(Graphics g) {
-    	ImageIcon imgCredits=new ImageIcon("img/beta.png");	       
+    	
+	    ImageIcon imgCredits=new ImageIcon(getClass().getClassLoader().getResource("mapa/img/beta.png"));      
         g.drawImage(imgCredits.getImage(), x , y , null);
         g.setColor(Color.RED);
         g.fillOval(x+11, y+11, GameConfig.UNIT_SIZE-6, GameConfig.UNIT_SIZE-6);
@@ -63,25 +63,13 @@ public class ZombieBody {
     
     
     public void drawJugador(Graphics g) {
-    	ImageIcon imgCredits=new ImageIcon("img/jugador.png");	       
+	    
+	    ImageIcon imgCredits=new ImageIcon(getClass().getClassLoader().getResource("mapa/img/jugador.png"));      
         g.drawImage(imgCredits.getImage(), x , y , null);
         
     }
     
-    public void drawFondo(Graphics g) {
-    		   	 
-    	ImageIcon imgCredits=new ImageIcon("img/b8.jpg");
-    	ImageIcon imgdos= new  ImageIcon(imgCredits.getImage().getScaledInstance(472, 642, Image.SCALE_SMOOTH)); 
-
-        g.drawImage(imgdos.getImage(), 0 , 0 , null);
-        
-        g.setColor(new Color(200,0,25));
-        g.setFont(new Font("Ink Free", Font.BOLD, 40));
-        g.drawString("Plague Inc  " , 128, 32);
-                        
-               
-        
-    }
+  
 
     
     

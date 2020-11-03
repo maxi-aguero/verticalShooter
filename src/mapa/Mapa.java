@@ -1,44 +1,40 @@
 package mapa;
 
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.Timer;
-
 import mapa.ZombieBody.Direction;
 
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.*;
 
-public class ZombiesCaminantesPanel extends JPanel implements ActionListener {
+public class Mapa extends JPanel implements ActionListener {
+     
 
-
-    private Enemigo enemigo01,enemigo02,enemigo03,enemigo04,enemigo05,enemigo06,enemigo07,personaje_b,background;
+	private Enemigo enemigo01,enemigo02,enemigo03,enemigo04,enemigo05,enemigo06,enemigo07;
+    private Enemigo personaje_b;
    
-    private Timer timer;
+    private Timer tiempo;
    
     
-    public ZombiesCaminantesPanel() {       
+    public Mapa() {       
         
     	
         this.setPreferredSize(new Dimension(480, 655));
-        this.setBackground(Color.GREEN);    	
-        
-
+        this.setBackground(Color.GREEN);   	
         
         
         this.addKeyListener(new JugadorKeyListener());
 
         
         this.setFocusable(true);
-        this.start();       
-        
+        this.start();      
         
         
     }
@@ -53,11 +49,15 @@ public class ZombiesCaminantesPanel extends JPanel implements ActionListener {
         enemigo05 = new Enemigo(25 * GameConfig.UNIT_SIZE,  4 * GameConfig.UNIT_SIZE);
         enemigo06 = new Enemigo(30 * GameConfig.UNIT_SIZE,  8 * GameConfig.UNIT_SIZE);
         enemigo07 = new Enemigo(30 * GameConfig.UNIT_SIZE,  8 * GameConfig.UNIT_SIZE);
-        personaje_b = new Enemigo();
-        background = new Enemigo(30 * 5,  8 * 10);
+       
+        
+        personaje_b = new Enemigo();        
+        
 
-        timer = new Timer(GameConfig.DELAY, this);
-        timer.start();      
+        
+        
+        tiempo = new Timer(GameConfig.DELAY, this);
+        tiempo.start();      
          
     }
     
@@ -67,8 +67,9 @@ public class ZombiesCaminantesPanel extends JPanel implements ActionListener {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        background.drawFondo(g);  //fondo
-
+                
+        dibujarFondo(g);  
+        
         enemigo01.drawBeta(g); 
         
         enemigo02.drawAlpha(g);
@@ -82,7 +83,7 @@ public class ZombiesCaminantesPanel extends JPanel implements ActionListener {
         enemigo07.drawBeta(g);  
         
         personaje_b.drawJugador(g);//jugador
-      
+        
 
 
     }
@@ -134,6 +135,22 @@ public class ZombiesCaminantesPanel extends JPanel implements ActionListener {
         }
     }
 
+    
+    
+    private void dibujarFondo(Graphics g) {
+
+	    ImageIcon imgCredits=new ImageIcon(getClass().getClassLoader().getResource("mapa/img/b8.jpg"));
+    	ImageIcon imgdos= new  ImageIcon(imgCredits.getImage().getScaledInstance(472, 642, Image.SCALE_SMOOTH)); 
+
+        g.drawImage(imgdos.getImage(), 0 , 0 , null);
+        
+        g.setColor(new Color(200,0,25));
+        g.setFont(new Font("Ink Free", Font.BOLD, 40));
+        g.drawString("Plague Inc  " , 128, 32);
+                        
+               
+        
+    }
     
     
 }

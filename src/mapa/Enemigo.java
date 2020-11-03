@@ -29,6 +29,8 @@ public class Enemigo {
      
         
     }
+    
+   
         
    
 
@@ -54,14 +56,7 @@ public class Enemigo {
     }
     
     
-    public void drawFondo(Graphics g) {
-    	
-    	body.drawFondo(g);
-        
-        
-    	
-    
-    }
+ 
 
     public void move() {
     	body.move();
