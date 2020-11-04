@@ -1,7 +1,6 @@
 package mapa;
 
 
-import mapa.ZombieBody.Direction;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -14,54 +13,46 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.*;
 
-public class Mapa extends JPanel implements ActionListener {
+public class Juego extends JPanel implements ActionListener {
      
 
-	private Enemigo enemigo01,enemigo02,enemigo03,enemigo04,enemigo05,enemigo06,enemigo07;
-    private Enemigo personaje_b;
+	private Enemigoalpha enemigo01,enemigo02,enemigo03,enemigo04,enemigo05,enemigo06;
+	private Enemigobeta enemigo07;	
+	private Jugador personaje_b;
    
     private Timer tiempo;
+    
+    private Entidad[] arr;
    
     
-    public Mapa() {       
-        
+    public Juego() {       
+    	arr= new Entidad[430];
     	
         this.setPreferredSize(new Dimension(480, 655));
-        this.setBackground(Color.GREEN);   	
-        
+        this.setBackground(Color.GREEN); 
         
         this.addKeyListener(new JugadorKeyListener());
-
         
         this.setFocusable(true);
-        this.start();      
-        
+        this.start();    
         
     }
 
     private void start() {   	
 
-        
-        enemigo01 = new Enemigo(2 * GameConfig.UNIT_SIZE,   12 * GameConfig.UNIT_SIZE);      
-        enemigo02 = new Enemigo(10 * GameConfig.UNIT_SIZE,  2 * GameConfig.UNIT_SIZE);
-        enemigo03 = new Enemigo(12 * GameConfig.UNIT_SIZE,  5 * GameConfig.UNIT_SIZE);
-        enemigo04 = new Enemigo(20 * GameConfig.UNIT_SIZE,  2 * GameConfig.UNIT_SIZE);
-        enemigo05 = new Enemigo(25 * GameConfig.UNIT_SIZE,  4 * GameConfig.UNIT_SIZE);
-        enemigo06 = new Enemigo(30 * GameConfig.UNIT_SIZE,  8 * GameConfig.UNIT_SIZE);
-        enemigo07 = new Enemigo(30 * GameConfig.UNIT_SIZE,  8 * GameConfig.UNIT_SIZE);
-       
-        
-        personaje_b = new Enemigo();        
-        
-
-        
-        
-        tiempo = new Timer(GameConfig.DELAY, this);
-        tiempo.start();      
+    									
+         enemigo01 = new Enemigoalpha(14,168);      
+         enemigo02 = new Enemigoalpha(126,25);
+         enemigo03 = new Enemigoalpha(154,70);
+         enemigo04 = new Enemigoalpha(266,28);
+         enemigo05 = new Enemigoalpha(336,56);
+         enemigo06 = new Enemigoalpha(406,112);
+         enemigo07 = new Enemigobeta(406,95);        
+         personaje_b = new Jugador();  
          
+         tiempo = new Timer(GameConfig.DELAY, this);
+         tiempo.start();
     }
-    
-   
     
    
 
@@ -70,44 +61,60 @@ public class Mapa extends JPanel implements ActionListener {
                 
         dibujarFondo(g);  
         
-        enemigo01.drawBeta(g); 
-        
+        enemigo01.drawAlpha(g);        
         enemigo02.drawAlpha(g);
-        enemigo03.drawAlpha(g);
-        
-        enemigo04.drawBeta(g);
-        
+        enemigo03.drawAlpha(g);        
+        enemigo04.drawAlpha(g);        
         enemigo05.drawAlpha(g);        
-        enemigo06.drawAlpha(g);
+        enemigo06.drawAlpha(g);        
         
         enemigo07.drawBeta(g);  
         
-        personaje_b.drawJugador(g);//jugador
-        
+        personaje_b.drawJugador(g);//jugador        
 
 
     }
 
+    public void acciona() {
+    	//dejo de mover    		
+	        	 if (enemigo07.getY()==575) {
+	        		   System.out.println(enemigo07.getX());     		   
+	        		   System.out.println(personaje_b.getX());     		   
+	        		   arr[enemigo07.getX()]=enemigo07;//agrego a un enemigo 
+	        		   System.out.println("agrego a un array");	       		   
+
+	   				   enemigo07.setY(600);	//vuelve a la posicion inicial??
+	   			  }
+		
+		
+			
+    }
    
-    public void actionPerformed(ActionEvent e) {    	   
-    	
-    	   //beta
-    	   enemigo01.move();
-    	   enemigo01.getHead().setSpeed(GameConfig.VELOCIDADBETA);
+    
+    public void accionaJugador() {
+    	//dejo de mover    		
+		   arr[personaje_b.getX()]=personaje_b;//agrego al jugador
+
+		
+		
+			
+    }
+    
+    
+    public void actionPerformed(ActionEvent e) {  	   
     	   //alpha
+    	   enemigo01.move();    	   
     	   enemigo02.move();
-    	   enemigo03.move();
-    	   //beta
+    	   enemigo03.move();    	   
     	   enemigo04.move();   
-           enemigo04.getHead().setSpeed(GameConfig.VELOCIDADBETA);
-    	   //alpha
     	   enemigo05.move();
     	   enemigo06.move();    	   
-    	   //beta    	   
-           enemigo07.move();   
-           enemigo07.getHead().setSpeed(GameConfig.VELOCIDADBETA);
-        
-      
+    	   //beta
+    	   if (enemigo07.getY()<575)
+     		   enemigo07.move();
+    	   else acciona();
+    	  
+    	   
         
         repaint();
 
@@ -122,13 +129,13 @@ public class Mapa extends JPanel implements ActionListener {
             if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
             	
             	personaje_b.moveDerecha();
-            	personaje_b.setDirection(Direction.RIGHT);
+            	accionaJugador(); // agregar jugador al arreglo
             	
             	
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT ) {
             	
             	personaje_b.moveIzquierda();
-            	personaje_b.setDirection(Direction.LEFT);
+            	accionaJugador();// agregar jugador al arreglo
             	
 
             } 
