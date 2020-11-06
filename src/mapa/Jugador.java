@@ -1,10 +1,15 @@
 package mapa;
 
+
 public class Jugador extends Entidad{
 
-	protected Jugador(int x, int y, int velocidad) {
-		super(x, y, velocidad);
+	protected Jugador(int x, int y, int velocidad,String img) {
+		super(x, y, velocidad,img);
 		// TODO Auto-generated constructor stub
+		visitor = new VisitanteJugador(this);
+		
+		
+
 	}
 
 	@Override
@@ -13,11 +18,7 @@ public class Jugador extends Entidad{
 		
 	}
 
-	@Override
-	public void mover() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public void atacar(Entidad entidad) {
@@ -30,5 +31,7 @@ public class Jugador extends Entidad{
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }

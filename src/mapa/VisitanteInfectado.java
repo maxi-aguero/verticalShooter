@@ -18,7 +18,7 @@ public class VisitanteInfectado extends Visitor{
 	}
 
 	//recibir cura
-	public void visit(Disparo d) {		
+	public void visit(Arma d) {		
 			
 	}
 

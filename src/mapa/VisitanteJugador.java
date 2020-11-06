@@ -18,7 +18,7 @@ public class VisitanteJugador extends Visitor{
 	}
 
 	//No me hace daño mis municiones
-	public void visit(Disparo d) {		
+	public void visit(Arma d) {		
 			
 	}
 

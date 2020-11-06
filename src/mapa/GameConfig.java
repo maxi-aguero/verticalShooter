@@ -7,5 +7,7 @@ public class GameConfig {
     public static final int VELOCIDADALPHA = 3;
     public static final int VELOCIDADBETA = 10;
     public static final int VELOCIDADJUGADOR = 1;
+    public static enum Direction {DOWN,LEFT,RIGHT};
+   
     
 }

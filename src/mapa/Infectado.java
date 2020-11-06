@@ -2,8 +2,8 @@ package mapa;
 
 public class Infectado extends Entidad {
 
-	protected Infectado(int x, int y, int velocidad) {
-		super(x, y, velocidad);
+	protected Infectado(int x, int y, int velocidad,String img) {
+		super(x, y, velocidad,img);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -13,11 +13,6 @@ public class Infectado extends Entidad {
 		
 	}
 
-	@Override
-	public void mover() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void atacar(Entidad entidad) {

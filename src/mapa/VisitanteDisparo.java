@@ -18,7 +18,7 @@ public class VisitanteDisparo extends Visitor{
 	}
 
 	//no hacer nada
-	public void visit(Disparo d) {		
+	public void visit(Arma d) {		
 			
 	}
 

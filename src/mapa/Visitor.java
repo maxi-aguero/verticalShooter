@@ -12,7 +12,7 @@ public abstract class Visitor {
 
 	public abstract void visit(Jugador j);
 	public abstract void visit(Infectado i);
-	public abstract void visit(Disparo d);
+	public abstract void visit(Arma d);
 	public abstract void visit(Virus v);
 	
 	
