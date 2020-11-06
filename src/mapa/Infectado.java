@@ -1,8 +1,8 @@
 package mapa;
 
-public class Jugador extends Entidad{
+public class Infectado extends Entidad {
 
-	protected Jugador(int x, int y, int velocidad) {
+	protected Infectado(int x, int y, int velocidad) {
 		super(x, y, velocidad);
 		// TODO Auto-generated constructor stub
 	}
@@ -31,4 +31,10 @@ public class Jugador extends Entidad{
 		
 	}
 
+    
+    
+    
+   
+    
+    
 }
