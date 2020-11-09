@@ -24,6 +24,8 @@ public class DisparoEnemigo extends Disparo {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 	
 
 }

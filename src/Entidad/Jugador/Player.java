@@ -1,8 +1,6 @@
 package Entidad.Jugador;
 
 
-import javax.swing.ImageIcon;
-
 import Entidad.Entidad;
 import Visitor.Visitor;
 
@@ -37,28 +35,16 @@ public abstract class Player extends Entidad   {
 		
 	}
 	
-	public void mover() {	
-		
-		ImageIcon imagen = new ImageIcon(this.getClass().getClassLoader().getResource(ruta_dibujo));		
-		dibujo.setIcon(imagen);	
-		
-		
-		int coordx = this.getDibujo().getX();
-		if (coordx<400) {
-			coordx = coordx + 2;		
-			
-			dibujo.setLocation(coordx,this.getDibujo().getY());
-			}
-		else
-		{
-			
-			
-			dibujo.setLocation(this.getX(),this.getY());
-		}
-			
+	public void mover() {		
 				
 	}
+	
+	public abstract void moverizquierda();
+	public abstract void moverderecha();
+
 		
+	
+	
 	
 
 

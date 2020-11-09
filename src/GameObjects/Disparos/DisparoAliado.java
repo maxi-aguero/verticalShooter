@@ -27,4 +27,6 @@ public class DisparoAliado extends Disparo {
 		return false;
 	}
 
+
+
 }

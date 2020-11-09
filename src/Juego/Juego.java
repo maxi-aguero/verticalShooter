@@ -2,14 +2,17 @@ package Juego;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 
 import Entidad.Entidad;
+import Entidad.Jugador.Player;
 
 
 
-public class Juego  extends  JFrame  {
+public class Juego  extends  JFrame implements ActionListener  {
 	
 	protected GUI gui;
 	protected Movimiento movimiento;
@@ -34,8 +37,12 @@ public class Juego  extends  JFrame  {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setFocusable(true);
           
+        this.addKeyListener(new PlayKeyListener());
 
         mapa.crearNivelUno(); 
+        
+        
+
         
         
 		
@@ -82,18 +89,22 @@ public class Juego  extends  JFrame  {
 		
 		
 		for(Entidad obj : mapa.getListaAgregar()) {
-			mapa.getListaPrincipal().add(obj);
-			gui.agregarDibujo(obj);
+			
+				mapa.getListaPrincipal().add(obj);
+				gui.agregarDibujo(obj);
+				
 			//obj.setMapa(mapa);
-		}		
+		}	
+		
+		
 		mapa.resetLista(mapa.getListaAgregar());
 		
 		
-		for(Entidad obj : mapa.getListaPirata()) {
+		/**for(Entidad obj : mapa.getListaJugador()) {
 			mapa.getListaPrincipal().add(obj);
 			gui.agregarDibujo(obj);
 			//obj.setMapa(mapa);
-		}
+		}*/
 		
 		
 	}
@@ -104,15 +115,38 @@ public class Juego  extends  JFrame  {
 		
 	}
 
-	public void activarContadorDobleDanio() {
-		contadorDobleDanio = 5000;
-	}
 
-	public void activarContadorDobleOro() {
-		contadorDobleOro = 5000;
-	}
 	
 
+	private class PlayKeyListener extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            super.keyPressed(e);
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
+            	
+            	//mapa.dameJugador().mover();
+            	Player p01= (Player) mapa.dameJugador();
+            	p01.moverderecha();
+            	
+            	
+            } else if (e.getKeyCode() == KeyEvent.VK_LEFT ) {
+            	
+            	Player p01= (Player) mapa.dameJugador();
+            	p01.moverizquierda();
+            	
+
+            } 
+        }
+    }
+
+
+
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

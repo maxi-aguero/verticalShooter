@@ -18,7 +18,7 @@ public class Mapa {
 	protected static List<Entidad> lista_principal;
 	protected static List<Entidad> lista_a_agregar;
 	protected static List<Entidad> lista_a_eliminar;
-	protected static List<Entidad> lista_de_piratas;
+	protected static List<Entidad> lista_de_jugador;
 	Random random;
 	private static String oleadas = "ppjbpv jpjjpbm bjppd"; //v m y d son los bosses finales de cada oleada (OBLIGATORIO ESE ORDEN)
     //entonces cada vez q muera alguno cambia la oleada o (si es d) ganas.
@@ -29,7 +29,7 @@ public class Mapa {
 		lista_principal = new LinkedList<Entidad>();
 		lista_a_agregar = new LinkedList<Entidad>();
 		lista_a_eliminar = new LinkedList<Entidad>();
-		lista_de_piratas = new LinkedList<Entidad>();
+		lista_de_jugador = new LinkedList<Entidad>();
 		gui = g;
 		juego = j;
 		random = new Random();
@@ -43,8 +43,12 @@ public class Mapa {
 		lista_a_agregar.add(obj);
 	}
 	
-	public void addpiratas(Entidad obj) {
-		lista_de_piratas.add(obj);
+	public void addJugador(Entidad obj) {
+		lista_de_jugador.add(obj);
+	}
+	
+	public Entidad dameJugador() {
+		return lista_de_jugador.get(0);
 	}
 	
 	public void resetLista(List<Entidad> l) {
@@ -61,8 +65,8 @@ public class Mapa {
 		return lista_a_eliminar;
 	}
 	
-	public List<Entidad> getListaPirata() {
-		return lista_de_piratas;
+	public List<Entidad> getListaJugador() {
+		return lista_de_jugador;
 	}
 	
 	public boolean puedoAgregarObjeto(Entidad obj) {
@@ -126,23 +130,38 @@ public class Mapa {
 		
 		
 		
-		Player amigobeta = new Player1();
-		amigobeta.setX(0);
-		amigobeta.setY(450);
-		add(amigobeta);
-		amigobeta.setMapa(this);	
+		Player player01 = new Player1();
+		player01.setX(0);
+		player01.setY(450);
+		add(player01);
+		addJugador(player01);
+		player01.setMapa(this);	
 		
-		Infectado enemigo = new InfectadoBeta();
-		enemigo.setX(390);
-		enemigo.setY(140);
-		add(enemigo);
-		enemigo.setMapa(this);
 		
-		Infectado enemigoX = new InfectadoAlpha();
-		enemigoX.setX(190);
-		enemigoX.setY(160);
-		add(enemigoX);
-		enemigoX.setMapa(this);
+		
+		Infectado infectado01 = new InfectadoBeta();
+		infectado01.setX(390);
+		infectado01.setY(140);
+		add(infectado01);
+		infectado01.setMapa(this);
+		
+		Infectado infectado02 = new InfectadoAlpha();
+		infectado02.setX(350);
+		infectado02.setY(160);
+		add(infectado02);
+		infectado02.setMapa(this);
+		
+		Infectado infectado03 = new InfectadoBeta();
+		infectado03.setX(360);
+		infectado03.setY(140);
+		add(infectado03);
+		infectado03.setMapa(this);
+		
+		Infectado infectado04 = new InfectadoAlpha();
+		infectado04.setX(333);
+		infectado04.setY(60);
+		add(infectado04);
+		infectado04.setMapa(this);
 		
 		
 		

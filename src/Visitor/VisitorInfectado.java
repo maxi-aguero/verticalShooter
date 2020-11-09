@@ -26,7 +26,7 @@ public class VisitorInfectado extends Visitor {
 
 	@Override
 	public void visit(Infectado e) {
-		//obj.mover();
+			e.mover();
 
 	}
 

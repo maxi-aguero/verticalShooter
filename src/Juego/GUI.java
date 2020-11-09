@@ -14,6 +14,8 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 
 
@@ -30,6 +32,7 @@ public class GUI extends JPanel implements ActionListener {
         setLayout(null);       
         
 		crearPanelCesped();
+
 		add(panelCampo);
 
 	}
@@ -46,11 +49,14 @@ public class GUI extends JPanel implements ActionListener {
 	public void crearPanelCesped() {
 		panelCampo = new JPanel();
 		panelCampo.setLayout(null);
-		panelCampo.setBounds(0, 0, 500, 700);
-		panelCampo.setBackground(Color.RED);
-		panelCampo.setOpaque(false);
+		//panelCampo.setBounds(0, 0, 500, 700);
+		panelCampo.setBounds(0, 0, 1000, 900);
+		//panelCampo.setBackground(Color.RED);
+		panelCampo.setBackground(new Color(1,0,0));
 		
+		//panelCampo.setOpaque(false);
 		
+		repaint();
 		add(panelCampo);
 	}
 	
@@ -69,6 +75,8 @@ public void agregarDibujo(Entidad e) {
 		
 		
 	}
+
+
 		
 	
 			
@@ -77,27 +85,16 @@ public void agregarDibujo(Entidad e) {
 	
 	protected void paintComponent(Graphics g) {
 	    super.paintComponent(g);
-	    dibujarFondo(g);      
+	   // dibujarFondo(g);      
 	}
 	
-	private void dibujarFondo(Graphics g) {
 	
-	    ImageIcon imgCredits=new ImageIcon(getClass().getClassLoader().getResource("img/gui/background8.jpg"));
-		ImageIcon imgdos= new  ImageIcon(imgCredits.getImage().getScaledInstance(500, 700, Image.SCALE_SMOOTH)); 
-	
-	    g.drawImage(imgdos.getImage(), 0 , 0 , null);
-	    
-	    g.setColor(new Color(200,0,25));
-	    g.setFont(new Font("Ink Free", Font.BOLD, 40));
-	    g.drawString("Plague Inc  " , 128, 32);
-	                    
-	           
-	    
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}
+	
+	
 }
