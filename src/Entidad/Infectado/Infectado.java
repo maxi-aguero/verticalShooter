@@ -46,7 +46,7 @@ public abstract class Infectado extends Entidad   {
 		else
 		{
 			
-			dibujo.setLocation(this.getX(),this.getY());
+			dibujo.setLocation(dibujo.getX(),this.getY());
 		}
 		
 				

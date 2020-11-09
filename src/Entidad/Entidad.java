@@ -12,10 +12,10 @@ public abstract class Entidad {
 	protected int velocidad; // de movimiento 
 	protected int rango; //rango de tiro	
 	protected Mapa mapa;	//necesito
-	protected JLabel dibujo;//el label de la gui
+	protected JLabel dibujo;// label de gui
 	protected Visitor visitor;	
 	protected String ruta_dibujo;
-	private int x;//coordenadas del label
+	private int x;//coordenadas iniciales
 	private int y;
 
 	
@@ -49,14 +49,13 @@ public abstract class Entidad {
 	
 
 	public abstract void accept(Visitor v);	
-	//public abstract void interactuar();
 	public abstract boolean interactuar();
 	public abstract void mover();
 	public abstract void atacar(Entidad obj); 
 	public abstract void iniciarAtaque(Entidad obj);
 
 	public void morir() {
-		mapa.getListaEliminar().add(this);
+		
 	}
 	
 	

@@ -1,16 +1,10 @@
 package Visitor;
 import Entidad.Entidad;
 import Entidad.Jugador.Player;
-import GameObjects.Disparos.DisparoAliado;
-import GameObjects.Disparos.DisparoEnemigo;
+import Entidad.Disparo.DisparoJugador;
+import Entidad.Disparo.EmitirContagio;
 import Entidad.Infectado.Infectado;
-//import GameObjects.ObjetosMapa.ObjetoMapaTemporal;
-//import GameObjects.ObjetosMapa.ObjetoMapaVida;
-//import GameObjects.Premios.Premio;
 
-/*
- * Clase usada por enemigos
- */
 public class VisitorInfectado extends Visitor {
 
 	public VisitorInfectado(Entidad o) {
@@ -31,13 +25,13 @@ public class VisitorInfectado extends Visitor {
 	}
 
 	@Override
-	public void visit(DisparoAliado d) {
+	public void visit(DisparoJugador d) {
 		//obj.mover();
 
 	}
 
 	@Override
-	public void visit(DisparoEnemigo d) {
+	public void visit(EmitirContagio d) {
 		//obj.mover();
 
 	}

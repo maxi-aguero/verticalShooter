@@ -20,8 +20,6 @@ public class Mapa {
 	protected static List<Entidad> lista_a_eliminar;
 	protected static List<Entidad> lista_de_jugador;
 	Random random;
-	private static String oleadas = "ppjbpv jpjjpbm bjppd"; //v m y d son los bosses finales de cada oleada (OBLIGATORIO ESE ORDEN)
-    //entonces cada vez q muera alguno cambia la oleada o (si es d) ganas.
 	
 	
 	
@@ -66,52 +64,10 @@ public class Mapa {
 	}
 	
 	public List<Entidad> getListaJugador() {
-		return lista_de_jugador;
+		return lista_de_jugador; 
 	}
 	
-	public boolean puedoAgregarObjeto(Entidad obj) {
-		boolean puedoInsertar = true;
-		
-		if( obj == null )
-			return false;
-		
-		int x = obj.getDibujo().getX();
-		int y = obj.getDibujo().getY();
-		Rectangle rec = new Rectangle(x, y, obj.getDibujo().getWidth(), obj.getDibujo().getHeight());	
-		
-		for(Entidad elem : lista_principal)
-			if(elem.getDibujo().getBounds().intersects(rec)) {
-				puedoInsertar = false;	
-				return false;
-			}
-		
-		return puedoInsertar;
-	}
-		
-	public List<Entidad> todosLosQueIntersecta(Entidad obj){
-		List<Entidad> lista = new LinkedList<Entidad>();		
-		for(Entidad elem : lista_principal)
-			if(obj!=elem && elem.getDibujo().getBounds().intersects(obj.getDibujo().getBounds()))
-				lista.add(elem);			
-		return lista;
-	}
-	
-	public Entidad intersectaObjeto(Entidad obj) {		
-		for(Entidad elem : lista_principal)
-			if(obj!=elem && elem.getDibujo().getBounds().intersects(obj.getDibujo().getBounds()))
-					return elem;
-		return null;
-	}
-	
-	public Entidad intersectaRango(Entidad obj) {		
-		Rectangle tamanioObj = obj.getDibujo().getBounds();
-		tamanioObj.width += obj.getRango();
-		for(Entidad elem : lista_principal) {
-			if(elem!=obj && elem.getDibujo().getBounds().intersects(tamanioObj))
-				return elem;
-		}
-		return null;
-	}
+
 	
 	public Entidad intersectaRangoDeEnemigo(Entidad obj) {
 		Rectangle tamanioObj = obj.getDibujo().getBounds();

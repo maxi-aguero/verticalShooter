@@ -1,12 +1,12 @@
-package GameObjects.Disparos;
+package Entidad.Disparo;
 
 
 import Visitor.Visitor;
 import Visitor.VisitorDisparoJugador;
 
-public class DisparoAliado extends Disparo {
+public class DisparoJugador extends Disparo {
 
-	public DisparoAliado(int danio, int rango) {
+	public DisparoJugador(int danio, int rango) {
 		super(danio, rango);
 		visitor = new VisitorDisparoJugador(this);
 	}

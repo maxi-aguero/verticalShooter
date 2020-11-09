@@ -2,8 +2,8 @@ package Visitor;
 
 import Entidad.Entidad;
 import Entidad.Jugador.Player;
-import GameObjects.Disparos.DisparoAliado;
-import GameObjects.Disparos.DisparoEnemigo;
+import Entidad.Disparo.DisparoJugador;
+import Entidad.Disparo.EmitirContagio;
 import Entidad.Infectado.Infectado;
 
 public abstract class Visitor {
@@ -20,9 +20,9 @@ public abstract class Visitor {
 	
 	public abstract void visit(Infectado e);
 	
-	public abstract void visit(DisparoAliado d);
+	public abstract void visit(DisparoJugador d);
 	
-	public abstract void visit(DisparoEnemigo d);
+	public abstract void visit(EmitirContagio d);
 
 	
 	

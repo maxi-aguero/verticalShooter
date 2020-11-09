@@ -1,11 +1,11 @@
-package GameObjects.Disparos;
+package Entidad.Disparo;
 
 import Visitor.Visitor;
 import Visitor.VisitorContagiarVirus;
 
-public class DisparoEnemigo extends Disparo {
+public class EmitirContagio extends Disparo {
 
-	public DisparoEnemigo(int danio,  int rango) {
+	public EmitirContagio(int danio,  int rango) {
 		super(danio,  rango);
 		visitor = new VisitorContagiarVirus(this);
 	}

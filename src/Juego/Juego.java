@@ -2,32 +2,28 @@ package Juego;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-import javax.swing.JFrame;
+import javax.swing.Timer;
 
 import Entidad.Entidad;
 import Entidad.Jugador.Player;
 
 
 
-public class Juego  extends  JFrame implements ActionListener  {
+
+public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyListener  {
 	
 	protected GUI gui;
-	protected Movimiento movimiento;
 	protected Mapa mapa;
-	//protected Tienda tienda;
-	protected int contadorDobleDanio;
-	protected int contadorDobleOro;
+	protected Timer tiempo;
 	
 	public Juego(){
 		
 		gui = new GUI();
 		gui.setVisible(true);
-		mapa = new Mapa(gui, this);
-		//gui.setMapa(mapa);
-		
+		mapa = new Mapa(gui, this);		
 		this.add(gui);
         this.setTitle("Zombielandia");
         //this.setResizable(false);
@@ -36,117 +32,136 @@ public class Juego  extends  JFrame implements ActionListener  {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setFocusable(true);
-          
-        this.addKeyListener(new PlayKeyListener());
+        this.start();    
 
-        mapa.crearNivelUno(); 
-        
-        
-
-        
-        
-		
-		
-		movimiento = new Movimiento(this);
-		movimiento.run();
 	}	
 
-	public Mapa getMapa() {
-		return mapa;
-	}
+
 	
-	public GUI getGUI() {
-		return gui;
-	}
+	private void start() {   	
+        this.addKeyListener(this);
+        mapa.crearNivelUno();          
+        tiempo = new Timer(40, this);
+        tiempo.start();
+    }
+		
+
+
 	
 	public void interactuar() {	
-		boolean puedoSeguirMoviendome;
-
-//		System.out.println("Tamaño lista principal: "+mapa.getListaPrincipal().size());
-//		System.out.println("Tamaño lista eliminar: "+mapa.getListaEliminar().size());
-//		System.out.println("Tamaño lista agregar: "+mapa.getListaAgregar().size());
-	
-		
 		
 		for(Entidad obj : mapa.getListaPrincipal()) {
-			if(obj.estaVivo()) {				/*
-				obj.interactuar();
-				*/
-				puedoSeguirMoviendome = obj.interactuar();
-				if( !puedoSeguirMoviendome ) 
-					finDelJuego();
-			}			
-			else
-				obj.morir();
-		}
-		
-		for(Entidad obj : mapa.getListaEliminar()) {
-			mapa.getListaPrincipal().remove(obj);
-			obj.getDibujo().setVisible(false);
-			obj = null;
-		}
-		mapa.resetLista(mapa.getListaEliminar());
-		
-		
-		for(Entidad obj : mapa.getListaAgregar()) {
+			if(obj.estaVivo()) 	{}		
+				obj.interactuar();						
 			
+		}		
+		
+		for(Entidad obj : mapa.getListaAgregar()) {			
 				mapa.getListaPrincipal().add(obj);
-				gui.agregarDibujo(obj);
-				
-			//obj.setMapa(mapa);
+				gui.agregarDibujo(obj);				
 		}	
 		
 		
 		mapa.resetLista(mapa.getListaAgregar());
 		
 		
-		/**for(Entidad obj : mapa.getListaJugador()) {
-			mapa.getListaPrincipal().add(obj);
-			gui.agregarDibujo(obj);
-			//obj.setMapa(mapa);
-		}*/
+
 		
 		
 	}
-	
-	private void finDelJuego() {
-		//movimiento.setDeboMover(false);
-		//gui.gameOver();
+
+
+
+	public void keyPressed(KeyEvent arg0) {
+		switch(arg0.getKeyCode()) {
 		
-	}
-
-
-	
-
-	private class PlayKeyListener extends KeyAdapter {
-        @Override
-        public void keyPressed(KeyEvent e) {
-            super.keyPressed(e);
-            if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
-            	
-            	//mapa.dameJugador().mover();
-            	Player p01= (Player) mapa.dameJugador();
-            	p01.moverderecha();
-            	
-            	
-            } else if (e.getKeyCode() == KeyEvent.VK_LEFT ) {
-            	
-            	Player p01= (Player) mapa.dameJugador();
+		
+			case KeyEvent.VK_LEFT: {
+				Player p01= (Player) mapa.dameJugador();
             	p01.moverizquierda();
-            	
+				break;
+			}
+			case KeyEvent.VK_RIGHT: {
+			 	Player p01= (Player) mapa.dameJugador();
+            	p01.moverderecha();
 
-            } 
-        }
-    }
+				break;
+			}
+			case KeyEvent.VK_ENTER: {
+				//System.out.println("dispara");
+			break;
+		}
+		
+		}
+		
+	}
 
+	public void keyReleased(KeyEvent arg0) {
+		switch(arg0.getKeyCode()) {
+		
+			case KeyEvent.VK_LEFT: {
+				Player p01= (Player) mapa.dameJugador();
+	        	p01.moverizquierda();
+				break;
+			}
+			case KeyEvent.VK_RIGHT: {
+			 	Player p01= (Player) mapa.dameJugador();
+				p01.moverderecha();
+	
+				break;
+			}
+			case KeyEvent.VK_ENTER: {
+					//System.out.println("dispara");
+				break;
+			}
+	
+		}				
+	}
+
+	public void keyTyped(KeyEvent arg0) {
+		switch(arg0.getKeyCode()) {
+			case KeyEvent.VK_LEFT: {
+				Player p01= (Player) mapa.dameJugador();
+	        	p01.moverizquierda();
+				break;
+			}
+			case KeyEvent.VK_RIGHT: {
+			 	Player p01= (Player) mapa.dameJugador();
+	        	p01.moverderecha();
+	
+				break;
+			}
+			case KeyEvent.VK_ENTER: {
+				//System.out.println("dispara");
+			break;
+		}
+	
+	}
+	
+		
+	}
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
 
 
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
+		this.interactuar();
 		
 	}
+
+
 	
 	
 }
