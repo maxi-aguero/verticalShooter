@@ -27,15 +27,8 @@ https://drive.google.com/file/d/1YPb2GLuV0P191yUYP5p08IaGg6Q7iQJ2/view
 
 
 Diseño en pseudocódigo (general) la generación del mapa
-...........
-
-............
-
-...........
-
-...............
-
-............
+El mapa genera 4 infectados beta y 4 infectados alpha y los guarda en una lista, 
+La clase Juego es la responsable de poner en la gui estos objetos en una posicion dada y ademas pone al jugador debajo de pantalla.
 
 
 
