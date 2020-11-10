@@ -1,6 +1,5 @@
 package Entidad.Infectado;
 
-import javax.swing.ImageIcon;
 import Entidad.Entidad;
 import Visitor.Visitor;
 
@@ -20,28 +19,6 @@ public abstract class Infectado extends Entidad   {
 	public void iniciarAtaque(Entidad obj) {
 			
 	}
-	
-	
-	
-	
-	public void mover() {	
-		ImageIcon imagen = new ImageIcon(this.getClass().getClassLoader().getResource(ruta_dibujo));		
-		dibujo.setIcon(imagen);
-		
-
-		if (this.getDibujo().getY()<555) {					
-			dibujo.setLocation(this.getDibujo().getX(),this.getDibujo().getY()+2);
-			}
-		else
-		{
-			
-			dibujo.setLocation(dibujo.getX(),this.getY());
-		}
-		
-				
-		
-	}
-		
 	
 
 	public void accept(Visitor v){

@@ -1,6 +1,7 @@
 package Entidad.Disparo;
 
 
+import EstrategiaMovimiento.EstrategiaMovimiento;
 import Visitor.Visitor;
 import Visitor.VisitorDisparoJugador;
 
@@ -16,15 +17,18 @@ public class DisparoJugador extends Disparo {
 		v.visit(this);  
 	} 
 
-	public void mover() {	
-		
-		
-	}
+
 
 	@Override
 	public boolean estaVivo() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void mover(EstrategiaMovimiento d) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

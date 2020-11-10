@@ -1,14 +1,19 @@
 package Entidad.Infectado;
 
 import Entidad.Entidad;
+
+import EstrategiaMovimiento.EstrategiaMovimiento;
+import EstrategiaMovimiento.MovimientoVertical;
 import Visitor.VisitorInfectado;
 
 public class InfectadoAlpha extends Infectado {
 		
 	public InfectadoAlpha() {
 		super(100, 0, 5, 3, 20, 35, 30); 
-		visitor = new VisitorInfectado(this);				
+		visitor = new VisitorInfectado(this);	
+		direccion = new MovimientoVertical(this,1);		
 		ruta_dibujo = "img/infectados/alpha.png";
+
 		
 	}
 
@@ -24,12 +29,19 @@ public class InfectadoAlpha extends Infectado {
 		
 	}
 
+
 	@Override
-	public boolean interactuar() {
+	public void mover(EstrategiaMovimiento d) {
 		// TODO Auto-generated method stub
-		return false;
+		d.mover();
+
+		
 	}
 
+	public void setDireccion(int d) { 
+		direccion.setDireccion(d) ;
+		
+	}
 
 	
 

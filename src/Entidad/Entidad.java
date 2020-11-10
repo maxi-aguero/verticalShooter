@@ -2,7 +2,7 @@ package Entidad;
 
 import javax.swing.JLabel;
 
-import Juego.Mapa;
+import EstrategiaMovimiento.EstrategiaMovimiento;
 import Visitor.Visitor;
 
 public abstract class Entidad {
@@ -16,13 +16,15 @@ public abstract class Entidad {
 	protected String ruta_dibujo;
 	private int coorInicialx;//coordenadas iniciales
 	private int coorInicialy;
+	protected EstrategiaMovimiento direccion; //movimiento
 
 	
 	protected Entidad(int cargaViralActual, int cargaViralPierde, int rango, int velocidad) {
-		this.cargaViralActual = cargaViralActual; //ok
+		this.cargaViralActual = cargaViralActual; 
 		this.cargaViralPierde=cargaViralPierde;
 		this.rango = rango;
 		this.velocidad = velocidad;	
+		
 		
 	}
 	
@@ -48,8 +50,7 @@ public abstract class Entidad {
 	
 
 	public abstract void accept(Visitor v);	
-	public abstract boolean interactuar();
-	public abstract void mover();
+	public abstract void mover(EstrategiaMovimiento d);
 	public abstract void atacar(Entidad obj); 
 	public abstract void iniciarAtaque(Entidad obj);
 
@@ -72,6 +73,8 @@ public abstract class Entidad {
 	public int getVelocidad_movimiento() { return velocidad ;}
 	
 	public Visitor getVisitor() { return visitor ;}	
+	
+	public EstrategiaMovimiento getDireccion() { return direccion ;}	
 
 
 	public abstract boolean estaVivo();

@@ -22,21 +22,6 @@ public abstract class Player extends Entidad   {
 			
 	}
 	
-	
-	
-	
-	public void mover() {		
-				
-	}
-	
-	public abstract void moverizquierda();
-	public abstract void moverderecha();
-
-		
-	
-	
-	
-
 
 	public void accept(Visitor v){
 		v.visit(this);

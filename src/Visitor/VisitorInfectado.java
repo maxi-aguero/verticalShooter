@@ -1,6 +1,7 @@
 package Visitor;
 import Entidad.Entidad;
 import Entidad.Jugador.Player;
+import EstrategiaMovimiento.MovimientoVertical;
 import Entidad.Disparo.DisparoJugador;
 import Entidad.Disparo.EmitirContagio;
 import Entidad.Infectado.Infectado;
@@ -20,7 +21,9 @@ public class VisitorInfectado extends Visitor {
 
 	@Override
 	public void visit(Infectado e) {
-			e.mover();
+			
+			e.getDireccion().setDireccion(MovimientoVertical.ABAJO );
+			e.mover(e.getDireccion());
 
 	}
 
