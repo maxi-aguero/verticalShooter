@@ -23,17 +23,7 @@ public abstract class Player extends Entidad   {
 	}
 	
 	
-	public boolean interactuar() {		
-		Entidad objIntersectado = mapa.intersectaRangoDeEnemigo(this);
-		if(objIntersectado!=null) 
-			objIntersectado.accept(visitor);
-		else
-			mover();
-			
-		
-		return true;
-		
-	}
+	
 	
 	public void mover() {		
 				

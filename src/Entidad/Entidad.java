@@ -11,12 +11,11 @@ public abstract class Entidad {
 	protected int cargaViralPierde; //infectado pierde con 0- comienza con 100
 	protected int velocidad; // de movimiento 
 	protected int rango; //rango de tiro	
-	protected Mapa mapa;	//necesito
 	protected JLabel dibujo;// label de gui
 	protected Visitor visitor;	
 	protected String ruta_dibujo;
-	private int x;//coordenadas iniciales
-	private int y;
+	private int coorInicialx;//coordenadas iniciales
+	private int coorInicialy;
 
 	
 	protected Entidad(int cargaViralActual, int cargaViralPierde, int rango, int velocidad) {
@@ -28,19 +27,19 @@ public abstract class Entidad {
 	}
 	
 	public void setX(int x) {
-		this.x=x;
+		this.coorInicialx=x;
 	}
 	
 	public void setY(int y) {
-		this.y=y;
+		this.coorInicialy=y;
 	}
 	
 	public int getX() {
-		return x;
+		return coorInicialx;
 	}
 	
 	public int getY() {
-		return y;
+		return coorInicialy;
 	}
 	
 	public String getImagen() {
@@ -70,10 +69,6 @@ public abstract class Entidad {
 	public void setDibujo(JLabel dibujo) { this.dibujo = dibujo ;}
 
 	
-	public void setMapa(Mapa mapa) { this.mapa = mapa ;}
-	public Mapa getMapa() { return mapa ;}
-	
-
 	public int getVelocidad_movimiento() { return velocidad ;}
 	
 	public Visitor getVisitor() { return visitor ;}	

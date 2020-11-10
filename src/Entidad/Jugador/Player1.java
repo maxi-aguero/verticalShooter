@@ -61,6 +61,12 @@ public class Player1 extends Player {
 			
 			dibujo.setLocation(0,this.getY());
 		}		
+	}
+
+	@Override
+	public boolean interactuar() {
+		// TODO Auto-generated method stub
+		return false;
 	}	
 	
 

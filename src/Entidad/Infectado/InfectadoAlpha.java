@@ -24,6 +24,12 @@ public class InfectadoAlpha extends Infectado {
 		
 	}
 
+	@Override
+	public boolean interactuar() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 	
 

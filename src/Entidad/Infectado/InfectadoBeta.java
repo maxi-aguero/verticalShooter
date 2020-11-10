@@ -17,6 +17,12 @@ public class InfectadoBeta extends Infectado {
 		return cargaViralActual>0?true:false;	
 	}
 
+	@Override
+	public boolean interactuar() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 
 }
