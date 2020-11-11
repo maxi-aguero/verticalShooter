@@ -65,7 +65,6 @@ public abstract class Entidad {
 	public void setDibujo(JLabel dibujo) { this.dibujo = dibujo ;}
 
 	
-	//public int getVelocidad_movimiento() { return velocidad ;}
 	
 	public Visitor getVisitor() { return visitor ;}	
 	
