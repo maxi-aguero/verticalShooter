@@ -32,12 +32,8 @@ La clase Juego es la responsable de poner en la gui estos objetos guardados en m
 
 
 
-ordanar un arreglo
 
-repetir mientras no este ordenada 
-  para cada par de elementos adyacentes
-     si el elemento es mayor que el que sigue 
-        intercambiar
+
 
 
 
