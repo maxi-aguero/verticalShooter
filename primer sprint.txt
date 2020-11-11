@@ -27,18 +27,40 @@ https://drive.google.com/file/d/1YPb2GLuV0P191yUYP5p08IaGg6Q7iQJ2/view
 
 
 Diseño en pseudocódigo (general) la generación del mapa
-El mapa genera 4 infectados beta y 4 infectados alpha y los guarda en una lista, 
-La clase Juego es la responsable de poner en la gui estos objetos en una posicion dada y ademas pone al jugador debajo de pantalla.
+El mapa genera 1 jugador, 4 infectados beta y 4 infectados alpha y los guarda. 
+La clase Juego es la responsable de poner en la gui estos objetos guardados en mapa, en una posicion dada y ademas pone al jugador debajo de pantalla.
 
 
 
+ordanar un arreglo
 
+repetir mientras no este ordenada 
+  para cada par de elementos adyacentes
+     si el elemento es mayor que el que sigue 
+        intercambiar
 
 
 
 Diseñar el movimiento del jugador e infectados (pseudocódigo)
-La clase Juego tiene un oyente que cuando apreta la tecla izq, un objeto jugador recibe un mensaje seteando la direccion de su movimento hacia la izquierda.
-Luego este objeto recibe un mensaje "mover(EstrategiaMovimiento e)"que se mueva para esa direccion
+Para Jugador:
+La clase Juego tiene un oyente que cuando apreta la tecla izq, el objeto jugador setea la direccion de su movimento hacia la izquierda.
+Luego este objeto se mueve hacia dicha direccion.
+Cuando la clase Juego recibe el oyente que se apreta la tecla derecha, el objeto jugador setea la direccion de su movimento hacia la derecha.
+Luego este objeto se mueve hacia dicha direccion.
+
+Para Infectados:
+
+  para cada Entidad de elementos de la lista en juego de mapa
+     si el elemento esta vivo 
+        si no es Intersectado con su enemigo
+               el elemento acepta un visitor
+               en caso contrario (si es Infectado) 
+                    el elemento infectado setea la direccion de su movimento hacia abajo
+                    Luego este objeto se mueve hacia dicha direccion.
+                 
+        
+        
+
 
 Tener pensado como interactuar entre el jugador, los infectados y el mapa. 
 ......
