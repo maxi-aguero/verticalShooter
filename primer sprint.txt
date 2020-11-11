@@ -46,13 +46,14 @@ Luego este objeto se mueve hacia dicha direccion.
 
 Para Infectados:
 
-  para cada Entidad de elementos de la lista en juego de mapa
+  para cada elemento Entidad que guarda mapa en juego
      si el elemento esta vivo 
-        si no es Intersectado con su enemigo
-               el elemento acepta un visitor
-               en caso contrario (si es Infectado) 
-                    el elemento infectado setea la direccion de su movimento hacia abajo
-                    Luego este objeto se mueve hacia dicha direccion.
+          si es intersectado con su enemigo
+                  el elemento acepta un visitor
+          en caso contrario
+                (si es Infectado) 
+                      el elemento infectado setea la direccion de su movimento hacia abajo
+                      Luego este objeto se mueve hacia dicha direccion.
                  
         
         
