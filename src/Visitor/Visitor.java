@@ -2,8 +2,8 @@ package Visitor;
 
 import Entidad.Entidad;
 import Entidad.Jugador.Player;
-import Entidad.Disparo.DisparoJugador;
-import Entidad.Disparo.EmitirContagio;
+import Entidad.Proyectil.DisparoJugador;
+import Entidad.Proyectil.ProyectilVirus;
 import Entidad.Infectado.Infectado;
 
 public abstract class Visitor {
@@ -22,7 +22,7 @@ public abstract class Visitor {
 	
 	public abstract void visit(DisparoJugador d);
 	
-	public abstract void visit(EmitirContagio d);
+	public abstract void visit(ProyectilVirus d);
 
 	
 	

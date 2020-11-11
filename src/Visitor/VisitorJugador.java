@@ -2,8 +2,8 @@ package Visitor;
 
 import Entidad.Entidad;
 import Entidad.Jugador.Player;
-import Entidad.Disparo.DisparoJugador;
-import Entidad.Disparo.EmitirContagio;
+import Entidad.Proyectil.DisparoJugador;
+import Entidad.Proyectil.ProyectilVirus;
 import Entidad.Infectado.Infectado;
 
 public class VisitorJugador extends Visitor {
@@ -28,7 +28,7 @@ public class VisitorJugador extends Visitor {
 	}
 
 	@Override
-	public void visit(EmitirContagio d) {
+	public void visit(ProyectilVirus d) {
 
 	}
 

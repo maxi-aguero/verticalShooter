@@ -1,4 +1,5 @@
 package Juego;
+import Juego.Juego;
 
 public class Main {
 	public static Juego nuevojuego;

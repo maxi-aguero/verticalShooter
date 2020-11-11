@@ -7,25 +7,17 @@ import Visitor.Visitor;
 
 public abstract class Entidad {
 	
-	protected int cargaViralActual; //jugador pierde con 100 - comienza con 0									
-	protected int cargaViralPierde; //infectado pierde con 0- comienza con 100
-	protected int velocidad; // de movimiento 
-	protected int rango; //rango de tiro	
+	protected int velocidad;// 
 	protected JLabel dibujo;// label de gui
-	protected Visitor visitor;	
-	protected String ruta_dibujo;
+	protected Visitor visitor;		
+	protected String ruta_dibujo;	
 	private int coorInicialx;//coordenadas iniciales
 	private int coorInicialy;
 	protected EstrategiaMovimiento direccion; //movimiento
 
+
 	
-	protected Entidad(int cargaViralActual, int cargaViralPierde, int rango, int velocidad) {
-		this.cargaViralActual = cargaViralActual; 
-		this.cargaViralPierde=cargaViralPierde;
-		this.rango = rango;
-		this.velocidad = velocidad;	
-		
-		
+	protected Entidad() {
 	}
 	
 	public void setX(int x) {
@@ -48,6 +40,16 @@ public abstract class Entidad {
 		return ruta_dibujo;
 	}
 	
+	public int getVelocidad() {
+		return velocidad;
+	}
+	
+	
+	public void setVelocidad(int velocidad) {
+		this.velocidad=velocidad;
+	}
+	
+	
 
 	public abstract void accept(Visitor v);	
 	public abstract void mover(EstrategiaMovimiento d);
@@ -59,18 +61,11 @@ public abstract class Entidad {
 	}
 	
 	
-	public int getRango() {	return rango ;}
-	public void setRango(int rango) { this.rango = rango ;}
-	
-	public int getVitalactual() { return cargaViralActual ;}
-	public void setVitalactual(int cvital) { this.cargaViralActual = cvital ;}
-	
-
 	public JLabel getDibujo() { return dibujo ;}
 	public void setDibujo(JLabel dibujo) { this.dibujo = dibujo ;}
 
 	
-	public int getVelocidad_movimiento() { return velocidad ;}
+	//public int getVelocidad_movimiento() { return velocidad ;}
 	
 	public Visitor getVisitor() { return visitor ;}	
 	

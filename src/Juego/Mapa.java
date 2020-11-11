@@ -3,11 +3,14 @@ package Juego;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
-import Entidad.*;
-import Entidad.Jugador.*;
-import Entidad.Infectado.*;
+import Entidad.Entidad;
+import Entidad.Personaje;
+import Entidad.Infectado.Infectado;
+import Entidad.Infectado.InfectadoAlpha;
+import Entidad.Infectado.InfectadoBeta;
+import Entidad.Jugador.Player;
+import Entidad.Jugador.Player1;
 
 
 
@@ -17,16 +20,14 @@ public class Mapa {
 	protected static List<Entidad> listaInicial;
 	protected static List<Entidad> l_elementosBorrados;
 	protected static List<Entidad> listaJugador;
-	Random random;
 	
 	
 	
-	public Mapa(Juego j) {
+	public Mapa() {
 		listaEnJuego = new LinkedList<Entidad>();
 		listaInicial = new LinkedList<Entidad>();
 		l_elementosBorrados = new LinkedList<Entidad>();
 		listaJugador = new LinkedList<Entidad>();
-		random = new Random();
 	}
 
 
@@ -63,11 +64,13 @@ public class Mapa {
 	
 
 
-	
+	//intesecta personajes: Jugador vs Enemigo
 	public Entidad intersectaRangoDeEnemigo(Entidad obj) {
 		Rectangle tamanioObj = obj.getDibujo().getBounds();
-		tamanioObj.translate(-obj.getRango(),0);
-		tamanioObj.width += obj.getRango();
+		
+		Personaje pp=(Personaje) obj;
+		tamanioObj.translate(- pp.getRango(),0);
+		tamanioObj.width += pp.getRango();
 		for(Entidad elem : listaEnJuego) {
 			if(elem!=obj && elem.getDibujo().getBounds().intersects(tamanioObj))
 				return elem;
@@ -94,7 +97,6 @@ public class Mapa {
 		infectado01.setY(140);
 		addIncial(infectado01);
 		
-
 		Infectado infectado03 = new InfectadoBeta();
 		infectado03.setX(180);
 		infectado03.setY(140);

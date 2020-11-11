@@ -1,35 +1,21 @@
 package Entidad.Jugador;
 
+import Entidad.Personaje;
 
-import Entidad.Entidad;
-import Visitor.Visitor;
 
-public abstract class Player extends Entidad   {
+public abstract class Player extends Personaje   {
 	
 	
 
-	protected Player(int cargaViralActual, int cargaViralPierde, int rango, int velMov, int velAt, int puntos, int monedas) {
+	protected Player(int cargaViralActual, int cargaViralPierde, int rango) {
 
-		super(cargaViralActual, cargaViralPierde, rango, velMov);
+		super(cargaViralActual, cargaViralPierde,rango);
 	}	
 	
-	@Override
-	public void atacar(Entidad obj) {
-		
-	}
 	
-	public void iniciarAtaque(Entidad obj) {
-			
-	}
 	
-
-	public void accept(Visitor v){
-		v.visit(this);
-	} 
 	
-	public void morir() {      
-			
-	}
+	
 
 
 

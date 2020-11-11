@@ -1,35 +1,17 @@
 package Entidad.Infectado;
 
-import Entidad.Entidad;
-import Visitor.Visitor;
+import Entidad.Personaje;
 
-public abstract class Infectado extends Entidad   {
+public abstract class Infectado extends Personaje   {
 	
 	
-	protected Infectado(int cargaViralActual, int cargaViralPierde, int rango, int velocidad, int velAt, int puntos, int monedas) {
+	protected Infectado(int cargaViralActual, int cargaViralPierde, int rango) {
 
-		super(cargaViralActual, cargaViralPierde, rango, velocidad);
+		super(cargaViralActual, cargaViralPierde, rango);
 	}	
 	
-	@Override
-	public void atacar(Entidad obj) {
-	
-	}
-	
-	public void iniciarAtaque(Entidad obj) {
-			
-	}
-	
 
-	public void accept(Visitor v){
-		v.visit(this);
-	} 
-	
-	public void morir() {    
 		
-	}
-
-	
 
 
 }

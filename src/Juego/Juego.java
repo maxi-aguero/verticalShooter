@@ -19,7 +19,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	protected Timer tiempo;
 	public Juego(){
 
-		mapa = new Mapa(this);		
+		mapa = new Mapa();		
 		vinculargui();	
         start(); 
 		
