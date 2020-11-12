@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 
 import Entidad.Entidad;
-import Entidad.Jugador.Player;
+import Entidad.Jugador.Jugador;
 import EstrategiaMovimiento.MovimientoHorizontal;
 import EstrategiaMovimiento.MovimientoVertical;
 public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyListener  {
@@ -60,7 +60,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 				else
 				{
 					//si no es jugador, muevo
-					if (obj!= mapa.dameJugador()) {
+					if (obj!= mapa.getJugador()) {
 					
 						obj.getDireccion().setDireccion(MovimientoVertical.ABAJO );
 						obj.mover(obj.getDireccion());
@@ -88,14 +88,14 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 		switch(arg0.getKeyCode()) {
 
 			case KeyEvent.VK_LEFT: {
-				Entidad p01= (Player) mapa.dameJugador();
+				Entidad p01= (Jugador) mapa.getJugador();
 
 				p01.getDireccion().setDireccion(MovimientoHorizontal.IZQUIERDA );
 	        	p01.mover(p01.getDireccion());
 	        	break;
 			}
 			case KeyEvent.VK_RIGHT: {
-				Entidad p01= (Player) mapa.dameJugador();
+				Entidad p01= (Jugador) mapa.getJugador();
 
 				p01.getDireccion().setDireccion(MovimientoHorizontal.DERECHA );
 	        	p01.mover(p01.getDireccion());

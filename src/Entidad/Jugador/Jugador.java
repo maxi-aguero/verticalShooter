@@ -1,14 +1,15 @@
 package Entidad.Jugador;
 
 import Entidad.Entidad;
+import Entidad.Personaje;
 import EstrategiaMovimiento.EstrategiaMovimiento;
 import EstrategiaMovimiento.MovimientoHorizontal;
 import Visitor.Visitor;
 import Visitor.VisitorJugador;
 
-public class Player1 extends Player {
+public class Jugador extends Personaje {
 		
-	public Player1() {
+	public Jugador() {
 		
 		super(0, 100, 5); 		
 		visitor = new VisitorJugador(this);				

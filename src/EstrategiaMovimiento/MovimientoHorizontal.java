@@ -18,12 +18,12 @@ public class MovimientoHorizontal extends EstrategiaMovimiento{
 						
 	
 		int coordx = entidad.getDibujo().getX();
-		if( (coordx>=0) && (coordx<=700)) {
+		if( (coordx>=0) && (coordx<=620)) {
 			coordx = coordx - direccion;	
 			
 			entidad.getDibujo().setLocation(coordx,entidad.getDibujo().getY());
 			}
-		if(coordx>700)			
+		if(coordx>620)			
 			entidad.getDibujo().setLocation(coordx-1,entidad.getDibujo().getY());
 			
 

@@ -13,7 +13,7 @@ public class InfectadoBeta extends Infectado {
 		super(100, 0, 5); 
 		visitor = new VisitorInfectado(this);	
 		direccion = new MovimientoVertical(this,1);		
-		ruta_dibujo = "img/infectados/beta.png";
+		ruta_dibujo = "img/infectados/beta.gif";
 
 		
 	}

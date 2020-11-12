@@ -9,8 +9,7 @@ import Entidad.Personaje;
 import Entidad.Infectado.Infectado;
 import Entidad.Infectado.InfectadoAlpha;
 import Entidad.Infectado.InfectadoBeta;
-import Entidad.Jugador.Player;
-import Entidad.Jugador.Player1;
+import Entidad.Jugador.Jugador;
 
 
 
@@ -40,7 +39,7 @@ public class Mapa {
 		listaJugador.add(obj);
 	}
 	
-	public Entidad dameJugador() {
+	public Entidad getJugador() {
 		return listaJugador.get(0);
 	}
 	
@@ -84,7 +83,7 @@ public class Mapa {
 		
 		
 		
-		Player player01 = new Player1();
+		Jugador player01 = new Jugador();
 		player01.setX(50);
 		player01.setY(420);
 		addIncial(player01);
@@ -108,14 +107,14 @@ public class Mapa {
 		addIncial(infectado02);
 		
 		Infectado infectado04 = new InfectadoAlpha();
-		infectado04.setX(12);
+		infectado04.setX(62);
 		infectado04.setY(60);
 		addIncial(infectado04);
 		
 		
 		Infectado infectado05 = new InfectadoBeta();
-		infectado05.setX(390);
-		infectado05.setY(140);
+		infectado05.setX(470);
+		infectado05.setY(110);
 		addIncial(infectado05);
 		
 		Infectado infectado06 = new InfectadoAlpha();

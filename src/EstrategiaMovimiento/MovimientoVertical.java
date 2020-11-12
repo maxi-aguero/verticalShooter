@@ -4,7 +4,7 @@ import Entidad.Entidad;
 
 public class MovimientoVertical extends EstrategiaMovimiento{
 	
-	public static final int ABAJO = 8;
+	public static final int ABAJO = 5;
 	
 	public MovimientoVertical(Entidad e, int d) {
 		super(e, d);
@@ -22,7 +22,7 @@ public class MovimientoVertical extends EstrategiaMovimiento{
 		entidad.getDibujo().setLocation(entidad.getDibujo().getX(),coordy);
 		
 		if(coordy>555)			
-			entidad.getDibujo().setLocation(entidad.getX(),0);
+			entidad.getDibujo().setLocation(entidad.getX(),entidad.getY());
 			
 
 	}

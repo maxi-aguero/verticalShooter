@@ -1,7 +1,7 @@
 package Visitor;
 
 import Entidad.Entidad;
-import Entidad.Jugador.Player;
+import Entidad.Jugador.Jugador;
 import Entidad.Proyectil.DisparoJugador;
 import Entidad.Proyectil.ProyectilVirus;
 import Entidad.Infectado.Infectado;
@@ -16,7 +16,7 @@ public abstract class Visitor {
 	}
 
 	
-	public abstract void visit(Player a);
+	public abstract void visit(Jugador a);
 	
 	public abstract void visit(Infectado e);
 	

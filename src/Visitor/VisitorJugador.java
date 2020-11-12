@@ -1,7 +1,7 @@
 package Visitor;
 
 import Entidad.Entidad;
-import Entidad.Jugador.Player;
+import Entidad.Jugador.Jugador;
 import Entidad.Proyectil.DisparoJugador;
 import Entidad.Proyectil.ProyectilVirus;
 import Entidad.Infectado.Infectado;
@@ -13,7 +13,7 @@ public class VisitorJugador extends Visitor {
 	}
 
 	@Override
-	public void visit(Player a) {
+	public void visit(Jugador a) {
 
 	}
 

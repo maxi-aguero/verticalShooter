@@ -1,6 +1,6 @@
 package Visitor;
 import Entidad.Entidad;
-import Entidad.Jugador.Player;
+import Entidad.Jugador.Jugador;
 import EstrategiaMovimiento.MovimientoVertical;
 import Entidad.Proyectil.DisparoJugador;
 import Entidad.Proyectil.ProyectilVirus;
@@ -13,7 +13,7 @@ public class VisitorInfectado extends Visitor {
 	}
 
 	@Override
-	public void visit(Player a) {
+	public void visit(Jugador a) {
 		//obj.atacar(a);
 
 		

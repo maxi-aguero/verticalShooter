@@ -18,7 +18,7 @@ public class GUI extends JPanel  {
 	private JLabel fondo;
 	public GUI() {
 		
-		this.setPreferredSize(new Dimension(800, 900));
+		this.setPreferredSize(new Dimension(700, 600));
         this.setBackground(new Color(90,60,90));  
         this.setFocusable(true);   
         this.setLayout(null);      
@@ -29,19 +29,19 @@ public class GUI extends JPanel  {
 	
 	private void crearFondo() {		
 		
-		ImageIcon imagen = new ImageIcon(getClass().getClassLoader().getResource("img/juego/background8.jpg"));
+		ImageIcon imagen = new ImageIcon(getClass().getClassLoader().getResource("img/juego/background.png"));
 		fondo = new JLabel(imagen,SwingConstants.CENTER);
-		Icon imgdos= new  ImageIcon(imagen.getImage().getScaledInstance(800, 900, Image.SCALE_SMOOTH)); 
+		Icon imgdos= new  ImageIcon(imagen.getImage().getScaledInstance(700, 600, Image.SCALE_SMOOTH)); 
 	 	fondo.setIcon(imgdos);	
 		fondo.repaint();	
-		fondo.setBounds(0,0, 800, 900);
+		fondo.setBounds(0,0, 700, 600);
 		this.setLayout(null);
 		fondo.setLayout(null);
 		JLabel palabra=new JLabel("Plague Inc");
 		palabra.setForeground(new Color(223, 45, 223)); 
 
 		palabra.setFont(new Font("Ink Free", Font.BOLD, 40));
-		palabra.setBounds(280,5, 300, 150);
+		palabra.setBounds(70,2, 300, 50);
 		
 		JLabel vida=new JLabel("vida");
 		vida.setBounds(1000,5, 300, 150);
@@ -57,7 +57,7 @@ public class GUI extends JPanel  {
 		
 		ImageIcon img_entidad = new ImageIcon(getClass().getClassLoader().getResource(e.getImagen()));
 		JLabel lbdos = new JLabel(img_entidad);
-		lbdos.setBounds(e.getX(), e.getY(), 50, 80);
+		lbdos.setBounds(e.getX(), e.getY(), 100, 100);
 		e.setDibujo(lbdos);
 		lbdos.repaint();
 
@@ -65,5 +65,13 @@ public class GUI extends JPanel  {
 		fondo.repaint();
 		
 	}
+
+	
+	
+
+	
+	
+	
+
 
 }
