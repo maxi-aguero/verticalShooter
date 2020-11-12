@@ -61,11 +61,16 @@ Para Infectados:
         
 
 
+
+
+
 Tener pensado como interactuar entre el jugador, los infectados y el mapa. 
-......
 
-.
+Hay un limite que el jugador no puede cruzar mas alla para que no se salga en pantalla, cuando llege a ese limite retrocede un lugar hacia atras.
+Cuando el infetcado llega al limite de la pantalla cuando va hacia abajo, vuelve a aparecer en su posicion inicial
 
-....
+Si se intersectan dos infectados, estos se siguen moviendo.
+Si se intersectan el Jugador y cualquier infectado, se detienen.
 
-.
+
+
