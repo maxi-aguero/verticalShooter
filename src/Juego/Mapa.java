@@ -48,7 +48,7 @@ public class Mapa {
 	}
 	
 	public int getCant1() {
-		return tanda_actual.getcant1();
+		return tanda_actual.getcant1();//getCantTanda1
 	}
 	public int getCant2() {
 		return tanda_actual.getcant2();
