@@ -19,12 +19,12 @@ public class Nivel2 extends Lista_Nivel2{
 		listaInfectados=new LinkedList<Entidad>();
 		
 		Infectado infectado01 = new InfectadoBeta();
-		infectado01.setX(90);
-		infectado01.setY(140);
+		infectado01.getEntidadGrafica().setX(90);
+		infectado01.getEntidadGrafica().setY(140);
 		
 		Infectado infectado03 = new InfectadoBeta();
-		infectado03.setX(180);
-		infectado03.setY(140);
+		infectado03.getEntidadGrafica().setX(180);
+		infectado03.getEntidadGrafica().setY(140);
 		
 
 		

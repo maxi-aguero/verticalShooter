@@ -60,13 +60,13 @@ public class Mapa {
 	
 	public Entidad intersecta_algo(Entidad obj) {
 		
-		Rectangle tamanioObj = obj.getDibujo().getBounds();
+		Rectangle tamanioObj = obj.getEntidadGrafica().getDibujo().getBounds();
 		
 		Personaje pp=(Personaje) obj;
 		tamanioObj.translate(- pp.getRango(),0);
 		tamanioObj.width += pp.getRango();
 			// jugador interecta a infectado 
-			if(jugador.getDibujo().getBounds().intersects(tamanioObj))
+			if(jugador.getEntidadGrafica().getDibujo().getBounds().intersects(tamanioObj))
 				return jugador;
 		//}
 		return null;

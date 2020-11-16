@@ -17,18 +17,18 @@ public class MovimientoHorizontal extends EstrategiaMovimiento{
 		// TODO Auto-generated method stub
 						
 	
-		int coordx = entidad.getDibujo().getX();
+		int coordx = entidad.getEntidadGrafica().getDibujo().getX();
 		if( (coordx>=0) && (coordx<=620)) {
 			coordx = coordx - direccion;	
 			
-			entidad.getDibujo().setLocation(coordx,entidad.getDibujo().getY());
+			entidad.getEntidadGrafica().getDibujo().setLocation(coordx,entidad.getEntidadGrafica().getDibujo().getY());
 			}
 		if(coordx>620)			
-			entidad.getDibujo().setLocation(coordx-1,entidad.getDibujo().getY());
+			entidad.getEntidadGrafica().getDibujo().setLocation(coordx-1,entidad.getEntidadGrafica().getDibujo().getY());
 			
 
 		if(coordx<0)			
-			entidad.getDibujo().setLocation(coordx+1,entidad.getDibujo().getY());
+			entidad.getEntidadGrafica().getDibujo().setLocation(coordx+1,entidad.getEntidadGrafica().getDibujo().getY());
 
 		
 	}

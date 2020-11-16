@@ -88,10 +88,10 @@ public class GUI extends JPanel  {
 	
 	public void agregarDibujo(Entidad e) {		
 		
-		ImageIcon img_entidad = new ImageIcon(getClass().getClassLoader().getResource(e.getImagen()));
+		ImageIcon img_entidad = new ImageIcon(getClass().getClassLoader().getResource(e.getEntidadGrafica().getImagen()));
 		JLabel lbdos = new JLabel(img_entidad);
-		lbdos.setBounds(e.getX(), e.getY(), 100, 100);
-		e.setDibujo(lbdos);
+		lbdos.setBounds(e.getEntidadGrafica().getX(), e.getEntidadGrafica().getY(), 100, 100);
+		e.getEntidadGrafica().setDibujo(lbdos);
 		lbdos.repaint();
 
 		fondo.add(lbdos);
@@ -120,7 +120,7 @@ public class GUI extends JPanel  {
 			     		 for(Entidad obj : lista_b.getLista()){
 			     			
 			     			 if (obj==obj2)
-			     				{obj2.getDibujo().setVisible(false);		     				 
+			     				{obj2.getEntidadGrafica().getDibujo().setVisible(false);		     				 
 			     				 arr_indice[xy]=xy;
 			     				}
 			     			xy++;
@@ -151,7 +151,7 @@ public class GUI extends JPanel  {
 			     		 for(Entidad obj : lista_a.getLista()){
 			     			
 			     			 if (obj==obj2)
-			     				{obj2.getDibujo().setVisible(false);		     				 
+			     				{obj2.getEntidadGrafica().getDibujo().setVisible(false);		     				 
 			     				 arr_indice[xy]=xy;
 			     				}
 			     			xy++;
@@ -178,7 +178,7 @@ public class GUI extends JPanel  {
 	     		b.setVisible(true);
 	            b2.setVisible(false);
 	            for(Entidad obj2 : mi_fabrica){
-	            	obj2.getDibujo().setVisible(false);
+	            	obj2.getEntidadGrafica().getDibujo().setVisible(false);
 	            }
 	     		if(lista_a.getLista().size()!=0)
 	     			lista_a.getLista().clear();

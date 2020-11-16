@@ -15,14 +15,15 @@ public class MovimientoVertical extends EstrategiaMovimiento{
 	public void mover() {
 	
 		
-		int coordy = entidad.getDibujo().getY();
+		int coordy = entidad.getEntidadGrafica().getDibujo().getY();
 		coordy = coordy + direccion;	
 		
-		entidad.getDibujo().setLocation(entidad.getDibujo().getX(),coordy);
-		entidad.getDibujo().setLocation(entidad.getDibujo().getX(),coordy);
+		entidad.getEntidadGrafica().getDibujo().setLocation(entidad.getEntidadGrafica().getDibujo().getX(),coordy);
+		entidad.getEntidadGrafica().getDibujo().setLocation(entidad.getEntidadGrafica().getDibujo().getX(),coordy);
 		
-		if(coordy>555)			
-			entidad.getDibujo().setLocation(entidad.getX(),entidad.getY());
+		if(coordy>555)							
+
+			entidad.getEntidadGrafica().getDibujo().setLocation(entidad.getEntidadGrafica().getX(),entidad.getEntidadGrafica().getY());
 			
 
 	}
