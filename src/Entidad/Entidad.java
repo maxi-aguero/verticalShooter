@@ -11,8 +11,8 @@ public abstract class Entidad {
 	protected JLabel dibujo;// label de gui
 	protected Visitor visitor;		
 	protected String ruta_dibujo;	
-	private int coorInicialx;//coordenadas iniciales
-	private int coorInicialy;
+	protected int coorInicialx;//coordenadas iniciales
+	protected int coorInicialy;
 	protected EstrategiaMovimiento direccion; //movimiento
 
 

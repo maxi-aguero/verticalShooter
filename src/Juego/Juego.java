@@ -4,26 +4,39 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.LinkedList;
+import java.util.List;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.Timer;
 
 import Entidad.Entidad;
-import Entidad.Jugador.Jugador;
 import EstrategiaMovimiento.MovimientoHorizontal;
 import EstrategiaMovimiento.MovimientoVertical;
 public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyListener  {
 	protected GUI gui;
 	protected Mapa mapa;
-	protected Timer tiempo;
-	public Juego(){
+	protected Timer tiempo;	
+	protected List<Entidad> obj_eliminar;//infectados que elimino
+	
 
-		mapa = new Mapa();		
-		vinculargui();	
-        start(); 
+	public Juego(){
+		obj_eliminar=new LinkedList<Entidad>();
+		mapa = new Mapa();	
+		vinculargui();
 		
+        start(); 
 	}
+	
+
+	private void start() {   	
+        this.addKeyListener(this);
+        gui.agregarDibujo(mapa.getJugador());	
+        tiempo = new Timer(40, this);
+        tiempo.start();
+    }
+	
+
+	
 	
 	private void vinculargui() {
 		gui = new GUI();
@@ -40,43 +53,57 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	
 	
 	
-	private void start() {   	
-        this.addKeyListener(this);
-        mapa.crearNivelUno();          
-        tiempo = new Timer(40, this);
-        tiempo.start();
-    }
 	
-	
-	
-	
-	public void interactuar() {	
 
-		for(Entidad obj : mapa.getListaEnJuego()) {
-			if(obj.estaVivo()) 	{
-				Entidad elementoIntersectado = mapa.intersectaRangoDeEnemigo(obj);
-				if(elementoIntersectado!=null) 
-					elementoIntersectado.accept(obj.getVisitor());
-				else
-				{
-					//si no es jugador, muevo
-					if (obj!= mapa.getJugador()) {
-					
-						obj.getDireccion().setDireccion(MovimientoVertical.ABAJO );
-						obj.mover(obj.getDireccion());
+	
+	
+	
+	
+	public void interactuar() {			
+		//si la tanda es nula
+		if (mapa.getTanda().getLista()==null)
+			{	//"gane todas las tandas"
+				gui.b.setVisible(false);
+				
+				
+			}
+		else
+			{if (mapa.getTanda().esTandaVacia())
+				{	
+					//llenar
+					mapa.getTanda().crearTanda();
+
+					if (mapa.getTanda().getLista()!=null)
+					{
+						for(Entidad obj : mapa.getTanda().getLista()) {			
+							gui.agregarDibujo(obj);							
+							obj_eliminar.add(obj);
+						}
+						//vaciar tanda y lista1 eliminar la mitad
+						gui.eliminarTodos(obj_eliminar,mapa.getListaN1(),mapa.getListaN2(),mapa.getTanda());//elimina tanda 1
+
 					}
+				
+				}
+			else {
 					
-					
-				}			
-			}				
-		}		
+					//los infectados se mueven
+					for(Entidad obj :  mapa.getTanda().getLista()) {			
+						
+						Entidad elementoIntersectado = mapa.intersecta_algo(obj);
+						if(elementoIntersectado!=null) 
+							elementoIntersectado.accept(obj.getVisitor());
+						else
+						{
+							obj.getDireccion().setDireccion(MovimientoVertical.ABAJO );
+							obj.mover(obj.getDireccion());
+						}	
+					}
+			}
+		}
 		
-		
-		for(Entidad obj : mapa.getListaAgregar()) {			
-				mapa.getListaEnJuego().add(obj);
-				gui.agregarDibujo(obj);				
-		}	
-		mapa.resetLista(mapa.getListaAgregar());
+			
+	
 	}	
 	
 	
@@ -88,17 +115,18 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 		switch(arg0.getKeyCode()) {
 
 			case KeyEvent.VK_LEFT: {
-				Entidad p01= (Jugador) mapa.getJugador();
 
-				p01.getDireccion().setDireccion(MovimientoHorizontal.IZQUIERDA );
-	        	p01.mover(p01.getDireccion());
+				mapa.getJugador().getDireccion().setDireccion(MovimientoHorizontal.IZQUIERDA );
+				mapa.getJugador().mover(mapa.getJugador().getDireccion());
 	        	break;
 			}
 			case KeyEvent.VK_RIGHT: {
-				Entidad p01= (Jugador) mapa.getJugador();
+				
+				
+				
 
-				p01.getDireccion().setDireccion(MovimientoHorizontal.DERECHA );
-	        	p01.mover(p01.getDireccion());
+				mapa.getJugador().getDireccion().setDireccion(MovimientoHorizontal.DERECHA );
+				mapa.getJugador().mover(mapa.getJugador().getDireccion());
 	        	break;
 			}
 		

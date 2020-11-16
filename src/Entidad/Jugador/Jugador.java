@@ -15,6 +15,8 @@ public class Jugador extends Personaje {
 		visitor = new VisitorJugador(this);				
 		direccion = new MovimientoHorizontal(this,1);				
 		ruta_dibujo = "img/jugador/jugador.png";
+		coorInicialx=50;
+		coorInicialy=420;
 		
 	}
 
