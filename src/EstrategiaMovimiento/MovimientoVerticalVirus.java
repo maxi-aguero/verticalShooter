@@ -2,12 +2,12 @@ package EstrategiaMovimiento;
 
 import Entidad.Entidad;
 
-public class MovimientoVertical extends EstrategiaMovimiento{
+public class MovimientoVerticalVirus extends EstrategiaMovimiento{
 	
-	public static final int ABAJO = 5;
+	public static final int ABAJO = 25;
 	public static final int ARRIBA = -5;
 	
-	public MovimientoVertical(Entidad e, int d) {
+	public MovimientoVerticalVirus(Entidad e, int d) {
 		super(e, d);
 		// TODO Auto-generated constructor stub
 	}
@@ -20,12 +20,6 @@ public class MovimientoVertical extends EstrategiaMovimiento{
 		
 		entidad.getEntidadGrafica().getDibujo().setLocation(entidad.getEntidadGrafica().getDibujo().getX(),coordy);
 		
-		
-		if(coordy>555)							
-
-			entidad.getEntidadGrafica().getDibujo().setLocation(entidad.getEntidadGrafica().getX(),entidad.getEntidadGrafica().getY());
-			
-
 	}
 		
 		

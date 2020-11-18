@@ -7,32 +7,47 @@ import java.awt.event.KeyListener;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.swing.Timer;
 
 import Entidad.Entidad;
+import Entidad.Infectado.Infectado;
 import EstrategiaMovimiento.MovimientoHorizontal;
 import EstrategiaMovimiento.MovimientoVertical;
+import EstrategiaMovimiento.MovimientoVerticalVirus;
+import Mapa.Mapa;
+import Mapa.MapaProyectil;
 public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyListener  {
 	protected GUI gui;
-	protected Mapa mapa;
-	protected Timer tiempo;	
 	protected List<Entidad> obj_eliminar;//infectados que elimino
-	
 
+	protected Mapa mapa;
+	protected MapaProyectil mapabalasGUI;
+	protected MapaProyectil mapabalas;
+	
+	protected Movimiento movimiento;
+
+	
 	public Juego(){
+	
+		
 		obj_eliminar=new LinkedList<Entidad>();
 		mapa = new Mapa();	
-		vinculargui();
+		mapabalasGUI = new MapaProyectil();
+		mapabalas = new MapaProyectil();
 		
+		vinculargui();
+		movimiento = new Movimiento(this);
+		
+		//dibujar proyectil en gui
+
         start(); 
+        movimiento.run();
 	}
 	
 
 	private void start() {   	
         this.addKeyListener(this);
         gui.agregarDibujo(mapa.getJugador());	
-        tiempo = new Timer(40, this);
-        tiempo.start();
+
     }
 	
 
@@ -60,9 +75,22 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	
 	
 	public void interactuar() {			
-		//si la tanda es nula
+	
+		this.requestFocus();
+		
+		if (mapabalas.getListaBalas().size()!=0)
+		{	for(Entidad bala : mapabalas.getListaBalas()) 			
+				{
+						bala.getDireccion().setDireccion(MovimientoVerticalVirus.ABAJO) ;
+						bala.mover(bala.getDireccion());
+				
+				}
+		
+			  	
+		}
+		
 		if (mapa.getTanda().getLista()==null)
-			{	//"gane todas las tandas"
+			{	//gane todas las tandas
 				gui.b.setVisible(false);
 				
 				
@@ -75,11 +103,18 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 
 					if (mapa.getTanda().getLista()!=null)
 					{
+					    for(Entidad obj2 : mapabalas.getListaBalas()){
+				            	obj2.getEntidadGrafica().getDibujo().setVisible(false);
+				            }
+						mapabalas.getListaBalas().clear();
+ 
 						for(Entidad obj : mapa.getTanda().getLista()) {			
 							gui.agregarDibujo(obj);							
+							Infectado inf= (Infectado) obj;
+							inf.setMapaBalasGUI(mapabalasGUI);
+							inf.setMapaBalas(mapabalas);							
 							obj_eliminar.add(obj);
 						}
-						//vaciar tanda y lista1 eliminar la mitad
 						gui.eliminarTodos(obj_eliminar,mapa.getListaN1(),mapa.getListaN2(),mapa.getTanda());//elimina tanda 1
 
 					}
@@ -87,16 +122,33 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 				}
 			else {
 					
-					//los infectados se mueven
+				//los infectados se mueven
 					for(Entidad obj :  mapa.getTanda().getLista()) {			
 						
 						Entidad elementoIntersectado = mapa.intersecta_algo(obj);
 						if(elementoIntersectado!=null) 
-							elementoIntersectado.accept(obj.getVisitor());
+							{
+								elementoIntersectado.accept(obj.getVisitor());
+								obj.accept(elementoIntersectado.getVisitor());
+
+								if (mapabalasGUI.getListaBalas().size()!=0)
+								{	for(Entidad bala : mapabalasGUI.getListaBalas()) 			
+										{
+											gui.agregarDibujo(bala);
+										}
+									
+								}
+								mapabalasGUI.getListaBalas().clear();	
+								
+								
+								
+							}
 						else
 						{
-							obj.getDireccion().setDireccion(MovimientoVertical.ABAJO );
+							obj.getDireccion().setDireccion(MovimientoVertical.ABAJO) ;
 							obj.mover(obj.getDireccion());
+							
+							
 						}	
 					}
 			}
@@ -115,19 +167,20 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 		switch(arg0.getKeyCode()) {
 
 			case KeyEvent.VK_LEFT: {
-
 				mapa.getJugador().getDireccion().setDireccion(MovimientoHorizontal.IZQUIERDA );
 				mapa.getJugador().mover(mapa.getJugador().getDireccion());
 	        	break;
 			}
 			case KeyEvent.VK_RIGHT: {
-				
-				
-				
-
 				mapa.getJugador().getDireccion().setDireccion(MovimientoHorizontal.DERECHA );
 				mapa.getJugador().mover(mapa.getJugador().getDireccion());
 	        	break;
+			}
+			case KeyEvent.VK_A: {
+				//creo un jugador ejemplo
+				   
+				
+				break;
 			}
 		
 		
@@ -146,7 +199,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		this.interactuar();
+		//this.interactuar();
 
 		
 	}

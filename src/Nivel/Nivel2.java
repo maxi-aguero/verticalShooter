@@ -1,4 +1,4 @@
-package Juego;
+package Nivel;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -10,7 +10,7 @@ import Entidad.Infectado.InfectadoBeta;
 
 //modern1
 public class Nivel2 extends Lista_Nivel2{
-	protected Nivel2() {
+	public Nivel2() {
 		cantidad=new int[3];
 		cantidad[0]=0;
 		cantidad[1]=10;
@@ -46,7 +46,7 @@ public class Nivel2 extends Lista_Nivel2{
 		return cantidad;
 	}
 	@Override
-	protected void borrarLista() {
+	public void borrarLista() {
 		// TODO Auto-generated method stub
 		listaInfectados.clear();
 		

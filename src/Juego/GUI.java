@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -17,6 +18,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import Entidad.Entidad;
+import Nivel.Lista_Nivel1;
+import Nivel.Lista_Nivel2;
+import Nivel.Tanda;
 
 public class GUI extends JPanel  {
 	
@@ -49,13 +53,17 @@ public class GUI extends JPanel  {
 	
 	
 	
+	
+	
+	
 	private void crearFondo() {		
 		
-		ImageIcon imagen = new ImageIcon(getClass().getClassLoader().getResource("img/juego/background.png"));
+		ImageIcon imagen = new ImageIcon(getClass().getClassLoader().getResource("img/juego/b8.jpg"));
 		fondo = new JLabel(imagen,SwingConstants.CENTER);
 		Icon imgdos= new  ImageIcon(imagen.getImage().getScaledInstance(700, 600, Image.SCALE_SMOOTH)); 
 	 	fondo.setIcon(imgdos);	
 		fondo.repaint();	
+		//fondo.setBounds(0,0, 700, 600);
 		fondo.setBounds(0,0, 700, 600);
 		this.setLayout(null);
 		fondo.setLayout(null);
@@ -98,6 +106,8 @@ public class GUI extends JPanel  {
 		fondo.repaint();
 		
 	}
+	
+	
 
 	
 	

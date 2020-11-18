@@ -1,6 +1,5 @@
 package Entidad;
 
-import javax.swing.JLabel;
 
 import EstrategiaMovimiento.EstrategiaMovimiento;
 import Visitor.Visitor;

@@ -22,13 +22,20 @@ public class MovimientoHorizontal extends EstrategiaMovimiento{
 			coordx = coordx - direccion;	
 			
 			entidad.getEntidadGrafica().getDibujo().setLocation(coordx,entidad.getEntidadGrafica().getDibujo().getY());
+			entidad.getEntidadGrafica().setX(coordx);
+			
 			}
 		if(coordx>620)			
-			entidad.getEntidadGrafica().getDibujo().setLocation(coordx-1,entidad.getEntidadGrafica().getDibujo().getY());
+			{entidad.getEntidadGrafica().getDibujo().setLocation(coordx-1,entidad.getEntidadGrafica().getDibujo().getY());
+			entidad.getEntidadGrafica().setX(coordx-1);
+
+			}
 			
 
 		if(coordx<0)			
-			entidad.getEntidadGrafica().getDibujo().setLocation(coordx+1,entidad.getEntidadGrafica().getDibujo().getY());
+			{entidad.getEntidadGrafica().getDibujo().setLocation(coordx+1,entidad.getEntidadGrafica().getDibujo().getY());
+			entidad.getEntidadGrafica().setX(coordx+1);
+			}
 
 		
 	}

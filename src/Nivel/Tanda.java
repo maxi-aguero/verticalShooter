@@ -1,8 +1,10 @@
-package Juego;
+package Nivel;
 import java.util.LinkedList;
 import java.util.List;
 
 import Entidad.Entidad;
+import Nivel.Lista_Nivel1;
+import Nivel.Lista_Nivel2;
 public class Tanda {
 	protected List<Entidad> lista_tanda;
 	protected int nro_tanda;//ver

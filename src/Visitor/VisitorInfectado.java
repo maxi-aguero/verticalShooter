@@ -13,29 +13,34 @@ public class VisitorInfectado extends Visitor {
 	}
 
 	@Override
-	public void visit(Jugador a) {
-		//obj.atacar(a);
-
+	public void visit(Jugador a) {//cuando veo un jugador ataco, o recibo danio
+		entidad.atacar(a);
 		
 	}
 
 	@Override
 	public void visit(Infectado e) {
-			
-			e.getDireccion().setDireccion(MovimientoVertical.ABAJO );
-			e.mover(e.getDireccion());
+			//cuando veo a un infectado me muevo
+			entidad.mover(entidad.getDireccion());
+
+			//e.getDireccion().setDireccion(MovimientoVertical.ABAJO );
+			//e.mover(e.getDireccion());
 
 	}
 
 	@Override
 	public void visit(DisparoJugador d) {
 		//obj.mover();
+		//entidad.mover(entidad.getDireccion());
+
 
 	}
 
 	@Override
 	public void visit(ProyectilVirus d) {
 		//obj.mover();
+		//entidad.mover(entidad.getDireccion());
+
 
 	}
 	

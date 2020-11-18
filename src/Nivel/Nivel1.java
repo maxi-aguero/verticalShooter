@@ -1,4 +1,4 @@
-package Juego;
+package Nivel;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -9,18 +9,18 @@ import Entidad.Infectado.InfectadoAlpha;
 
 //modern1
 public class Nivel1 extends Lista_Nivel1{
-	protected Nivel1() {
+	public Nivel1() {
 		cantidad=new int[3];
 		cantidad[0]=0;
 		cantidad[1]=11;
 		cantidad[2]=33;
 		listaInfectados=new LinkedList<Entidad>();
 		Infectado infectado06 = new InfectadoAlpha();
-		infectado06.getEntidadGrafica().setX(610);
+		infectado06.getEntidadGrafica().setX(310);
 		infectado06.getEntidadGrafica().setY(80);
 		Infectado infectado07 = new InfectadoAlpha();
-		infectado07.getEntidadGrafica().setX(410);
-		infectado07.getEntidadGrafica().setY(67);
+		infectado07.getEntidadGrafica().setX(600);
+		infectado07.getEntidadGrafica().setY(80);
 		Infectado infectado08 = new InfectadoAlpha();
 		infectado08.getEntidadGrafica().setX(310);
 		infectado08.getEntidadGrafica().setY(67);
@@ -34,17 +34,17 @@ public class Nivel1 extends Lista_Nivel1{
 		
 	}
 	@Override
-	protected List<Entidad> getLista() {
+	public List<Entidad> getLista() {
 		// TODO Auto-generated method stub
 		return listaInfectados;
 	}
 	@Override
-	protected int[] getCantidad() {
+	public int[] getCantidad() {
 		// TODO Auto-generated method stub
 		return cantidad;
 	}
 	@Override
-	protected void borrarLista() {
+	public void borrarLista() {
 		// TODO Auto-generated method stub
 		listaInfectados.clear();
 

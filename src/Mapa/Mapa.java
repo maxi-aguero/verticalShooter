@@ -1,4 +1,4 @@
-package Juego;
+package Mapa;
 
 
 import java.awt.Rectangle;
@@ -6,6 +6,12 @@ import java.awt.Rectangle;
 import Entidad.Entidad;
 import Entidad.Personaje;
 import Entidad.Jugador.Jugador;
+import Nivel.FabricaNivel;
+import Nivel.FabricaNivel1;
+import Nivel.FabricaNivel2;
+import Nivel.Lista_Nivel1;
+import Nivel.Lista_Nivel2;
+import Nivel.Tanda;
 
 public class Mapa {
 
@@ -48,7 +54,7 @@ public class Mapa {
 	}
 	
 	public int getCant1() {
-		return tanda_actual.getcant1();//getCantTanda1
+		return tanda_actual.getcant1();
 	}
 	public int getCant2() {
 		return tanda_actual.getcant2();
@@ -68,6 +74,7 @@ public class Mapa {
 			// jugador interecta a infectado 
 			if(jugador.getEntidadGrafica().getDibujo().getBounds().intersects(tamanioObj))
 				return jugador;
+				//return jugador;
 		//}
 		return null;
 		

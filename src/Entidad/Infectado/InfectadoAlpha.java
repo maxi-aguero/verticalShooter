@@ -18,29 +18,7 @@ public class InfectadoAlpha extends Infectado {
 		
 	}
 
-	@Override
-	public void accept(Visitor v) {
-		// TODO Auto-generated method stub
-		v.visit(this);
-	}
 
-	@Override
-	public void mover(EstrategiaMovimiento d) {
-		// TODO Auto-generated method stub
-		d.mover();
-	}
-
-	@Override
-	public void atacar(Entidad obj) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void iniciarAtaque(Entidad obj) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public boolean estaVivo() {
@@ -52,10 +30,6 @@ public class InfectadoAlpha extends Infectado {
 
 
 
-	public void setDireccion(int d) { 
-		direccion.setDireccion(d) ;
-		
-	}
 
 	
 
