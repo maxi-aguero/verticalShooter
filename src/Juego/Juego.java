@@ -24,7 +24,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	protected MapaProyectil mapabalas;
 	
 	protected Movimiento movimiento;
-
+	protected int xv=0;
 	
 	public Juego(){
 	
@@ -36,6 +36,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 		
 		vinculargui();
 		movimiento = new Movimiento(this);
+		
 		
 		//dibujar proyectil en gui
 
@@ -56,7 +57,8 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	private void vinculargui() {
 		gui = new GUI();
 		gui.setVisible(true);
-		this.add(gui);		
+		this.add(gui);
+		
 		this.setTitle("Zombielandia");		
         //this.setResizable(false);
         this.setVisible(true);
@@ -77,6 +79,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	public void interactuar() {			
 	
 		this.requestFocus();
+		gui.estadoVida(mapa.getJugador().getVitalactual());
 		
 		if (mapabalas.getListaBalas().size()!=0)
 		{	for(Entidad bala : mapabalas.getListaBalas()) 			

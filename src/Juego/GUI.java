@@ -2,10 +2,8 @@ package Juego;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -15,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 
 import Entidad.Entidad;
@@ -24,6 +23,9 @@ import Nivel.Tanda;
 
 public class GUI extends JPanel  {
 	
+	/**
+	 * 
+	 */
 	private JLabel fondo;
 	public List<Entidad> mi_fabrica;//conjunto de elementos a eliminar
 	public Lista_Nivel1 lista_a;//conjunto de elementos a eliminar
@@ -31,14 +33,22 @@ public class GUI extends JPanel  {
 	public Tanda tanda_actual;
 	public int cant;
 	public JButton b,b2;
+	public JProgressBar barra_vida;
 	public GUI() {
 		
-		this.setPreferredSize(new Dimension(700, 600));
+		this.setPreferredSize(new Dimension(700, 650));
         this.setBackground(new Color(90,60,90));  
         this.setFocusable(true);   
         this.setLayout(null);      
         crearFondo();
-		
+        //crear barra vida
+        barra_vida= new JProgressBar(0,100);
+    	barra_vida.setBounds(350,10, 300, 30);
+		barra_vida.setStringPainted(true);
+		barra_vida.setFont(new Font("Ink Free", Font.BOLD, 25));
+		barra_vida.setForeground(new Color(250, 40, 0));
+		barra_vida.setBackground(new Color(1, 250, 250));		
+		add(barra_vida);	
 
 	}
 	
@@ -64,7 +74,7 @@ public class GUI extends JPanel  {
 	 	fondo.setIcon(imgdos);	
 		fondo.repaint();	
 		//fondo.setBounds(0,0, 700, 600);
-		fondo.setBounds(0,0, 700, 600);
+		fondo.setBounds(0,45, 700, 600);
 		this.setLayout(null);
 		fondo.setLayout(null);
 		JLabel palabra=new JLabel("Plague Inc");
@@ -73,8 +83,9 @@ public class GUI extends JPanel  {
 		palabra.setFont(new Font("Ink Free", Font.BOLD, 40));
 		palabra.setBounds(70,2, 300, 50);
 		
-		JLabel vida=new JLabel("vida");
-		//vida.setBounds(1000,5, 300, 150);
+		///JLabel vida=new JLabel("vida");
+		//vida.setBounds(400,3, 100, 1);
+		
 		
 		b=new JButton("eliminar tanda 1");
 		b.setBounds(800,5, 200, 50);
@@ -88,7 +99,7 @@ public class GUI extends JPanel  {
 		add(fondo);
 		add(b);
 		add(b2);
-		//add(vida);	
+
 		//add(vida);	
 
 	
@@ -107,6 +118,12 @@ public class GUI extends JPanel  {
 		
 	}
 	
+	
+	public void estadoVida(int valor) {
+		barra_vida.setValue(valor);		
+		barra_vida.setString(valor+"/100v");
+	
+	}
 	
 
 	

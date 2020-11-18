@@ -14,17 +14,6 @@ public class Main {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	
 		
 		
