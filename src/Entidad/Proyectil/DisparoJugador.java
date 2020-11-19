@@ -9,6 +9,7 @@ import Visitor.VisitorDisparoJugador;
 public class DisparoJugador extends Proyectil {
 
 	public DisparoJugador() {
+		super();
 		visitor = new VisitorDisparoJugador(this);
 	}
 
@@ -40,6 +41,12 @@ public class DisparoJugador extends Proyectil {
 	public boolean estaVivo() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void recibirAtaque(Entidad obj) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

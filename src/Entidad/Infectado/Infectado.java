@@ -36,7 +36,6 @@ public abstract class Infectado extends Personaje   {
 	}
 	
 	public void atacar(Entidad obj) {
-		//System.out.println("pongo balas");
 		iniciarAtaque(obj);
 		
 		/**ImageIcon imagen = new ImageIcon(this.getClass().getClassLoader().getResource(ruta_dibujo_ataque));		
@@ -52,6 +51,7 @@ public abstract class Infectado extends Personaje   {
 	public void iniciarAtaque(Entidad obj) {
 		//posicion de balas
 
+		//Infectado disparo = new InfectadoBeta();
 		Proyectil disparo = new ProyectilVirus(this.getEntidadGrafica().getDibujo().getX(),this.getEntidadGrafica().getDibujo().getY());
 		//Infectado disparo = new InfectadoAlpha();
 		disparo.getEntidadGrafica().setX(this.getEntidadGrafica().getDibujo().getX());

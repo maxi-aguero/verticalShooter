@@ -40,6 +40,7 @@ public abstract class Entidad {
 	public abstract void mover(EstrategiaMovimiento d);
 	public abstract void atacar(Entidad obj); 
 	public abstract void iniciarAtaque(Entidad obj);
+	public abstract void recibirAtaque(Entidad obj); 
 
 	public void morir() {
 		

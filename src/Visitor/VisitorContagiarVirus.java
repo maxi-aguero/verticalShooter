@@ -12,22 +12,25 @@ public class VisitorContagiarVirus extends Visitor {
 	}
 
 	@Override
-	public void visit(Jugador a) {
-		//obj.atacar(a);	
+	public void visit(Jugador a) {		
+		entidad.atacar(a);	
 	}
 
 	@Override
 	public void visit(Infectado e) {
+		System.out.println("20");
 
 	}
 
 	@Override
 	public void visit(DisparoJugador d) {
+		System.out.println("30");
 
 	}
 
 	@Override
 	public void visit(ProyectilVirus d) {
+		System.out.println("40");
 
 	}
 	

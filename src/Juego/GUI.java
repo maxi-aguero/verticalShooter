@@ -119,9 +119,9 @@ public class GUI extends JPanel  {
 	}
 	
 	
-	public void estadoVida(int valor) {
-		barra_vida.setValue(valor);		
-		barra_vida.setString(valor+"/100v");
+	public void estadoVida(double valor) {
+		barra_vida.setValue((int) valor);		
+		barra_vida.setString((int)valor+"/100v");
 	
 	}
 	

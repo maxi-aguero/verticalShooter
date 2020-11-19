@@ -1,10 +1,8 @@
 package Entidad.Infectado;
 
-import Entidad.Entidad;
 
-import EstrategiaMovimiento.EstrategiaMovimiento;
+import Entidad.Entidad;
 import EstrategiaMovimiento.MovimientoVertical;
-import Visitor.Visitor;
 import Visitor.VisitorInfectado;
 
 public class InfectadoAlpha extends Infectado {
@@ -24,6 +22,14 @@ public class InfectadoAlpha extends Infectado {
 	public boolean estaVivo() {
 		// TODO Auto-generated method stub
 		return cargaViralActual>0?true:false;
+	}
+
+
+
+	@Override
+	public void recibirAtaque(Entidad obj) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

@@ -69,7 +69,27 @@ public class Jugador extends Personaje {
 		return cargaViralActual<100?true:false;	
 	}
 
-	
+	public void recibirataque() {
+		// TODO Auto-generated method stub
+		/**
+		 *  frecuencia_ataques++;
+			if(vida>0) {  // si estoy vivo, ataco		
+				if(frecuencia_ataques%velocidad_ataque== 0)
+					iniciarAtaque(obj);
+		} 
+		    else
+				morir();
+		 * 
+		 * */
+	}
+
+	@Override
+	public void recibirAtaque(Entidad obj) {
+		// TODO Auto-generated method stub
+		cargaViralActual=cargaViralActual + 0.055;
+
+		
+	}
 
 
 	

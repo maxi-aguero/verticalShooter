@@ -5,6 +5,7 @@ import Entidad.Entidad;
 import EstrategiaMovimiento.EstrategiaMovimiento;
 import EstrategiaMovimiento.MovimientoVertical;
 import Visitor.Visitor;
+import Visitor.VisitorContagiarVirus;
 import Visitor.VisitorInfectado;
 
 public class InfectadoBeta extends Infectado {
@@ -25,6 +26,15 @@ public class InfectadoBeta extends Infectado {
 	public boolean estaVivo() {
 		// TODO Auto-generated method stub
 		return cargaViralActual>0?true:false;
+	}
+
+
+
+
+	@Override
+	public void recibirAtaque(Entidad obj) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

@@ -2,7 +2,7 @@ package Entidad;
 
 
 public abstract class Personaje extends Entidad {
-	protected int cargaViralActual; //jugador pierde con 100 - comienza con 0									
+	protected double cargaViralActual; //jugador pierde con 100 - comienza con 0									
 	protected int cargaViralPierde; //infectado pierde con 0- comienza con 100
 	protected int rango; //rango de tiro
 	
@@ -19,7 +19,7 @@ public abstract class Personaje extends Entidad {
 	public int getRango() {	return rango ;}
 	public void setRango(int rango) { this.rango = rango ;}
 	
-	public int getVitalactual() { return cargaViralActual ;}
+	public double getVitalactual() { return cargaViralActual ;}
 	public void setVitalactual(int cvital) { this.cargaViralActual = cvital ;}
 	
 

@@ -41,6 +41,12 @@ public class Premio extends Entidad {
 		return false;
 	}
 
+	@Override
+	public void recibirAtaque(Entidad obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 }

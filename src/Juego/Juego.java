@@ -84,8 +84,21 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 		if (mapabalas.getListaBalas().size()!=0)
 		{	for(Entidad bala : mapabalas.getListaBalas()) 			
 				{
-						bala.getDireccion().setDireccion(MovimientoVerticalVirus.ABAJO) ;
-						bala.mover(bala.getDireccion());
+						
+			Entidad elementoIntersectado = mapabalas.intersecta_virus_jugador(bala, mapa.getJugador());
+					//intersecto con jugador
+			if(elementoIntersectado!=null) 
+				{
+					elementoIntersectado.accept(bala.getVisitor());
+					bala.accept(elementoIntersectado.getVisitor());
+					//hago danio
+					
+				}
+			
+			
+			bala.getDireccion().setDireccion(MovimientoVerticalVirus.ABAJO) ;
+			bala.mover(bala.getDireccion());
+						
 				
 				}
 		

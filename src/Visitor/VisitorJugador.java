@@ -33,8 +33,7 @@ public class VisitorJugador extends Visitor {
 
 	@Override
 	public void visit(ProyectilVirus d) {
-		//no hacar nada
-
+		entidad.recibirAtaque(d);
 	}
 
 	
