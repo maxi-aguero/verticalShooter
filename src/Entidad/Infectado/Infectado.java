@@ -6,32 +6,32 @@ import Entidad.Personaje;
 import Entidad.Proyectil.Proyectil;
 import Entidad.Proyectil.ProyectilVirus;
 import EstrategiaMovimiento.EstrategiaMovimiento;
-import Mapa.MapaProyectil;
+import Mapa.MapaVirus;
 import Visitor.Visitor;
 
 
 public abstract class Infectado extends Personaje   {
-	protected MapaProyectil mapabalasgui;
-	protected MapaProyectil mapabalas;
+	protected MapaVirus mapabalasgui;
+	protected MapaVirus mapabalas;
 	
 	protected Infectado(int cargaViralActual, int cargaViralPierde, int rango) {
 
 		super(cargaViralActual, cargaViralPierde, rango);
 	}	
 	
-	public void setMapaBalasGUI(MapaProyectil mb) {
+	public void setMapaBalasGUI(MapaVirus mb) {
 		mapabalasgui=mb;
 	}
 	
-	public MapaProyectil getMapaBalasGUI() {
+	public MapaVirus getMapaBalasGUI() {
 		return mapabalasgui;
 	}	
 	
-	public void setMapaBalas(MapaProyectil mb) {
+	public void setMapaBalas(MapaVirus mb) {
 		mapabalas=mb;
 	}
 	
-	public MapaProyectil getMapaBalas() {
+	public MapaVirus getMapaBalas() {
 		return mapabalas;
 	}
 	

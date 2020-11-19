@@ -34,6 +34,8 @@ public class GUI extends JPanel  {
 	public int cant;
 	public JButton b,b2;
 	public JProgressBar barra_vida;
+	public JLabel lbJugador;
+	
 	public GUI() {
 		
 		this.setPreferredSize(new Dimension(700, 650));
@@ -62,18 +64,18 @@ public class GUI extends JPanel  {
 	}
 	
 	
-	
+
 	
 	
 	
 	private void crearFondo() {		
 		
-		ImageIcon imagen = new ImageIcon(getClass().getClassLoader().getResource("img/juego/b8.jpg"));
+		ImageIcon imagen = new ImageIcon(getClass().getClassLoader().getResource("img/juego/Level12.png"));
 		fondo = new JLabel(imagen,SwingConstants.CENTER);
 		Icon imgdos= new  ImageIcon(imagen.getImage().getScaledInstance(700, 600, Image.SCALE_SMOOTH)); 
-	 	fondo.setIcon(imgdos);	
+
+		fondo.setIcon(imgdos);	
 		fondo.repaint();	
-		//fondo.setBounds(0,0, 700, 600);
 		fondo.setBounds(0,45, 700, 600);
 		this.setLayout(null);
 		fondo.setLayout(null);
@@ -95,6 +97,16 @@ public class GUI extends JPanel  {
 		b2.setBounds(800,75, 200, 50);
         b2.addActionListener(new OyenteElimino_tanda2()); 
         b2.setVisible(false);
+        
+        
+    	ImageIcon img_soda = new ImageIcon(getClass().getClassLoader().getResource("img/juego/soda.gif"));
+		JLabel lbsoda = new JLabel(img_soda);
+		lbsoda.setBounds(-7, 207, 100, 100);
+		lbsoda.repaint();
+
+		fondo.add(lbsoda);
+		fondo.repaint();
+        
         add(palabra);        
 		add(fondo);
 		add(b);
@@ -119,6 +131,32 @@ public class GUI extends JPanel  {
 	}
 	
 	
+public void agregarDibujoJugador(Entidad e) {		
+		
+		ImageIcon img_entidad = new ImageIcon(getClass().getClassLoader().getResource(e.getEntidadGrafica().getImagen()));
+		lbJugador = new JLabel(img_entidad);
+
+		lbJugador.setBounds(e.getEntidadGrafica().getX(), e.getEntidadGrafica().getY(), 100, 100);
+		e.getEntidadGrafica().setDibujo(lbJugador);
+		lbJugador.repaint();
+
+		fondo.add(lbJugador);
+		fondo.repaint();
+		
+	}
+	
+
+public void setDibujoJugador(String s) {		
+	
+	ImageIcon img_entidad = new ImageIcon(getClass().getClassLoader().getResource(s));
+	lbJugador.setIcon(img_entidad);
+	lbJugador.repaint();
+
+	fondo.add(lbJugador);
+	fondo.repaint();
+	
+}
+
 	public void estadoVida(double valor) {
 		barra_vida.setValue((int) valor);		
 		barra_vida.setString((int)valor+"/100v");

@@ -4,17 +4,19 @@ import Entidad.Entidad;
 import Entidad.Personaje;
 import EstrategiaMovimiento.EstrategiaMovimiento;
 import EstrategiaMovimiento.MovimientoHorizontal;
+import Mapa.MapaArmaSanitaria;
 import Visitor.Visitor;
 import Visitor.VisitorJugador;
 
 public class Jugador extends Personaje {
-
+	protected MapaArmaSanitaria mapavirusgui;
+	protected MapaArmaSanitaria mapavirus;
 	public Jugador() {
 		
 		super(0, 100, 5); 
 		visitor = new VisitorJugador(this);				
 		direccion = new MovimientoHorizontal(this,1);				
-		entidadgrafica.setImagen("img/jugador/jugador.png");
+		entidadgrafica.setImagen("img/jugador/juliefrente.gif");
 		entidadgrafica.setX(50);
 		entidadgrafica.setY(420);
 		//miEstado = new EstadoNormal(this);
@@ -92,7 +94,15 @@ public class Jugador extends Personaje {
 	}
 
 
+	public void setMapaBalasGUI(MapaArmaSanitaria mvg) {
+		mapavirusgui=mvg;
+	}
 	
+		
+	
+	public void setMapaBalas(MapaArmaSanitaria mv) {
+		mapavirus=mv;
+	}
 
 
 	

@@ -10,30 +10,41 @@ import java.util.List;
 
 import Entidad.Entidad;
 import Entidad.Infectado.Infectado;
+import Entidad.Proyectil.DisparoJugador;
+import Entidad.Proyectil.Proyectil;
 import EstrategiaMovimiento.MovimientoHorizontal;
 import EstrategiaMovimiento.MovimientoVertical;
+import EstrategiaMovimiento.MovimientoVerticalBalas;
 import EstrategiaMovimiento.MovimientoVerticalVirus;
 import Mapa.Mapa;
-import Mapa.MapaProyectil;
+import Mapa.MapaArmaSanitaria;
+import Mapa.MapaVirus;
 public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyListener  {
 	protected GUI gui;
 	protected List<Entidad> obj_eliminar;//infectados que elimino
 
 	protected Mapa mapa;
-	protected MapaProyectil mapabalasGUI;
-	protected MapaProyectil mapabalas;
+	protected MapaVirus mapabalasGUI;
+	protected MapaVirus mapabalas;
 	
 	protected Movimiento movimiento;
-	protected int xv=0;
+
+	protected MapaArmaSanitaria mapaMunicionGUI;
+	protected MapaArmaSanitaria mapaMunicion;
+	protected int coordx=0;
+
 	
 	public Juego(){
 	
 		
 		obj_eliminar=new LinkedList<Entidad>();
 		mapa = new Mapa();	
-		mapabalasGUI = new MapaProyectil();
-		mapabalas = new MapaProyectil();
-		
+		mapabalasGUI = new MapaVirus();
+		mapabalas = new MapaVirus();
+		mapaMunicionGUI= new MapaArmaSanitaria();
+		mapaMunicion= new MapaArmaSanitaria() ;
+		mapa.getJugador().setMapaBalasGUI(mapaMunicionGUI);
+		mapa.getJugador().setMapaBalas(mapaMunicion);
 		vinculargui();
 		movimiento = new Movimiento(this);
 		
@@ -47,7 +58,9 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 
 	private void start() {   	
         this.addKeyListener(this);
-        gui.agregarDibujo(mapa.getJugador());	
+
+        gui.agregarDibujoJugador(mapa.getJugador());	
+
 
     }
 	
@@ -79,6 +92,22 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	public void interactuar() {			
 	
 		this.requestFocus();
+		
+		
+		for(Entidad municion : mapaMunicionGUI.getListaBalas()) 			
+		{
+			gui.agregarDibujo(municion);
+		}
+		mapaMunicionGUI.getListaBalas().clear();
+		
+	
+		for(Entidad muni : mapaMunicion.getListaBalas()) 			
+		{
+			muni.getDireccion().setDireccion(MovimientoVerticalBalas.ARRIBA) ;
+			muni.mover(muni.getDireccion());
+		}
+		
+		
 		gui.estadoVida(mapa.getJugador().getVitalactual());
 		
 		if (mapabalas.getListaBalas().size()!=0)
@@ -183,21 +212,43 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 		switch(arg0.getKeyCode()) {
 
 			case KeyEvent.VK_LEFT: {
+				
+				mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/julieizquierda.gif");
+		        gui.setDibujoJugador(mapa.getJugador().getEntidadGrafica().getImagen());	
 				mapa.getJugador().getDireccion().setDireccion(MovimientoHorizontal.IZQUIERDA );
 				mapa.getJugador().mover(mapa.getJugador().getDireccion());
+				
+				
 	        	break;
 			}
 			case KeyEvent.VK_RIGHT: {
+				mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/juliederecha.gif");
+				gui.setDibujoJugador(mapa.getJugador().getEntidadGrafica().getImagen());	
 				mapa.getJugador().getDireccion().setDireccion(MovimientoHorizontal.DERECHA );
 				mapa.getJugador().mover(mapa.getJugador().getDireccion());
+
+				
 	        	break;
 			}
-			case KeyEvent.VK_A: {
-				//creo un jugador ejemplo
-				   
-				
+			case KeyEvent.VK_UP: {
+				int NewCoord=mapa.getJugador().getEntidadGrafica().getX();
+				if (coordx!=NewCoord) {
+					mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/juliefrente.gif");
+					gui.setDibujoJugador(mapa.getJugador().getEntidadGrafica().getImagen());	
+					
+					//agrego en gui, agrego en balas
+					
+					Proyectil disparo = new DisparoJugador(mapa.getJugador().getEntidadGrafica().getDibujo().getX(),mapa.getJugador().getEntidadGrafica().getDibujo().getY());
+					disparo.getEntidadGrafica().setX(mapa.getJugador().getEntidadGrafica().getDibujo().getX());
+					disparo.getEntidadGrafica().setY(mapa.getJugador().getEntidadGrafica().getDibujo().getY());
+					
+					coordx=mapa.getJugador().getEntidadGrafica().getX();
+					mapaMunicionGUI.ponerBalasEnLista(disparo);
+					mapaMunicion.ponerBalasEnLista(disparo);
+				}
 				break;
 			}
+		
 		
 		
 		}

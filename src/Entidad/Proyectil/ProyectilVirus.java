@@ -5,7 +5,6 @@ import EstrategiaMovimiento.EstrategiaMovimiento;
 import EstrategiaMovimiento.MovimientoVerticalVirus;
 import Visitor.Visitor;
 import Visitor.VisitorContagiarVirus;
-import Visitor.VisitorDisparoJugador;
 
 public class ProyectilVirus extends Proyectil {
 

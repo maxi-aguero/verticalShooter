@@ -8,10 +8,10 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MapaProyectil {
+public class MapaArmaSanitaria {
 	protected List<Entidad> conj_balas;
 	
-	public  MapaProyectil() {
+	public  MapaArmaSanitaria() {
 		conj_balas = new LinkedList<Entidad>();
 	}
 	
