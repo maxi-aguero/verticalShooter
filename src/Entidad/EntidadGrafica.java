@@ -13,6 +13,8 @@ public class EntidadGrafica {
 	public EntidadGrafica() {}
 	public JLabel getDibujo() { return dibujo ;}
 	public void setDibujo(JLabel dibujo) { this.dibujo = dibujo ;}
+	
+
 	public String getImagen() {
 		return ruta_dibujo;
 	}

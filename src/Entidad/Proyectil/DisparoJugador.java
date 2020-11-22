@@ -1,9 +1,10 @@
 package Entidad.Proyectil;
 
+import java.util.List;
 
 import Entidad.Entidad;
 import EstrategiaMovimiento.EstrategiaMovimiento;
-import EstrategiaMovimiento.MovimientoVerticalBalas;
+import EstrategiaMovimiento.MovimientoVerticalVirus;
 import Visitor.Visitor;
 import Visitor.VisitorDisparoJugador;
 
@@ -11,18 +12,27 @@ public class DisparoJugador extends Proyectil {
 
 	public DisparoJugador(int x,int y) {
 		super();
-		visitor = new VisitorDisparoJugador(this);
-		direccion = new MovimientoVerticalBalas(this,1);	//setear movimiento arriba
+		visitor = new VisitorDisparoJugador(this);	
+
+		direccion = new MovimientoVerticalVirus(this,1);	
 		entidadgrafica.setImagen("img/jugador/munic.png");
 		entidadgrafica.setX(x);
 		entidadgrafica.setY(y);
-		this.getDireccion().setDireccion(MovimientoVerticalBalas.ARRIBA);
 	}
-
+	
+	public void setX(int x) {
+		entidadgrafica.setX(x);
+	}
+	
+	public void setY(int y) {
+		entidadgrafica.setX(y);
+	}
+	
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
-		v.visit(this);
+		v.visitarArmaSanitaria(this);
+
 	}
 
 	@Override
@@ -31,9 +41,33 @@ public class DisparoJugador extends Proyectil {
 		d.mover();
 	}
 
+
+
+	
+	
+	
+	
+	//no estan en disparo-enemigo
+
+	@Override
+	public boolean estaVivo() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+
+	public void setDireccion(int d) { 
+		direccion.setDireccion(d) ;
+		
+	}
+
 	@Override
 	public void atacar(Entidad obj) {
 		// TODO Auto-generated method stub
+
+		//ataco el infectado, recibo ataque infectado
+		//postdata: no esta el jugador, entonces recibo ataque desde jugador
 		
 	}
 
@@ -44,21 +78,17 @@ public class DisparoJugador extends Proyectil {
 	}
 
 	@Override
-	public boolean estaVivo() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public void recibirAtaque(Entidad obj) {
 		// TODO Auto-generated method stub
 		
+		
 	}
 
-
-
+	@Override
+	public List<Entidad> detectarColisiones(List<Entidad>infectados) {
+		// TODO Auto-generated method stub
+		return null;
+	}	
 	
-
-
 
 }

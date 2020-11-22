@@ -2,63 +2,75 @@ package Mapa;
 
 
 import java.awt.Rectangle;
+import java.util.LinkedList;
+import java.util.List;
 
 import Entidad.Entidad;
 import Entidad.Personaje;
 import Entidad.Jugador.Jugador;
-import Nivel.FabricaNivel;
-import Nivel.FabricaNivel1;
-import Nivel.FabricaNivel2;
-import Nivel.Lista_Nivel1;
-import Nivel.Lista_Nivel2;
+import Nivel.NodoNivel;
 import Nivel.Tanda;
 
 public class Mapa {
 
-	protected Jugador jugador;
-
-	
-	protected FabricaNivel nivel;	
-	protected FabricaNivel[] factories= new FabricaNivel[2];
-
-	protected Lista_Nivel1 lista_nivel_1;
-	protected Lista_Nivel2 lista_nivel_2;
-	protected Tanda tanda_actual;
+	protected Jugador jugador;	
+	protected NodoNivel nivel;//aca tengo la lista de jugadores
+	protected Tanda tanda;
+	protected int tamanio_lv1;
+	protected int tamanio_lv2;
 
 	
 	public Mapa() {
 		jugador=new Jugador();	
 
-		factories[0]=new FabricaNivel1();
-		factories[1]=new FabricaNivel2();
+		nivel=new NodoNivel();
+		nivel.agregarNivel1();
+		nivel.agregarNivel2();
 
-		nivel=factories[0];
-		lista_nivel_1 = nivel.getlistaN1();
-		nivel=factories[1];
-		lista_nivel_2 = nivel.getlistaN2();
+		this.tanda=new Tanda();	
+		tamanio_lv1=nivel.getPrimerNivel().getInfoNivel().getLista().size();
+		tamanio_lv2=nivel.getSegundoNivel().getInfoNivel().getLista().size();
+		//despues creo otra tanda!
+		//tanda.crearTanda(nivel, nivel.getSegundoNivel().getInfoNivel().getLista().size());
+
 		
-		tanda_actual=new Tanda(lista_nivel_1,lista_nivel_2);
 
 	}
 	
-	public Lista_Nivel1 getListaN1() {
-		return lista_nivel_1;
+	public List<List<Entidad>> crearTandaN1() {
+		List<List<Entidad>> tandas_nivel1=new LinkedList<List<Entidad>>();//tandas_nivel1=null;
+		if (tamanio_lv1==nivel.getPrimerNivel().getInfoNivel().getLista().size())
+			tandas_nivel1 = tanda.crearTanda(nivel, nivel.getPrimerNivel().getInfoNivel().getLista().size()/2,2);
+		 
+		return tandas_nivel1;
+		
 	}
 	
-	public Lista_Nivel2 getListaN2() {
-		return lista_nivel_2;
+	
+	public List<List<Entidad>> crearTandaN2() {
+		List<List<Entidad>> tandas_nivel2=new LinkedList<List<Entidad>>();//tandas_nivel1=null;
+		
+		if (tamanio_lv2==nivel.getSegundoNivel().getInfoNivel().getLista().size())
+			tandas_nivel2 = tanda.crearTandaNivel2(nivel, nivel.getSegundoNivel().getInfoNivel().getLista().size()/2,2);
+		 
+		return tandas_nivel2;
+		
 	}
 	
-	public Tanda getTanda() {
-		return tanda_actual;
+	
+
+	
+	
+	
+	public NodoNivel getNivel() {
+		
+		return nivel;
+		
 	}
 	
-	public int getCant1() {
-		return tanda_actual.getcant1();
-	}
-	public int getCant2() {
-		return tanda_actual.getcant2();
-	}
+	
+	
+	
 	
 	public Jugador getJugador() {
 		return jugador;
@@ -79,6 +91,8 @@ public class Mapa {
 		return null;
 		
 	}
+	
+
 
 
 

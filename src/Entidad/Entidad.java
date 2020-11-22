@@ -3,6 +3,8 @@ package Entidad;
 
 import EstrategiaMovimiento.EstrategiaMovimiento;
 import Visitor.Visitor;
+import java.util.List;
+
 
 public abstract class Entidad {
 	
@@ -10,7 +12,6 @@ public abstract class Entidad {
 	protected Visitor visitor;		
 	protected EstrategiaMovimiento direccion; //movimiento
 	protected EntidadGrafica entidadgrafica;
-
 	
 	protected Entidad() {
 		entidadgrafica=new EntidadGrafica();
@@ -21,7 +22,8 @@ public abstract class Entidad {
 	}
 	
 	
-	
+	public abstract List<Entidad> detectarColisiones(List<Entidad>infectados);//por hacer-lo hace mapa?
+
 	
 	
 	

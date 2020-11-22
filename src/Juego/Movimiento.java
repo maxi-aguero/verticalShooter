@@ -12,7 +12,7 @@ private Juego juego;
 	public void run() {		
 		while(true) {
 			try {
-				Thread.sleep(44); 
+				Thread.sleep(45); 
 			}catch (InterruptedException e) {
 				e.printStackTrace();
 			}

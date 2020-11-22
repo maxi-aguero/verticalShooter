@@ -1,24 +1,28 @@
 package Visitor;
+
+import Entidad.Entidad;
 import Entidad.Jugador.Jugador;
 import Entidad.Proyectil.DisparoJugador;
 import Entidad.Proyectil.ProyectilVirus;
 import Premio.PremioVida;
+import Entidad.Infectado.Infectado;
 import Entidad.Infectado.InfectadoAlpha;
 import Entidad.Infectado.InfectadoBeta;
 
-public class VisitorDisparoJugador extends Visitor {
-	private DisparoJugador d;
+public class VisitorPremioVida extends Visitor {
+	private PremioVida p;
 
-	public VisitorDisparoJugador(DisparoJugador d) {
-		this.d=d;
+	public VisitorPremioVida(PremioVida p) {
+		this.p=p;
 	}
 
 	@Override
-	public void visitarJugador(Jugador j) {		
+	public void visitarJugador(Jugador j) {
 
 	}
 
-
+	
+	
 
 	@Override
 	public void visitarArmaSanitaria(DisparoJugador d) {
@@ -26,13 +30,12 @@ public class VisitorDisparoJugador extends Visitor {
 	}
 
 	@Override
-	public void visitarVirus(ProyectilVirus v) {
-
+	public void visitarVirus(ProyectilVirus d) {
 	}
 
 	@Override
 	public void visitarPremioVida(PremioVida pv) {
-		// TODO Auto-generated method stub
+
 		
 	}
 
@@ -43,9 +46,10 @@ public class VisitorDisparoJugador extends Visitor {
 	}
 
 	@Override
-	public void visitarInfectadoBeta(InfectadoBeta i) {
+	public void visitarInfectadoBeta(InfectadoBeta b) {
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 }

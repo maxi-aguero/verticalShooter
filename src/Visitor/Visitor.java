@@ -1,28 +1,26 @@
 package Visitor;
 
-import Entidad.Entidad;
 import Entidad.Jugador.Jugador;
 import Entidad.Proyectil.DisparoJugador;
 import Entidad.Proyectil.ProyectilVirus;
-import Entidad.Infectado.Infectado;
+import Premio.PremioVida;
+import Entidad.Infectado.InfectadoAlpha;
+import Entidad.Infectado.InfectadoBeta;
 
 public abstract class Visitor {
 	
-	protected Entidad entidad;
-	
-	
-	public Visitor(Entidad entidad) {
-		this.entidad = entidad;		
-	}
 
+	public abstract void visitarJugador(Jugador j);
 	
-	public abstract void visit(Jugador a);
+	public abstract void visitarInfectadoAlpha(InfectadoAlpha a);
 	
-	public abstract void visit(Infectado e);
+	public abstract void visitarInfectadoBeta(InfectadoBeta b);
 	
-	public abstract void visit(DisparoJugador d);
+	public abstract void visitarArmaSanitaria(DisparoJugador d);
 	
-	public abstract void visit(ProyectilVirus d);
+	public abstract void visitarVirus(ProyectilVirus v);
+	
+	public abstract void visitarPremioVida(PremioVida pv);
 
 	
 	

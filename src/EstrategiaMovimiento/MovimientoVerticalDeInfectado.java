@@ -1,13 +1,13 @@
 package EstrategiaMovimiento;
 
 import Entidad.Entidad;
-
-public class MovimientoVertical extends EstrategiaMovimiento{
+//de infectado
+public class MovimientoVerticalDeInfectado extends EstrategiaMovimiento{
 	
 	public static final int ABAJO = 5;
 	public static final int ARRIBA = -5;
 	
-	public MovimientoVertical(Entidad e, int d) {
+	public MovimientoVerticalDeInfectado(Entidad e, int d) {
 		super(e, d);
 		// TODO Auto-generated constructor stub
 	}

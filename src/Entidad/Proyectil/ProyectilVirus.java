@@ -1,5 +1,7 @@
 package Entidad.Proyectil;
 
+import java.util.List;
+
 import Entidad.Entidad;
 import EstrategiaMovimiento.EstrategiaMovimiento;
 import EstrategiaMovimiento.MovimientoVerticalVirus;
@@ -29,7 +31,7 @@ public class ProyectilVirus extends Proyectil {
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
-		v.visit(this);
+		v.visitarVirus(this);
 
 	}
 
@@ -79,6 +81,12 @@ public class ProyectilVirus extends Proyectil {
 	public void recibirAtaque(Entidad obj) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Entidad> detectarColisiones(List<Entidad>infectados) {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 	
 

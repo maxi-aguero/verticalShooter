@@ -1,6 +1,7 @@
 package Entidad.Infectado;
 
 
+
 import Entidad.Entidad;
 import Entidad.Personaje;
 import Entidad.Proyectil.Proyectil;
@@ -17,6 +18,8 @@ public abstract class Infectado extends Personaje   {
 	protected Infectado(int cargaViralActual, int cargaViralPierde, int rango) {
 
 		super(cargaViralActual, cargaViralPierde, rango);
+		
+		
 	}	
 	
 	public void setMapaBalasGUI(MapaVirus mb) {
@@ -36,6 +39,7 @@ public abstract class Infectado extends Personaje   {
 	}
 	
 	public void atacar(Entidad obj) {
+		//System.out.println("pium virus");
 		iniciarAtaque(obj);
 		
 		/**ImageIcon imagen = new ImageIcon(this.getClass().getClassLoader().getResource(ruta_dibujo_ataque));		
@@ -82,8 +86,5 @@ public abstract class Infectado extends Personaje   {
 		d.mover();
 	}	
 
-	public void accept(Visitor v){
-		v.visit(this);
-	} 
 
 }

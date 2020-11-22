@@ -9,8 +9,6 @@ public abstract class Lista {
 	protected List<Entidad> listaInfectados;
 	
 	public abstract List<Entidad> getLista();
-	public abstract int[] getCantidad();
-	public abstract void borrarLista();
 
 
 }
