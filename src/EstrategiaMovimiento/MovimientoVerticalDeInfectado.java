@@ -4,11 +4,11 @@ import Entidad.Entidad;
 //de infectado
 public class MovimientoVerticalDeInfectado extends EstrategiaMovimiento{
 	
-	public static final int ABAJO = 5;
-	public static final int ARRIBA = -5;
 	
-	public MovimientoVerticalDeInfectado(Entidad e, int d) {
+	public MovimientoVerticalDeInfectado(Entidad e, int d) {		
+
 		super(e, d);
+		
 		// TODO Auto-generated constructor stub
 	}
 

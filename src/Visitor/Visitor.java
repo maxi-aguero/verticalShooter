@@ -2,7 +2,9 @@ package Visitor;
 
 import Entidad.Jugador.Jugador;
 import Entidad.Proyectil.DisparoJugador;
-import Entidad.Proyectil.ProyectilVirus;
+import Entidad.Proyectil.ProyectilVirusAlpha;
+import Entidad.Proyectil.ProyectilVirusBeta;
+import Premio.PremioSuperArma;
 import Premio.PremioVida;
 import Entidad.Infectado.InfectadoAlpha;
 import Entidad.Infectado.InfectadoBeta;
@@ -18,9 +20,13 @@ public abstract class Visitor {
 	
 	public abstract void visitarArmaSanitaria(DisparoJugador d);
 	
-	public abstract void visitarVirus(ProyectilVirus v);
+	public abstract void visitarVirusAlpha(ProyectilVirusAlpha v);
+	
+	public abstract void visitarVirusBeta(ProyectilVirusBeta v);
 	
 	public abstract void visitarPremioVida(PremioVida pv);
+	
+	public abstract void visitarPremioSuperArma(PremioSuperArma psa);
 
 	
 	

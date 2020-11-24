@@ -6,7 +6,6 @@ import Entidad.Entidad;
 import EstrategiaMovimiento.EstrategiaMovimiento;
 import EstrategiaMovimiento.MovimientoVerticalVirus;
 import Visitor.Visitor;
-import Visitor.VisitorContagiarVirus;
 import Visitor.VisitorPremioVida;
 //premio recuperar vida
 public class PremioVida extends Premio {
@@ -15,9 +14,10 @@ public class PremioVida extends Premio {
 		super();
 		visitor = new VisitorPremioVida(this);	
 		direccion = new MovimientoVerticalVirus(this,1);	
-		entidadgrafica.setImagen("img/juego/posion.png");
+		entidadgrafica.setImagen("img/juego/posionazul.png");
 		entidadgrafica.setX(x);
 		entidadgrafica.setY(y);
+		velocidad=5;
 	}
 	public void setX(int x) {
 		entidadgrafica.setX(x);
@@ -35,7 +35,8 @@ public class PremioVida extends Premio {
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
-		
+		v.visitarPremioVida(this);
+
 	}
 
 	@Override
@@ -57,11 +58,6 @@ public class PremioVida extends Premio {
 		
 	}
 
-	@Override
-	public void recibirAtaque(Entidad obj) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public boolean estaVivo() {
@@ -72,6 +68,11 @@ public class PremioVida extends Premio {
 	public List<Entidad> detectarColisiones(List<Entidad>infectados) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public void accionar(List<Entidad>infectados) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

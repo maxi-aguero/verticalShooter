@@ -1,10 +1,10 @@
 package Visitor;
-import Entidad.Entidad;
 import Entidad.Jugador.Jugador;
 import Entidad.Proyectil.DisparoJugador;
-import Entidad.Proyectil.ProyectilVirus;
+import Entidad.Proyectil.ProyectilVirusAlpha;
+import Entidad.Proyectil.ProyectilVirusBeta;
+import Premio.PremioSuperArma;
 import Premio.PremioVida;
-import Entidad.Infectado.Infectado;
 import Entidad.Infectado.InfectadoAlpha;
 import Entidad.Infectado.InfectadoBeta;
 
@@ -16,8 +16,8 @@ public class VisitorInfectadoAlpha extends Visitor {
 	}
 
 	@Override
-	public void visitarJugador(Jugador j) {//cuando veo un jugador ataco, o recibo danio
-		a.atacar(j);
+	public void visitarJugador(Jugador j) {
+		a.atacar(j); // es solo lanzar virus
 		
 	}
 	
@@ -26,32 +26,45 @@ public class VisitorInfectadoAlpha extends Visitor {
 
 	@Override
 	public void visitarArmaSanitaria(DisparoJugador d) {
-		a.recibirAtaque(d);//recibe otro ataque que el ataque de infectado beta
 
 	}
 
 	@Override
-	public void visitarVirus(ProyectilVirus v) {
-		
+	public void visitarVirusAlpha(ProyectilVirusAlpha v) {
+
 
 	}
 
 	@Override
 	public void visitarPremioVida(PremioVida pv) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void visitarInfectadoAlpha(InfectadoAlpha al) {
 		// TODO Auto-generated method stub
-		a.mover(a.getDireccion());
+		//a.mover(a.getDireccion());
+
 	}
 
 	@Override
 	public void visitarInfectadoBeta(InfectadoBeta b) {
 		// TODO Auto-generated method stub
-		a.mover(a.getDireccion());
+		//a.mover(a.getDireccion());
+
+	}
+
+	@Override
+	public void visitarVirusBeta(ProyectilVirusBeta v) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitarPremioSuperArma(PremioSuperArma psa) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

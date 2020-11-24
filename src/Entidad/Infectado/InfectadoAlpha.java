@@ -1,21 +1,28 @@
 package Entidad.Infectado;
 
 
+import java.awt.Rectangle;
+import java.util.LinkedList;
 import java.util.List;
 
 import Entidad.Entidad;
+import Entidad.Proyectil.Proyectil;
+import Entidad.Proyectil.ProyectilVirusAlpha;
 import EstrategiaMovimiento.MovimientoVerticalDeInfectado;
+import Premio.PremioVida;
 import Visitor.Visitor;
 import Visitor.VisitorInfectadoAlpha;
 
 public class InfectadoAlpha extends Infectado {
 		
 	public InfectadoAlpha() {
-		super(100, 0, 5); 
-		visitor = new VisitorInfectadoAlpha(this);	
-		direccion = new MovimientoVerticalDeInfectado(this,1);		
+		super(100, 0, 5);
+;
+		visitor = new VisitorInfectadoAlpha(this);
+		velocidad=5;
+		direccion = new MovimientoVerticalDeInfectado(this,velocidad);		
 		entidadgrafica.setImagen("img/infectados/zombie.gif");
-
+		resistencia=0.5;
 	}
 
 
@@ -28,15 +35,6 @@ public class InfectadoAlpha extends Infectado {
 
 
 
-	@Override
-	public void recibirAtaque(Entidad obj) {
-		// TODO Auto-generated method stub
-		cargaViralActual=cargaViralActual - 20;		
-		System.out.println("mi carga:" +cargaViralActual);
-		//mostrat en un JProgressBar
-		
-
-	}
 
 
 
@@ -48,13 +46,89 @@ public class InfectadoAlpha extends Infectado {
 
 
 
+	
 	@Override
-	public List<Entidad> detectarColisiones(List<Entidad>infectados) {
+	public List<Entidad> detectarColisiones(List<Entidad>municiones) {
 		// TODO Auto-generated method stub
-		return null;
+
+		List<Entidad> conj_municiones  = new LinkedList<Entidad>();
+		Rectangle tamanioObj = getEntidadGrafica().getDibujo().getBounds();
+		tamanioObj.translate(- 0,0);
+		tamanioObj.width += 0;
+		for(Entidad ent:municiones)
+		{
+			if(ent.getEntidadGrafica().getDibujo()!=null)
+				if(ent.getEntidadGrafica().getDibujo().getBounds().intersects(tamanioObj))
+					conj_municiones.add(ent);
+		}
+	
+			
+		
+		return conj_municiones;
+		
 	}
 
+
+
+	@Override
+	public void accionar(List<Entidad>municiones) {
+		// TODO Auto-generated method stub
+		List<Entidad> c = detectarColisiones(municiones);
+		
+		for (Entidad minimunicion:c)
+			{	minimunicion.accept(visitor);
+				this.accept(minimunicion.getVisitor());	
+
+
+				//yo como jugador no quiero disparar, disparo solo cuando presiono space
+			}
+		
+	}
+
+
+
+	@Override
+	public void atacar(Entidad obj) {
+		// TODO Auto-generated method stub
+		//System.out.println("pium virus");
+		iniciarAtaque(obj);
+		
+		/**ImageIcon imagen = new ImageIcon(this.getClass().getClassLoader().getResource(ruta_dibujo_ataque));		
+		dibujo.setIcon(imagen);
+		if(vida>0) {  // si estoy vivo, ataco
+			if(frecuencia_ataques%velocidad_ataque == 0)
+				iniciarAtaque(obj);
+			frecuencia_ataques++;
+		} else
+			morir();*/
+	}
+
+
+	@Override
+	public void iniciarAtaque(Entidad obj) {
+		// TODO Auto-generated method stub
+		Proyectil disparo = new ProyectilVirusAlpha(this.getEntidadGrafica().getDibujo().getX(),this.getEntidadGrafica().getDibujo().getY());
+		disparo.getEntidadGrafica().setX(this.getEntidadGrafica().getDibujo().getX());
+		disparo.getEntidadGrafica().setY(this.getEntidadGrafica().getDibujo().getY());
+		
+		
+		Proyectil disparo1 = new ProyectilVirusAlpha(this.getEntidadGrafica().getDibujo().getX()-15,this.getEntidadGrafica().getDibujo().getY());
+		disparo1.getEntidadGrafica().setX(this.getEntidadGrafica().getDibujo().getX()-15);
+		disparo1.getEntidadGrafica().setY(this.getEntidadGrafica().getDibujo().getY());
+		
+		Proyectil disparo2 = new ProyectilVirusAlpha(this.getEntidadGrafica().getDibujo().getX()+15,this.getEntidadGrafica().getDibujo().getY());
+		disparo2.getEntidadGrafica().setX(this.getEntidadGrafica().getDibujo().getX()+15);
+		disparo2.getEntidadGrafica().setY(this.getEntidadGrafica().getDibujo().getY());
+		
+		
+		mapaProyectil.ponerBalasEnLista(disparo);
+		mapaProyectil.ponerBalasEnLista(disparo1);
+		mapaProyectil.ponerBalasEnLista(disparo2);
+		
+		
+	}
 	
+
 
 
 

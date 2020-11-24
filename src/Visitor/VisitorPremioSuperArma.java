@@ -9,18 +9,20 @@ import Premio.PremioVida;
 import Entidad.Infectado.InfectadoAlpha;
 import Entidad.Infectado.InfectadoBeta;
 
-public class VisitorJugador extends Visitor {
-	private Jugador j;
+public class VisitorPremioSuperArma extends Visitor {
+	private PremioSuperArma p;
 
-	public VisitorJugador(Jugador j) {
-		this.j = j;	
+	public VisitorPremioSuperArma(PremioSuperArma ps) {
+		this.p=ps;
 	}
 
 	@Override
 	public void visitarJugador(Jugador j) {
-		
+		p.cambiarConfig(j);
+
 	}
 
+	
 	
 
 	@Override
@@ -29,29 +31,25 @@ public class VisitorJugador extends Visitor {
 	}
 
 	@Override
-	public void visitarVirusAlpha(ProyectilVirusAlpha v) {
-
+	public void visitarVirusAlpha(ProyectilVirusAlpha d) {
 	}
 
 	@Override
 	public void visitarPremioVida(PremioVida pv) {
-		// TODO Auto-generated method stub
-		//coger el premio
-		j.cogerPremioVida(pv);
 
+		
 	}
 
 	@Override
 	public void visitarInfectadoAlpha(InfectadoAlpha a) {
 		// TODO Auto-generated method stub
-		//no ataco a alpha porque el que ataca es la arma sanitaria
+		
 	}
 
 	@Override
 	public void visitarInfectadoBeta(InfectadoBeta b) {
 		// TODO Auto-generated method stub
-		//no ataco a beta porque el que ataca es la arma sanitaria
-
+		
 	}
 
 	@Override
@@ -63,10 +61,7 @@ public class VisitorJugador extends Visitor {
 	@Override
 	public void visitarPremioSuperArma(PremioSuperArma psa) {
 		// TODO Auto-generated method stub
-		System.out.println("cogio super arma");
 		
-		j.cogerPremioSuperArma(psa);
-
 	}
 
 	

@@ -6,18 +6,20 @@ import Entidad.Entidad;
 import EstrategiaMovimiento.EstrategiaMovimiento;
 import EstrategiaMovimiento.MovimientoVerticalVirus;
 import Visitor.Visitor;
-import Visitor.VisitorContagiarVirus;
+import Visitor.VisitorContagiarVirusAlpha;
 
-public class ProyectilVirus extends Proyectil {
-
-	public ProyectilVirus(int x,int y) {
+public class ProyectilVirusAlpha extends Proyectil {
+	public int danio;
+	public ProyectilVirusAlpha(int x,int y) {
 		super();
-		visitor = new VisitorContagiarVirus(this);	
-
-		direccion = new MovimientoVerticalVirus(this,1);	
+		visitor = new VisitorContagiarVirusAlpha(this);	
+		velocidad=25;
+		direccion = new MovimientoVerticalVirus(this,velocidad);	
 		entidadgrafica.setImagen("img/infectados/fire.png");
 		entidadgrafica.setX(x);
 		entidadgrafica.setY(y);
+		danio=1;
+		
 	}
 	
 	public void setX(int x) {
@@ -31,7 +33,7 @@ public class ProyectilVirus extends Proyectil {
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
-		v.visitarVirus(this);
+		v.visitarVirusAlpha(this);
 
 	}
 
@@ -65,7 +67,7 @@ public class ProyectilVirus extends Proyectil {
 	@Override
 	public void atacar(Entidad obj) {
 		// TODO Auto-generated method stub
-		
+		iniciarAtaque(obj);
 		//ataco el jugador
 		//postdata: no esta el jugador, entonces recibo ataque desde jugador
 		
@@ -74,19 +76,24 @@ public class ProyectilVirus extends Proyectil {
 	@Override
 	public void iniciarAtaque(Entidad obj) {
 		// TODO Auto-generated method stub
-		
+		//ataco al jugador
+		double cargaActualJugador= obj.getVitalactual();
+		cargaActualJugador=cargaActualJugador+danio;
+		obj.setVitalactual(cargaActualJugador);		
+	
 	}
 
-	@Override
-	public void recibirAtaque(Entidad obj) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public List<Entidad> detectarColisiones(List<Entidad>infectados) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void accionar(List<Entidad>infectados) {
+		// TODO Auto-generated method stub
+		
 	}	
 	
 

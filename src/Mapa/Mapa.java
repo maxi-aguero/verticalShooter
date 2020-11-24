@@ -1,12 +1,9 @@
 package Mapa;
 
 
-import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.List;
-
 import Entidad.Entidad;
-import Entidad.Personaje;
 import Entidad.Jugador.Jugador;
 import Nivel.NodoNivel;
 import Nivel.Tanda;
@@ -76,21 +73,7 @@ public class Mapa {
 		return jugador;
 	}
 	
-	public Entidad intersecta_algo(Entidad obj) {
-		
-		Rectangle tamanioObj = obj.getEntidadGrafica().getDibujo().getBounds();
-		
-		Personaje pp=(Personaje) obj;
-		tamanioObj.translate(- pp.getRango(),0);
-		tamanioObj.width += pp.getRango();
-			// jugador interecta a infectado 
-			if(jugador.getEntidadGrafica().getDibujo().getBounds().intersects(tamanioObj))
-				return jugador;
-				//return jugador;
-		//}
-		return null;
-		
-	}
+	
 	
 
 

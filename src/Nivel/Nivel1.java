@@ -7,6 +7,9 @@ import java.util.Random;
 import Entidad.Entidad;
 import Entidad.Infectado.Infectado;
 import Entidad.Infectado.InfectadoAlpha;
+import Entidad.Infectado.InfectadoBeta;
+import Premio.Premio;
+import Premio.PremioVida;
 
 //modern1
 public class Nivel1 extends Lista{
@@ -36,7 +39,7 @@ public class Nivel1 extends Lista{
 		//numero_armado[arr[x]] es un elemento de [100-140-180-220-260-300-340-380-420-460-500-540-580-620] al azar
 		
 		
-		Infectado infectado01 = new InfectadoAlpha();
+		Infectado infectado01 = new InfectadoBeta();
 		infectado01.getEntidadGrafica().setX(numero_armado[arr[0]]);
 		infectado01.getEntidadGrafica().setY(150);
 		
@@ -68,6 +71,8 @@ public class Nivel1 extends Lista{
 		infectado08.getEntidadGrafica().setX(numero_armado[arr[7]]);
 		infectado08.getEntidadGrafica().setY(150);
 	
+		
+		
 		
 		listaInfectados.add(infectado01);
 		listaInfectados.add(infectado02);

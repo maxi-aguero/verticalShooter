@@ -1,7 +1,9 @@
 package Visitor;
 import Entidad.Jugador.Jugador;
 import Entidad.Proyectil.DisparoJugador;
-import Entidad.Proyectil.ProyectilVirus;
+import Entidad.Proyectil.ProyectilVirusAlpha;
+import Entidad.Proyectil.ProyectilVirusBeta;
+import Premio.PremioSuperArma;
 import Premio.PremioVida;
 import Entidad.Infectado.InfectadoAlpha;
 import Entidad.Infectado.InfectadoBeta;
@@ -26,7 +28,7 @@ public class VisitorDisparoJugador extends Visitor {
 	}
 
 	@Override
-	public void visitarVirus(ProyectilVirus v) {
+	public void visitarVirusAlpha(ProyectilVirusAlpha v) {
 
 	}
 
@@ -39,11 +41,25 @@ public class VisitorDisparoJugador extends Visitor {
 	@Override
 	public void visitarInfectadoAlpha(InfectadoAlpha a) {
 		// TODO Auto-generated method stub
-		
+		//atacar al alpha
+		d.atacar(a);
 	}
 
 	@Override
 	public void visitarInfectadoBeta(InfectadoBeta i) {
+		// TODO Auto-generated method stub
+		d.atacar(i);
+
+	}
+
+	@Override
+	public void visitarVirusBeta(ProyectilVirusBeta v) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visitarPremioSuperArma(PremioSuperArma psa) {
 		// TODO Auto-generated method stub
 		
 	}

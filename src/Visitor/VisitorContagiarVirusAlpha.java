@@ -1,5 +1,4 @@
 package Visitor;
-
 import Entidad.Jugador.Jugador;
 import Entidad.Proyectil.DisparoJugador;
 import Entidad.Proyectil.ProyectilVirusAlpha;
@@ -9,16 +8,16 @@ import Premio.PremioVida;
 import Entidad.Infectado.InfectadoAlpha;
 import Entidad.Infectado.InfectadoBeta;
 
-public class VisitorJugador extends Visitor {
-	private Jugador j;
+public class VisitorContagiarVirusAlpha extends Visitor {
+	private ProyectilVirusAlpha v;
 
-	public VisitorJugador(Jugador j) {
-		this.j = j;	
+	public VisitorContagiarVirusAlpha(ProyectilVirusAlpha v) {
+		this.v=v;
 	}
 
 	@Override
-	public void visitarJugador(Jugador j) {
-		
+	public void visitarJugador(Jugador j) {		
+		v.atacar(j);	//el virus ataca al jugador 
 	}
 
 	
@@ -36,22 +35,19 @@ public class VisitorJugador extends Visitor {
 	@Override
 	public void visitarPremioVida(PremioVida pv) {
 		// TODO Auto-generated method stub
-		//coger el premio
-		j.cogerPremioVida(pv);
-
+		
 	}
 
 	@Override
 	public void visitarInfectadoAlpha(InfectadoAlpha a) {
 		// TODO Auto-generated method stub
-		//no ataco a alpha porque el que ataca es la arma sanitaria
+		
 	}
 
 	@Override
 	public void visitarInfectadoBeta(InfectadoBeta b) {
 		// TODO Auto-generated method stub
-		//no ataco a beta porque el que ataca es la arma sanitaria
-
+		
 	}
 
 	@Override
@@ -63,11 +59,7 @@ public class VisitorJugador extends Visitor {
 	@Override
 	public void visitarPremioSuperArma(PremioSuperArma psa) {
 		// TODO Auto-generated method stub
-		System.out.println("cogio super arma");
 		
-		j.cogerPremioSuperArma(psa);
-
 	}
-
 	
 }

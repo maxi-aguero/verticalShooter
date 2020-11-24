@@ -3,19 +3,25 @@ package Premio;
 import java.util.List;
 
 import Entidad.Entidad;
+import Entidad.Jugador.Jugador;
 import EstrategiaMovimiento.EstrategiaMovimiento;
+import EstrategiaMovimiento.MovimientoVerticalVirus;
 import Visitor.Visitor;
+import Visitor.VisitorPremioSuperArma;
+import Visitor.VisitorPremioVida;
+//premio super arma
+public class PremioSuperArma extends Premio {
 
-public class PremioTemporal extends Premio {
-
-	protected PremioTemporal(int x,int y) {
+	public PremioSuperArma(int x,int y) {
 		super();
-		// TODO Auto-generated constructor stub
-		entidadgrafica.setImagen("img/jugador/munic.png");
+		visitor = new VisitorPremioSuperArma(this);	
+		
+		direccion = new MovimientoVerticalVirus(this,1);	
+		entidadgrafica.setImagen("img/juego/posionroja.png");
 		entidadgrafica.setX(x);
 		entidadgrafica.setY(y);
+		velocidad=5;
 	}
-	//tiene entidad grafica
 	public void setX(int x) {
 		entidadgrafica.setX(x);
 	}
@@ -23,26 +29,45 @@ public class PremioTemporal extends Premio {
 	public void setY(int y) {
 		entidadgrafica.setX(y);
 	}
+	
+	public void setDireccion(int d) { 
+		direccion.setDireccion(d) ;
+		
+	}
+	
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
-		
+		//v.visitarPremioVida(this);
+
 	}
+
 	@Override
 	public void mover(EstrategiaMovimiento d) {
 		// TODO Auto-generated method stub
-		
+		d.mover();
+
 	}
+
 	@Override
 	public void atacar(Entidad obj) {
 		// TODO Auto-generated method stub
 		
+		//cambio config de Jugador
+		
 	}
+	
+	public void cambiarConfig(Jugador j) {
+		j.settipoArma(1);//cambia velocidad del disparo
+		
+	}
+
 	@Override
 	public void iniciarAtaque(Entidad obj) {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 	@Override
 	public boolean estaVivo() {
@@ -59,4 +84,5 @@ public class PremioTemporal extends Premio {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

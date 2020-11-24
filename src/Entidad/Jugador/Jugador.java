@@ -1,20 +1,23 @@
 package Entidad.Jugador;
 
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.List;
 
 import Entidad.Entidad;
 import Entidad.Personaje;
+import Entidad.Proyectil.DisparoJugador;
 import EstrategiaMovimiento.EstrategiaMovimiento;
 import EstrategiaMovimiento.MovimientoHorizontal;
-import Mapa.MapaArmaSanitaria;
+import Mapa.MapaProyectil;
+import Premio.PremioSuperArma;
 import Visitor.Visitor;
 import Visitor.VisitorJugador;
 
 public class Jugador extends Personaje {
-	protected MapaArmaSanitaria mapavirusgui;//balas
-	protected MapaArmaSanitaria mapavirus;
+	protected MapaProyectil mapavirus;
+	protected int tipoArma;
 	//protected MapaArmaSanitaria mapavirus;
 	
 	public Jugador() {
@@ -25,10 +28,16 @@ public class Jugador extends Personaje {
 		entidadgrafica.setImagen("img/jugador/juliefrente.gif");
 		entidadgrafica.setX(50);
 		entidadgrafica.setY(420);
+		rango_x=35;
+		velocidad=5;
+		tipoArma=0;
 		//miEstado = new EstadoNormal(this);
 
 	}
-
+	public int getTipoArma() {
+		return tipoArma;
+	}
+	
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
@@ -43,11 +52,32 @@ public class Jugador extends Personaje {
 		d.mover();
 	}
 
+	public void cogerPremioVida(Entidad obj) {
+		// TODO Auto-generated method stub
+		//agarra el premio
+		cargaViralActual=0;
+		
+	}
+	
+	public void cogerPremioSuperArma(PremioSuperArma obj) {
+		// TODO Auto-generated method stub
+		//agarra el premio
+		//this es jugador
+		//obj es proyectil
+		tipoArma=1;
+		
+	}
+	
+	public void settipoArma(int t) {
+		tipoArma=t;
+	}
+	
+	
+	
 	@Override
 	public void atacar(Entidad obj) {
 		// TODO Auto-generated method stub
 		//no ataca, en lugar de ello al apretar flecha ariba, lanza el ataque
-		//y el infectado alpha o beta reciben ataque
 		
 		/**
 		 *  frecuencia_ataques++;
@@ -65,12 +95,9 @@ public class Jugador extends Personaje {
 	public void iniciarAtaque(Entidad obj) {
 		// TODO Auto-generated method stub
 		 
-		//flushDibujo(ruta_dibujo_ataque);		
-		//Punto p = new Punto(punto.getX()+ancho-30, punto.getY());
-		//miEstado.disparar(danio, p, rango);
+		
 	}
 
-	//public boolean interactuar() {
 
 	
 	
@@ -81,36 +108,10 @@ public class Jugador extends Personaje {
 		return cargaViralActual<100?true:false;	
 	}
 
-	public void recibirataque() {
-		// TODO Auto-generated method stub
-		/**
-		 *  frecuencia_ataques++;
-			if(vida>0) {  // si estoy vivo, ataco		
-				if(frecuencia_ataques%velocidad_ataque== 0)
-					iniciarAtaque(obj);
-		} 
-		    else
-				morir();
-		 * 
-		 * */
-	}
-
-	@Override
-	public void recibirAtaque(Entidad obj) {
-		// TODO Auto-generated method stub
-		cargaViralActual=cargaViralActual + 0.055;
-
-		
-	}
-
-
-	public void setMapaBalasGUI(MapaArmaSanitaria mvg) {
-		mapavirusgui=mvg;
-	}
 	
 		
 	
-	public void setMapaBalas(MapaArmaSanitaria mv) {
+	public void setMapaBalas(MapaProyectil mv) {
 		mapavirus=mv;
 	}
 
@@ -126,8 +127,6 @@ public class Jugador extends Personaje {
 		
 		List<Entidad> conj_infectados  = new LinkedList<Entidad>();
 		Rectangle tamanioObj = getEntidadGrafica().getDibujo().getBounds();
-		tamanioObj.translate(- 0,0);
-		tamanioObj.width += 0;
 		for(Entidad ent:infectados)
 		{
 			if(ent.getEntidadGrafica().getDibujo()!=null)
@@ -139,6 +138,31 @@ public class Jugador extends Personaje {
 		
 		return conj_infectados;
 	}
+	//recibo los infectados de la tanda y me fijo si colisionan
+	
+	@Override
+	public void accionar(List<Entidad>infectados) {
+		// TODO Auto-generated method stub
+		List<Entidad> c = detectarColisiones(infectados);
+		
+		//solo los veo
+		for (Entidad infectadito:c)
+			{	infectadito.accept(visitor);
+				
+				this.accept(infectadito.getVisitor());	//pero tambien me acepto a mi
+
+
+				//yo como jugador no quiero disparar, disparo solo cuando presiono space
+			}
+	}
+	
+	
+	
+	
+	
+	
+	
+
 
 
 	
