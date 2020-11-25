@@ -10,20 +10,20 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MapaProyectil {
-	protected List<Entidad> conj_balas;
+	protected List<Entidad> conj_proyectil;//guarda tanto virus y proyectiles de arma sanitaria
 	
 	
 	public  MapaProyectil() {
-		conj_balas = new LinkedList<Entidad>();
+		conj_proyectil = new LinkedList<Entidad>();
 	}
 	
 	
-	public List<Entidad> getListaBalas(){
-		return conj_balas;
+	public List<Entidad> getLista(){
+		return conj_proyectil;
 	}
 	
 	public void ponerBalasEnLista(Entidad obj) {
-		conj_balas.add(obj);
+		conj_proyectil.add(obj);
 	}
 	
 	

@@ -9,15 +9,15 @@ import java.util.List;
 
 public abstract class Entidad {
 	protected double resistencia;
-	protected double cargaViralActual; //jugador pierde con 100 - comienza con 0									
-	protected int cargaViralPierde; //infectado pierde con 0- comienza con 100
-	protected int velocidad;// 
+	protected double cargaViralActual; 									
+	protected int cargaViralPierde; 
+	protected int velocidad;
 	protected Visitor visitor;		
-	protected EstrategiaMovimiento direccion; //movimiento
+	protected EstrategiaMovimiento direccion; 
 	protected EntidadGrafica entidadgrafica;
 	protected int rango_x;
 	protected int rango_y;
-	protected MapaProyectil mapaProyectil;
+	protected MapaProyectil ListaDeProyectil;//lista de proyectil virus para infectados
 
 	
 	protected Entidad() {
@@ -44,11 +44,11 @@ public abstract class Entidad {
 	}
 	
 	public void setMapaBalas(MapaProyectil mb) {
-		mapaProyectil=mb;
+		ListaDeProyectil=mb;
 	}
 	
 	public MapaProyectil getMapaBalas() {
-		return mapaProyectil;
+		return ListaDeProyectil;
 	}
 	
 	

@@ -23,7 +23,7 @@ public class InfectadoBeta extends Infectado {
 		direccion = new MovimientoVerticalDeInfectado(this,velocidad);		
 		entidadgrafica.setImagen("img/infectados/stanley.gif");
 		velocidad=5;
-		resistencia=1.9;
+		resistencia=60;
 	}
 
 
@@ -108,39 +108,25 @@ public class InfectadoBeta extends Infectado {
 	@Override
 	public void iniciarAtaque(Entidad obj) {
 		// TODO Auto-generated method stub
-		Proyectil disparo = new ProyectilVirusBeta(this.getEntidadGrafica().getDibujo().getX(),this.getEntidadGrafica().getDibujo().getY());
-		disparo.getEntidadGrafica().setX(this.getEntidadGrafica().getDibujo().getX());
-		disparo.getEntidadGrafica().setY(this.getEntidadGrafica().getDibujo().getY());
+		Proyectil virusBeta01 = new ProyectilVirusBeta(this.getEntidadGrafica().getDibujo().getX(),this.getEntidadGrafica().getDibujo().getY());
+		virusBeta01.getEntidadGrafica().setX(this.getEntidadGrafica().getDibujo().getX());
+		virusBeta01.getEntidadGrafica().setY(this.getEntidadGrafica().getDibujo().getY());
 		
 		
-		Proyectil disparo1 = new ProyectilVirusBeta(this.getEntidadGrafica().getDibujo().getX()-15,this.getEntidadGrafica().getDibujo().getY());
-		disparo1.getEntidadGrafica().setX(this.getEntidadGrafica().getDibujo().getX()-15);
-		disparo1.getEntidadGrafica().setY(this.getEntidadGrafica().getDibujo().getY());
+		Proyectil virusAlpha01 = new ProyectilVirusBeta(this.getEntidadGrafica().getDibujo().getX()-15,this.getEntidadGrafica().getDibujo().getY());
+		virusAlpha01.getEntidadGrafica().setX(this.getEntidadGrafica().getDibujo().getX()-15);
+		virusAlpha01.getEntidadGrafica().setY(this.getEntidadGrafica().getDibujo().getY());
 		
-		Proyectil disparo2 = new ProyectilVirusBeta(this.getEntidadGrafica().getDibujo().getX()+15,this.getEntidadGrafica().getDibujo().getY());
-		disparo2.getEntidadGrafica().setX(this.getEntidadGrafica().getDibujo().getX()+15);
-		disparo2.getEntidadGrafica().setY(this.getEntidadGrafica().getDibujo().getY());
+		Proyectil virusAlpha02 = new ProyectilVirusBeta(this.getEntidadGrafica().getDibujo().getX()+15,this.getEntidadGrafica().getDibujo().getY());
+		virusAlpha02.getEntidadGrafica().setX(this.getEntidadGrafica().getDibujo().getX()+15);
+		virusAlpha02.getEntidadGrafica().setY(this.getEntidadGrafica().getDibujo().getY());
 		
-		//mapabalasgui.ponerBalasEnLista(disparo);
-		//mapabalasgui.ponerBalasEnLista(disparo1);
-		//mapabalasgui.ponerBalasEnLista(disparo2);
-		mapaProyectil.ponerBalasEnLista(disparo);
-		mapaProyectil.ponerBalasEnLista(disparo1);
-		mapaProyectil.ponerBalasEnLista(disparo2);
+		ListaDeProyectil.ponerBalasEnLista(virusBeta01);
+		ListaDeProyectil.ponerBalasEnLista(virusAlpha01);
+		ListaDeProyectil.ponerBalasEnLista(virusAlpha02);
 		
 		
-		//punto== entidgrad grafica, hacer setx, sety
-		//Punto p = new Punto(punto.getX()-disparo.getAncho()+10, punto.getY());
-		//disparo.setPunto()
-		//mapa lista_a_agregar significa la lista que se genera de manera dinamica
-		//mapa.add(disparo); meto disparo en mapa
-		
-		/**ImageIcon imagen = new ImageIcon(this.getClass().getClassLoader().getResource(ruta_dibujo_ataque));		
-		dibujo.setIcon(imagen);
-		Disparo disparo = new DisparoEnemigo(danio, null, rango);
-		Punto p = new Punto(punto.getX()-disparo.getAncho()+10, punto.getY());
-		disparo.setPunto(p);
-		mapa.add(disparo);*/	
+			
 	}
 	
 

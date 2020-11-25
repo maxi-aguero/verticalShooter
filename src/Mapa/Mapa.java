@@ -15,7 +15,6 @@ public class Mapa {
 	protected Tanda tanda;
 	protected int tamanio_lv1;
 	protected int tamanio_lv2;
-
 	
 	public Mapa() {
 		jugador=new Jugador();	
@@ -55,17 +54,12 @@ public class Mapa {
 	}
 	
 	
-
-	
-	
 	
 	public NodoNivel getNivel() {
 		
 		return nivel;
 		
 	}
-	
-	
 	
 	
 	

@@ -18,7 +18,6 @@ import Visitor.VisitorJugador;
 public class Jugador extends Personaje {
 	protected MapaProyectil mapavirus;
 	protected int tipoArma;
-	//protected MapaArmaSanitaria mapavirus;
 	
 	public Jugador() {
 		

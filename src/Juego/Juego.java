@@ -20,28 +20,28 @@ import Premio.Premio;
 import Premio.PremioSuperArma;
 import Premio.PremioVida;
 public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyListener  {
-	protected GUI gui;
-	protected List<Entidad> obj_eliminar;//infectados que elimino
+	private GUI gui;
+	private List<Entidad> obj_eliminar;//Entidades que elimino
 
-	protected Mapa mapa;
-	protected MapaProyectil mapaVirus;	
-	protected MapaProyectil mapaMunicion;
+	private Mapa mapa;
+	private MapaProyectil mapaVirus;	
+	private MapaProyectil mapaMunicion;
 
-	protected Movimiento movimiento;
+	private Movimiento movimiento;
 	
-	protected int tanda_actual=0;
-	protected int nivel_actual=0;	
+	private int tanda_actual=0;
+	private int nivel_actual=0;	
 
-	protected List<List<Entidad>>[] tanda;
+	private List<List<Entidad>>[] tanda;
 	
-	protected MapaProyectil lista_premio;
-	protected Random rd;
+	private MapaProyectil lista_premio;
+	private Random rd;
 	
 	public Juego(){
 	
 		rd=new Random();
 		obj_eliminar=new LinkedList<Entidad>();
-		
+
 		mapa = new Mapa();	
 		tanda=new List[2] ;
 		tanda[0]  = mapa.crearTandaN1();		
@@ -90,35 +90,47 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	
 	
 	//Nivel 1
-	public void interactuar() {			
+	public void interactuar() {	
+		
 		this.requestFocus();
 
-        //gui.ponerProgressBar(tanda[nivel_actual].get(tanda_actual).size());
 
 		
 		
-	 if (nivel_actual==2)
+	if (nivel_actual==2)
 	 {
 		 //eliminar las balas de la gui y los virus
 		
-		 for(Entidad municion: mapaMunicion.getListaBalas())
+		 for(Entidad municion: mapaMunicion.getLista())
 		 {
 			 obj_eliminar.add(municion);
 		 }
 		 gui.eliminacion(obj_eliminar);
 		 
-		 for(Entidad virus: mapaVirus.getListaBalas())
+		 for(Entidad virus: mapaVirus.getLista())
 		 {
 			 obj_eliminar.add(virus);
 		 }
 		 gui.eliminacion(obj_eliminar);
 		 //falta eliminar premios 
 
-		 mapaMunicion.getListaBalas().clear();
-		 mapaVirus.getListaBalas().clear();
+		 mapaMunicion.getLista().clear();
+		 mapaVirus.getLista().clear();
 		 
-		 System.out.println("gane todos los niveles");	 
+		 for(Entidad objpremio:lista_premio.getLista()) {
+			 obj_eliminar.add(objpremio);
+			//lista de premios
+		}
+		 
+		 obj_eliminar.add(mapa.getJugador());
+		 gui.eliminacion(obj_eliminar);
+
+		 
+		 //gane todos los niveles	
+		 ganoJuego();
+
 		
+
 			
 	 }
 	 
@@ -140,18 +152,18 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 				{
 					
 					
-					List<Entidad> lista_m = mapa.getJugador().detectarColisiones(lista_premio.getListaBalas());
+					List<Entidad> lista_m = mapa.getJugador().detectarColisiones(lista_premio.getLista());
 					if (lista_m.size()!=0)
 					{
 					
 						//si hay una colision, acciono, luego elimino este premio
 						//acciono
-						mapa.getJugador().accionar(lista_premio.getListaBalas());
+						mapa.getJugador().accionar(lista_premio.getLista());
 						
 						for(Entidad premio_m:lista_m)
 						{
 							obj_eliminar.add(premio_m);
-							lista_premio.getListaBalas().remove(premio_m);
+							lista_premio.getLista().remove(premio_m);
 						}
 						gui.eliminacion(obj_eliminar);
 
@@ -215,7 +227,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 					 }	
 					gui.eliminacion(obj_eliminar);
 
-					for(Entidad objpremio:lista_premio.getListaBalas()) {
+					for(Entidad objpremio:lista_premio.getLista()) {
 							//pero tambien me acepto a mi
 
 						objpremio.getDireccion().setDireccion(objpremio.getVelocidad()) ;			
@@ -229,10 +241,10 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 										
 				
 					
-					for(int i=0;i< mapaMunicion.getListaBalas().size()-1;i++) 		
+					for(int i=0;i< mapaMunicion.getLista().size()-1;i++) 		
 					{
 						//de municiones de jugador
-						mapaMunicion.getListaBalas().get(i).mover(mapaMunicion.getListaBalas().get(i).getDireccion());
+						mapaMunicion.getLista().get(i).mover(mapaMunicion.getLista().get(i).getDireccion());
 						
 					}
 					
@@ -241,9 +253,9 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 					
 					
 					//elimino las municiones
-					for(int i=0;i< mapaMunicion.getListaBalas().size();i++) { 		
-						if (mapaMunicion.getListaBalas().get(i).getEntidadGrafica().getDibujo().getY()==0)
-								obj_eliminar.add(mapaMunicion.getListaBalas().get(i));
+					for(int i=0;i< mapaMunicion.getLista().size();i++) { 		
+						if (mapaMunicion.getLista().get(i).getEntidadGrafica().getDibujo().getY()==0)
+								obj_eliminar.add(mapaMunicion.getLista().get(i));
 					 }
 						
 						
@@ -254,7 +266,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 					gui.estadoVida(mapa.getJugador().getVitalactual());
 			
 					
-					for(Entidad virus : mapaVirus.getListaBalas()) 			
+					for(Entidad virus : mapaVirus.getLista()) 			
 					{
 						if (virus.getEntidadGrafica().getDibujo()==null)
 							gui.agregarDibujo(virus);
@@ -275,7 +287,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 
 
 					mapa.getJugador().accionar(tanda[nivel_actual].get(tanda_actual));
-					mapa.getJugador().accionar(mapaVirus.getListaBalas());
+					mapa.getJugador().accionar(mapaVirus.getLista());
 
 					
 				
@@ -289,7 +301,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 								{gui.agregarDibujo(obj);
 								 
 								}
-						obj.accionar(mapaMunicion.getListaBalas());	
+						obj.accionar(mapaMunicion.getLista());	
 						obj.mover(obj.getDireccion());//muevo a infectado
 					}
 					
@@ -316,7 +328,8 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	
 	
 			
-	 }	
+	 }
+		
 	
 	}	
 	
@@ -361,14 +374,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 					if(mapa.getJugador().getTipoArma()!=0)						
 					{
 						
-						DisparoJugador disparoExtra = arma.crearArmaBasica(mapa.getJugador().getEntidadGrafica().getDibujo().getX()+15,mapa.getJugador().getEntidadGrafica().getDibujo().getY());
-						disparoExtra.getEntidadGrafica().setX(mapa.getJugador().getEntidadGrafica().getDibujo().getX()+15);
-						disparoExtra.getEntidadGrafica().setY(mapa.getJugador().getEntidadGrafica().getDibujo().getY());
-						disparoExtra.getEntidadGrafica().setImagen("img/jugador/ball.png");
-						gui.agregarDibujo(disparoExtra);				
-						mapaMunicion.ponerBalasEnLista(disparoExtra);					
-						disparoExtra.setVelocidad(-50);
-						disparoExtra.getDireccion().setDireccion(disparoExtra.getVelocidad()) ;		
+											
 						disparo.getEntidadGrafica().setImagen("img/jugador/ball.png");
 						gui.agregarDibujo(disparo);				
 						mapaMunicion.ponerBalasEnLista(disparo);
@@ -405,6 +411,15 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 		// TODO Auto-generated method stub
 		//this.interactuar();
 
+		
+	}
+	
+	
+	private void ganoJuego() {
+		movimiento.setDeboMover(false);
+		gui.gameOver(this);
+		System.out.println("pantalla gane");	
+		 
 		
 	}
 }

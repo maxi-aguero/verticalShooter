@@ -6,16 +6,12 @@ import java.awt.Font;
 import java.awt.Image;
 import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
@@ -24,15 +20,12 @@ import Entidad.Entidad;
 
 public class GUI extends JPanel  {
 	
-	/**
-	 * 
-	 */
-	private JLabel fondo;
-	public List<Entidad> mis_virus;//conjunto de elementos a eliminar
-	public int cant;
+	
+	private JLabel lbfondo;
 	public JProgressBar barra_vida;
-	public JProgressBar[] barra_infectados;
+	public JLabel palabra;
 	public JLabel lbJugador;
+	public JLabel lbanimacion;	
 	
 	public GUI() {
 		
@@ -57,10 +50,7 @@ public class GUI extends JPanel  {
 	
 
 	
-	public void eliminar_virus(List<Entidad> mis_virus) {
-		this.mis_virus=mis_virus;
-		
-	}
+	
 	
 	
 
@@ -70,22 +60,22 @@ public class GUI extends JPanel  {
 	private void crearFondo() {		
 		
 		ImageIcon imagen = new ImageIcon(getClass().getClassLoader().getResource("img/juego/Level12.png"));
-		fondo = new JLabel(imagen,SwingConstants.CENTER);
-		fondo = new JLabel();
+		lbfondo = new JLabel(imagen,SwingConstants.CENTER);
+		lbfondo = new JLabel();
 		Icon imgdos= new  ImageIcon(imagen.getImage().getScaledInstance(700, 600, Image.SCALE_SMOOTH)); 
 
-		fondo.setIcon(imgdos);	
-		fondo.repaint();	
-		fondo.setBounds(0,45, 700, 600);
+		lbfondo.setIcon(imgdos);	
+		lbfondo.repaint();	
+		lbfondo.setBounds(0,45, 700, 600);
 		this.setLayout(null);
-		fondo.setLayout(null);
-		JLabel palabra=new JLabel("Plague Inc");
+		lbfondo.setLayout(null);
+		palabra=new JLabel("Plague Inc");
 		palabra.setForeground(new Color(223, 45, 223)); 
 
 		palabra.setFont(new Font("Ink Free", Font.BOLD, 40));
 		palabra.setBounds(70,2, 300, 50);
-		LineBorder linea = new LineBorder(Color.orange,1,true);
-		palabra.setBorder( new TitledBorder(linea,""));
+		//LineBorder linea = new LineBorder(Color.orange,1,true);
+		//palabra.setBorder( new TitledBorder(linea,""));
 		
 		
 		
@@ -95,17 +85,16 @@ public class GUI extends JPanel  {
 
         
     	ImageIcon img_soda = new ImageIcon(getClass().getClassLoader().getResource("img/juego/soda.gif"));
-		JLabel lbsoda = new JLabel(img_soda);
-		lbsoda.setBounds(-7, 207, 100, 100);
-		lbsoda.repaint();
+		lbanimacion = new JLabel(img_soda);
+		lbanimacion.setBounds(-7, 207, 100, 100);
+		lbanimacion.repaint();
 
-		fondo.add(lbsoda);
-		fondo.repaint();
+		lbfondo.add(lbanimacion);
+		lbfondo.repaint();
         
         add(palabra);        
-		add(fondo);
+		add(lbfondo);
 
-		//add(vida);	
 
 	
 	}
@@ -115,7 +104,7 @@ public class GUI extends JPanel  {
 		ImageIcon img_entidad = new ImageIcon(getClass().getClassLoader().getResource(e.getEntidadGrafica().getImagen()));
 		JLabel lbdos = new JLabel(img_entidad);
 		lbdos.setBounds(e.getEntidadGrafica().getX(), e.getEntidadGrafica().getY(), e.getRangoX(), e.getRangoY());
-		LineBorder linea = new LineBorder(Color.orange,1,true);
+		//LineBorder linea = new LineBorder(Color.orange,1,true);
 		//lbdos.setBorder( new TitledBorder(linea,""));
 		
 		e.getEntidadGrafica().setDibujo(lbdos);//aca seteo el dibujo
@@ -127,9 +116,9 @@ public class GUI extends JPanel  {
 		lbdos.repaint();
 
 
-		fondo.add(lbdos);
+		lbfondo.add(lbdos);
 
-		fondo.repaint();
+		lbfondo.repaint();
 		
 	}
 	
@@ -146,8 +135,8 @@ public void agregarDibujoJugador(Entidad e) {
 		e.getEntidadGrafica().setDibujo(lbJugador);
 		lbJugador.repaint();
 
-		fondo.add(lbJugador);
-		fondo.repaint();
+		lbfondo.add(lbJugador);
+		lbfondo.repaint();
 		
 	}
 	
@@ -158,8 +147,8 @@ public void setDibujoJugador(String s) {
 	lbJugador.setIcon(img_entidad);
 	lbJugador.repaint();
 
-	fondo.add(lbJugador);
-	fondo.repaint();
+	lbfondo.add(lbJugador);
+	lbfondo.repaint();
 	
 }
 
@@ -169,26 +158,7 @@ public void setDibujoJugador(String s) {
 	
 	}
 	
-	public void ponerProgressBar(int n) {
-		barra_infectados= new JProgressBar[n];
-		//configurar los JProgressBar
-		int j=10;
-		for (int i=0;i<n;i++) {
-			barra_infectados[i]= new JProgressBar(0,100);
-			barra_infectados[i].setValue((int) 100);
-			barra_infectados[i].setBounds(700,j, 150, 30);//c
-			j=j+70;
-			barra_infectados[i].setStringPainted(true);
-			barra_infectados[i].setFont(new Font("Ink Free", Font.BOLD, 25));
-			barra_infectados[i].setForeground(new Color(250, 40, 0));
-			barra_infectados[i].setBackground(new Color(1, 250, 250));
-			add(barra_infectados[i]);
-
-		}
-		
 	
-
-	}
 	
 	public void eliminacion(List<Entidad> mi_fabrica) {
 		
@@ -199,6 +169,28 @@ public void setDibujoJugador(String s) {
 	}
 
 	
+public void gameOver(Juego juego){
+		
+		lbfondo.setIcon(null);
+		palabra.setText("Gane");
+    	palabra.setBounds(250,250, 300, 50);
+    	barra_vida.setVisible(false);
+
+
+		
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		
+		juego.setVisible(false);
+
+		Main m= new Main();
+		m.main(null);
+		
+	}
 	
 	 
 	
