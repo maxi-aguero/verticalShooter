@@ -22,19 +22,7 @@ public class PremioSuperArma extends Premio {
 		entidadgrafica.setY(y);
 		velocidad=5;
 	}
-	public void setX(int x) {
-		entidadgrafica.setX(x);
-	}
-	
-	public void setY(int y) {
-		entidadgrafica.setX(y);
-	}
-	
-	public void setDireccion(int d) { 
-		direccion.setDireccion(d) ;
 		
-	}
-	
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
