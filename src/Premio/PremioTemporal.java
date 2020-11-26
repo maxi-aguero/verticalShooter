@@ -15,14 +15,7 @@ public class PremioTemporal extends Premio {
 		entidadgrafica.setX(x);
 		entidadgrafica.setY(y);
 	}
-	//tiene entidad grafica
-	public void setX(int x) {
-		entidadgrafica.setX(x);
-	}
 	
-	public void setY(int y) {
-		entidadgrafica.setX(y);
-	}
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
