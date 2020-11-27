@@ -20,6 +20,7 @@ public class PremioVida extends Premio {
 		velocidad=5;
 	}
 	
+	
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub

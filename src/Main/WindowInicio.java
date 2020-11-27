@@ -1,6 +1,5 @@
 
-package Juego;
-
+package Main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -14,17 +13,16 @@ import javax.swing.*;
 
 
 public class WindowInicio extends JFrame  {
-	private boolean haIniciado=false;
+	private WindowDialogos ventana2;
 	
-	
-	public WindowInicio() {	        
+	public WindowInicio() {	  
 	        init();
 	}
 
-	public boolean getIniciar() {
-		return haIniciado;
-	}
 
+	public WindowDialogos getDialogos(){
+		return ventana2;
+	}
 	    
 	private void init() {
 	    JPanel panel = new JPanel();
@@ -65,7 +63,10 @@ public class WindowInicio extends JFrame  {
 
 		lbstart.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
-					haIniciado=true;
+			         setVisible(false);
+
+					ventana2=new WindowDialogos();
+
 				}
 			 });
 				

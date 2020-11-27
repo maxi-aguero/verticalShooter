@@ -17,7 +17,7 @@ import Visitor.VisitorInfectadoBeta;
 public class InfectadoBeta extends Infectado {
 		
 	public InfectadoBeta() {
-		super(100, 0, 5); 
+		super(100); 
 		visitor = new VisitorInfectadoBeta(this);	
 		velocidad=5;
 		direccion = new MovimientoVerticalDeInfectado(this,velocidad);		

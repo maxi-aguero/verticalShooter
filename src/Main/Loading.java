@@ -1,4 +1,4 @@
-package Juego;
+package Main;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;

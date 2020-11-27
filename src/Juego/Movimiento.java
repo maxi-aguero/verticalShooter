@@ -12,19 +12,32 @@ public class Movimiento extends Thread {
 	}
 	
 	public void run() {		
+		
 		while(deboMover) {
+			juego.interactuar();
+
 			try {
 				Thread.sleep(40); // 40 anda bien
 			}catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			juego.interactuar();
 		}
+			
+		
+		
+		/**while(deboMover) {
+			try {
+				Thread.sleep(40); // 40 anda bien
+			}catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}*/
+		
 		
 		
 	}
 	
-	public boolean getDeboMover(){ return deboMover ;}
+	public boolean getMover(){ return deboMover ;}
 	public void setDeboMover(boolean deboMover){ this.deboMover = deboMover ;}
 	
 		

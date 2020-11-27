@@ -8,7 +8,6 @@ import EstrategiaMovimiento.EstrategiaMovimiento;
 import EstrategiaMovimiento.MovimientoVerticalVirus;
 import Visitor.Visitor;
 import Visitor.VisitorPremioSuperArma;
-import Visitor.VisitorPremioVida;
 //premio super arma
 public class PremioSuperArma extends Premio {
 
@@ -22,7 +21,10 @@ public class PremioSuperArma extends Premio {
 		entidadgrafica.setY(y);
 		velocidad=5;
 	}
-		
+
+	
+	
+	
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub

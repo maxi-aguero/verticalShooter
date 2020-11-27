@@ -10,9 +10,9 @@ import Premio.PremioVida;
 
 
 public abstract class Infectado extends Personaje   {
-	protected Infectado(int cargaViralActual, int cargaViralPierde, int rango) {
+	protected Infectado(int cargaViralActual) {
 
-		super(cargaViralActual, cargaViralPierde, rango);
+		super(cargaViralActual);
 		
 		
 	}	

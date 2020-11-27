@@ -22,14 +22,7 @@ public class ProyectilVirusBeta extends Proyectil {
 		danio=2;
 	}
 	
-	public void setX(int x) {
-		entidadgrafica.setX(x);
-	}
-	
-	public void setY(int y) {
-		entidadgrafica.setX(y);
-	}
-	
+
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
@@ -57,12 +50,7 @@ public class ProyectilVirusBeta extends Proyectil {
 		return false;
 	}
 	
-	
 
-	public void setDireccion(int d) { 
-		direccion.setDireccion(d) ;
-		
-	}
 
 	@Override
 	public void atacar(Entidad obj) {

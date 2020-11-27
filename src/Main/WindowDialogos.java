@@ -1,6 +1,5 @@
 
-package Juego;
-
+package Main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -11,17 +10,20 @@ import javax.swing.*;
 
 public class WindowDialogos extends JFrame  {
 	
-	private boolean haIniciado=false;
 	private String[] config_jugador;
-	
+	private CargarJuego cargarJuego;
+
 	public WindowDialogos() {	
 		config_jugador=new String[3];
         init();
 	}
 	
-	public boolean getIniciar() {
-		return haIniciado;
+	
+	public CargarJuego getCargarJuego() {
+		return cargarJuego;
 	}
+	
+	
 
 	public String[] getConfigJugador() {
 		return config_jugador;
@@ -70,7 +72,10 @@ public class WindowDialogos extends JFrame  {
 
 		lb_player_b.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
-					haIniciado=true;
+			        setVisible(false);
+
+			        cargarJuego=new CargarJuego();;
+					
 					config_jugador[0]="img/jugador/juliefrente.gif";
 					config_jugador[1]="img/jugador/juliefrente.gif";
 					config_jugador[2]="img/jugador/juliefrente.gif";
@@ -79,7 +84,10 @@ public class WindowDialogos extends JFrame  {
 		
 		lb_player_a.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				haIniciado=true;
+		        setVisible(false);
+
+		        cargarJuego= new CargarJuego();
+				
 				config_jugador[0]="img/jugador/juliefrente.gif";
 				config_jugador[1]="img/jugador/juliefrente.gif";
 				config_jugador[2]="img/jugador/juliefrente.gif";

@@ -16,12 +16,11 @@ import Visitor.Visitor;
 import Visitor.VisitorJugador;
 
 public class Jugador extends Personaje {
-	protected MapaProyectil mapavirus;
 	protected int tipoArma;
 	
 	public Jugador() {
 		
-		super(0, 100, 5); 
+		super(0); 
 		visitor = new VisitorJugador(this);				
 		direccion = new MovimientoHorizontal(this,1);				
 		entidadgrafica.setImagen("img/jugador/juliefrente.gif");
@@ -110,9 +109,7 @@ public class Jugador extends Personaje {
 	
 		
 	
-	public void setMapaBalas(MapaProyectil mv) {
-		mapavirus=mv;
-	}
+
 
 	@Override
 	//hacer intersecta this jugador con una lista de infecados

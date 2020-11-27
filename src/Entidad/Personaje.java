@@ -1,11 +1,11 @@
 package Entidad;
 
+
 public abstract class Personaje extends Entidad {
 	
-	protected Personaje(int cargaViralActual, int cargaViralPierde, int rango) {
+	protected Personaje(int cargaViralActual) {
 		super();
 		this.cargaViralActual = cargaViralActual; 
-		this.cargaViralPierde=cargaViralPierde;
 				
 	}
 	

@@ -417,7 +417,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	
 	private void ganoJuego() {
 		movimiento.setDeboMover(false);
-		gui.gameOver(this);
+		gui.gameWin(this);
 		System.out.println("pantalla gane");	
 		 
 		

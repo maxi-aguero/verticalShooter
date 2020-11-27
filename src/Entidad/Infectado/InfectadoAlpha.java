@@ -16,7 +16,7 @@ import Visitor.VisitorInfectadoAlpha;
 public class InfectadoAlpha extends Infectado {
 		
 	public InfectadoAlpha() {
-		super(100, 0, 5);
+		super(100);
 ;
 		visitor = new VisitorInfectadoAlpha(this);
 		velocidad=5;

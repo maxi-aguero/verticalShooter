@@ -16,6 +16,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import Entidad.Entidad;
+import Main.Main;
 
 
 public class GUI extends JPanel  {
@@ -160,21 +161,23 @@ public void setDibujoJugador(String s) {
 	
 	
 	
-	public void eliminacion(List<Entidad> mi_fabrica) {
+	public void eliminacion(List<Entidad> lista_entidad) {
 		
-		for(Entidad obj2 : mi_fabrica){ 			
+		for(Entidad obj2 : lista_entidad){ 			
  			obj2.getEntidadGrafica().getDibujo().setVisible(false);	     				 
  				
  		}
 	}
 
 	
-public void gameOver(Juego juego){
+public void gameWin(Juego juego){
 		
+		barra_vida.setVisible(false);
 		lbfondo.setIcon(null);
-		palabra.setText("Gane");
-    	palabra.setBounds(250,250, 300, 50);
-    	barra_vida.setVisible(false);
+		palabra.setText("Gane"); 
+		
+		
+		palabra.setBounds(250,250, 300, 50);
 
 
 		

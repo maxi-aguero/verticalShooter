@@ -10,7 +10,6 @@ import java.util.List;
 public abstract class Entidad {
 	protected double resistencia;
 	protected double cargaViralActual; 									
-	protected int cargaViralPierde; 
 	protected int velocidad;
 	protected Visitor visitor;		
 	protected EstrategiaMovimiento direccion; 
