@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 public class EntidadGrafica {
 	protected JLabel dibujo;// label de gui
 	protected String ruta_dibujo;
+	protected String ruta_dibujo_izq;
+	protected String ruta_dibujo_der;
 	protected int coorInicialx;//coordenadas iniciales
 	protected int coorInicialy;
 

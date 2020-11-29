@@ -63,7 +63,6 @@ public class VisitorJugador extends Visitor {
 	@Override
 	public void visitarPremioSuperArma(PremioSuperArma psa) {
 		// TODO Auto-generated method stub
-		System.out.println("cogio super arma");
 		
 		j.cogerPremioSuperArma(psa);
 

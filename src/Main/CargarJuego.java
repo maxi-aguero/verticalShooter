@@ -20,9 +20,9 @@ public class CargarJuego {
     	return nuevojuego;
     }
     
-    public void crearJuego() {
+    public void crearJuego(int tipoJugador) {
     	
-    	nuevojuego= new Juego();  
+    	nuevojuego= new Juego(tipoJugador);  
 	
     	 
     }

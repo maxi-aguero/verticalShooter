@@ -18,7 +18,6 @@ public class Mapa {
 	
 	public Mapa() {
 		jugador=new Jugador();	
-
 		nivel=new NodoNivel();
 		nivel.agregarNivel1();
 		nivel.agregarNivel2();

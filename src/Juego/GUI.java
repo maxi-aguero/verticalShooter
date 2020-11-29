@@ -1,5 +1,6 @@
 package Juego;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -163,37 +164,129 @@ public void setDibujoJugador(String s) {
 	
 	public void eliminacion(List<Entidad> lista_entidad) {
 		
+		//me marca como null obj2
 		for(Entidad obj2 : lista_entidad){ 			
- 			obj2.getEntidadGrafica().getDibujo().setVisible(false);	     				 
+			if (obj2.getEntidadGrafica().getDibujo()!=null)
+			obj2.getEntidadGrafica().getDibujo().setVisible(false);	     				 
  				
  		}
 	}
 
 	
-public void gameWin(Juego juego){
-		
-		barra_vida.setVisible(false);
-		lbfondo.setIcon(null);
-		palabra.setText("Gane"); 
-		
-		
-		palabra.setBounds(250,250, 300, 50);
+public void gameWin(Juego juego){	
+	
+	ImageIcon img_vacas = new ImageIcon(getClass().getClassLoader().getResource("img/juego/vacas.gif"));
+	
+	JLabel lbvacas = new JLabel(img_vacas,SwingConstants.CENTER);
+	lbvacas.setBounds(-83,0, 555,256);
+	lbvacas.repaint();
 
+	add(lbvacas);
+	repaint();
+	
+	
+	lbanimacion.setIcon(null);
+	juego.setBounds(257,216,409,335);
+	barra_vida.setVisible(false);
+	lbfondo.setIcon(null);
+	palabra.setText("");
+	
+	JLabel palabraYouLose = new JLabel("You win",SwingConstants.CENTER);     	
+	palabraYouLose.setFont(new Font("Ink Free", Font.BOLD, 28));
+	palabraYouLose.setForeground(new Color(250, 250, 250)); 
+	juego.add(palabraYouLose, BorderLayout.SOUTH);
 
-		
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		
-		juego.setVisible(false);
-
-		Main m= new Main();
-		m.main(null);
-		
+	JPanel content = (JPanel)juego.getContentPane();         
+    content.setBorder(new LineBorder( Color.orange,2));        
+    content.setBackground(new Color(0, 45, 0));
+    
+	try {
+		Thread.sleep(7940);
+	} catch (InterruptedException e) {
+		e.printStackTrace();
 	}
+	
+	
+	juego.setVisible(false);
+
+	Main m= new Main();
+	m.main(null);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+			
+}
+
+public void gameYouLose(Juego juego,int player){
+	
+	
+	ImageIcon img_gameover = new ImageIcon(getClass().getClassLoader().getResource("img/juego/gameover.gif"));
+	
+	JLabel lbgameover = new JLabel(img_gameover);
+	lbgameover.setBounds(0,0, 390,100);
+	lbgameover.repaint();
+
+	add(lbgameover);
+	repaint();
+	ImageIcon img_dead =null;
+	if (player==1)
+		{ img_dead = new ImageIcon(getClass().getClassLoader().getResource("img/juego/zakedead.gif"));}
+	else
+		{img_dead = new ImageIcon(getClass().getClassLoader().getResource("img/juego/deadjulie.gif"));}
+
+	
+	JLabel lbdead = new JLabel(img_dead);
+	lbdead.setBounds(150,100, 100,100);
+	lbdead.repaint();
+
+	add(lbdead);
+	repaint();
+	
+	
+	
+	lbanimacion.setIcon(null);
+	juego.setBounds(257,216,409,335);
+	barra_vida.setVisible(false);
+	lbfondo.setIcon(null);
+	palabra.setText("");
+	
+	JLabel palabraYouLose = new JLabel("You Lose",SwingConstants.CENTER);     	
+	palabraYouLose.setFont(new Font("Ink Free", Font.BOLD, 28));
+	palabraYouLose.setForeground(new Color(223, 45, 223)); 
+	juego.add(palabraYouLose, BorderLayout.SOUTH);
+    this.setBackground(new Color(0,0,0));  
+
+	
+
+	
+	try {
+		Thread.sleep(4500);
+	} catch (InterruptedException e) {
+		e.printStackTrace();
+	}
+	
+	
+	juego.setVisible(false);
+	
+	Main m= new Main();
+	m.main(null);
+	
+}
 	
 	 
 	

@@ -10,11 +10,11 @@ import javax.swing.*;
 
 public class WindowDialogos extends JFrame  {
 	
-	private String[] config_jugador;
+	private int tipoJugador;
 	private CargarJuego cargarJuego;
 
 	public WindowDialogos() {	
-		config_jugador=new String[3];
+		tipoJugador=0;
         init();
 	}
 	
@@ -25,8 +25,8 @@ public class WindowDialogos extends JFrame  {
 	
 	
 
-	public String[] getConfigJugador() {
-		return config_jugador;
+	public int getConfigJugador() {
+		return tipoJugador;
 	}
 	
 	
@@ -48,7 +48,7 @@ public class WindowDialogos extends JFrame  {
         this.setFocusable(true);
         
       
-		ImageIcon imagen = new ImageIcon(getClass().getClassLoader().getResource("img/juego/motivacion_3.png"));
+		ImageIcon imagen = new ImageIcon(getClass().getClassLoader().getResource("img/juego/motivacion.png"));
 		JLabel fondo = new JLabel(imagen,SwingConstants.CENTER);
 		fondo = new JLabel();
 		Icon imgdos= new  ImageIcon(imagen.getImage().getScaledInstance(600, 350, Image.SCALE_SMOOTH)); 
@@ -76,9 +76,7 @@ public class WindowDialogos extends JFrame  {
 
 			        cargarJuego=new CargarJuego();;
 					
-					config_jugador[0]="img/jugador/juliefrente.gif";
-					config_jugador[1]="img/jugador/juliefrente.gif";
-					config_jugador[2]="img/jugador/juliefrente.gif";
+			        tipoJugador=0;
 				}
 			 });
 		
@@ -86,11 +84,9 @@ public class WindowDialogos extends JFrame  {
 			public void mouseClicked(MouseEvent e) {
 		        setVisible(false);
 
-		        cargarJuego= new CargarJuego();
-				
-				config_jugador[0]="img/jugador/juliefrente.gif";
-				config_jugador[1]="img/jugador/juliefrente.gif";
-				config_jugador[2]="img/jugador/juliefrente.gif";
+		        cargarJuego= new CargarJuego();		        
+		        tipoJugador=1;			
+
 			}
 		 });
 				

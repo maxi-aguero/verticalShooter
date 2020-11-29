@@ -10,8 +10,6 @@ import javax.swing.*;
 
 
 
-
-
 public class WindowInicio extends JFrame  {
 	private WindowDialogos ventana2;
 	

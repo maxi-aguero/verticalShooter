@@ -8,8 +8,6 @@ import Entidad.Entidad;
 import Entidad.Infectado.Infectado;
 import Entidad.Infectado.InfectadoAlpha;
 import Entidad.Infectado.InfectadoBeta;
-import Premio.Premio;
-import Premio.PremioVida;
 
 //modern1
 public class Nivel1 extends Lista{

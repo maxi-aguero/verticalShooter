@@ -7,11 +7,9 @@ import java.util.List;
 
 import Entidad.Entidad;
 import Entidad.Proyectil.Proyectil;
-import Entidad.Proyectil.ProyectilVirusAlpha;
 import Entidad.Proyectil.ProyectilVirusBeta;
 import EstrategiaMovimiento.MovimientoVerticalDeInfectado;
 import Visitor.Visitor;
-import Visitor.VisitorInfectadoAlpha;
 import Visitor.VisitorInfectadoBeta;
 
 public class InfectadoBeta extends Infectado {

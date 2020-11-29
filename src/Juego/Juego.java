@@ -9,10 +9,8 @@ import java.util.List;
 import java.util.Random;
 
 import Entidad.Entidad;
-import Entidad.Infectado.Infectado;
 import Entidad.Proyectil.Arma;
 import Entidad.Proyectil.DisparoJugador;
-import Entidad.Proyectil.Proyectil;
 import EstrategiaMovimiento.MovimientoHorizontal;
 import Mapa.Mapa;
 import Mapa.MapaProyectil;
@@ -37,35 +35,40 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	private MapaProyectil lista_premio;
 	private Random rd;
 	
-	public Juego(){
+	public Juego(int tipoJugador){
 	
 		rd=new Random();
 		obj_eliminar=new LinkedList<Entidad>();
 
 		mapa = new Mapa();	
+		mapa.getJugador().setTipoJugador(tipoJugador);	
+		
 		tanda=new List[2] ;
 		tanda[0]  = mapa.crearTandaN1();		
 		tanda[1]  = mapa.crearTandaN2();
-
 		
 		mapaVirus = new MapaProyectil();//virus
 		mapaMunicion= new MapaProyectil() ;
 		lista_premio=new MapaProyectil() ;
 
 		mapa.getJugador().setMapaBalas(mapaMunicion);
-
 		vinculargui();
-		movimiento = new Movimiento(this);
-		
+		movimiento = new Movimiento(this);		
         start(); 
         movimiento.run();
 	}
 	
+	
 
 	private void start() {   	
         this.addKeyListener(this);
+        if (mapa.getJugador().getTipoJugador()==1)		
+    		mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/zakefrente.png");
+    	else    	
+    		mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/juliefrente.gif");
+    	gui.agregarDibujoJugador(mapa.getJugador());
 
-        gui.agregarDibujoJugador(mapa.getJugador());
+
 
 
     }
@@ -76,8 +79,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	private void vinculargui() {
 		gui = new GUI();
 		gui.setVisible(true);
-		this.add(gui);
-		
+		this.add(gui);		
 		this.setTitle("Zombielandia");		
         //this.setResizable(false);
         this.setVisible(true);
@@ -93,8 +95,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	public void interactuar() {	
 		
 		this.requestFocus();
-
-
+		
 		
 		
 	if (nivel_actual==2)
@@ -151,6 +152,41 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 				if(tanda_actual<2)
 				{
 					
+					if(mapa.getJugador().estaVivo()==false)
+					{
+						
+						for(Entidad municion: mapaMunicion.getLista())
+						 {
+							 obj_eliminar.add(municion);
+						 }
+						 gui.eliminacion(obj_eliminar);
+						 
+						 for(Entidad objpremio:lista_premio.getLista()) {
+							 obj_eliminar.add(objpremio);
+							//lista de premios
+						}
+						 gui.eliminacion(obj_eliminar);
+
+						 for(Entidad virus: mapaVirus.getLista())
+						 {
+							 obj_eliminar.add(virus);
+							 
+						 }
+						 gui.eliminacion(obj_eliminar);
+						 
+						 for(Entidad infectados :  tanda[nivel_actual].get(tanda_actual)) 
+						 {		
+							 obj_eliminar.add(infectados);
+						 }
+						 gui.eliminacion(obj_eliminar);
+
+						 obj_eliminar.add(mapa.getJugador());
+						 gui.eliminacion(obj_eliminar);
+						
+						
+						
+						perdiJuego();
+					}
 					
 					List<Entidad> lista_m = mapa.getJugador().detectarColisiones(lista_premio.getLista());
 					if (lista_m.size()!=0)
@@ -343,7 +379,11 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 
 			case KeyEvent.VK_LEFT: {
 				
-				mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/julieizquierda.gif");
+				if (mapa.getJugador().getTipoJugador()==1)				
+					mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/zakeizquierda.gif");
+		    	else		    	
+					mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/julieizquierda.gif");
+
 		        gui.setDibujoJugador(mapa.getJugador().getEntidadGrafica().getImagen());
 				mapa.getJugador().setVelocidad(MovimientoHorizontal.IZQUIERDA );
 				mapa.getJugador().getDireccion().setDireccion(mapa.getJugador().getVelocidad() );
@@ -353,7 +393,12 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	        	break;
 			}
 			case KeyEvent.VK_RIGHT: {
-				mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/juliederecha.gif");
+				
+				if (mapa.getJugador().getTipoJugador()==1)				
+					mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/zakederecha.gif");
+		    	else
+		    		mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/juliederecha.gif");
+				
 				gui.setDibujoJugador(mapa.getJugador().getEntidadGrafica().getImagen());	
 				mapa.getJugador().setVelocidad(MovimientoHorizontal.DERECHA);
 				mapa.getJugador().getDireccion().setDireccion(mapa.getJugador().getVelocidad() );
@@ -363,31 +408,35 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	        	break;
 			}
 			case KeyEvent.VK_SPACE: {
-					mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/juliefrente.gif");
-					gui.setDibujoJugador(mapa.getJugador().getEntidadGrafica().getImagen());	
-					Arma arma=new Arma();
-					DisparoJugador disparo = arma.crearArmaBasica(mapa.getJugador().getEntidadGrafica().getDibujo().getX(),mapa.getJugador().getEntidadGrafica().getDibujo().getY());
-					disparo.getEntidadGrafica().setX(mapa.getJugador().getEntidadGrafica().getDibujo().getX());
-					disparo.getEntidadGrafica().setY(mapa.getJugador().getEntidadGrafica().getDibujo().getY());
-					
-					
-					if(mapa.getJugador().getTipoArma()!=0)						
-					{
+				if( (nivel_actual<2)&&(mapa.getJugador().estaVivo()==true))
+				 {	
+					if (mapa.getJugador().getTipoJugador()==1)					
+						mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/zakefrente.png");
+			    	else			    	
+						mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/juliefrente.gif");
+	
+			    	
+						gui.setDibujoJugador(mapa.getJugador().getEntidadGrafica().getImagen());	
+						Arma arma=new Arma();
+						DisparoJugador disparo = arma.crearArmaBasica(mapa.getJugador().getEntidadGrafica().getDibujo().getX(),mapa.getJugador().getEntidadGrafica().getDibujo().getY());
+						disparo.getEntidadGrafica().setX(mapa.getJugador().getEntidadGrafica().getDibujo().getX());
+						disparo.getEntidadGrafica().setY(mapa.getJugador().getEntidadGrafica().getDibujo().getY());
 						
-											
-						disparo.getEntidadGrafica().setImagen("img/jugador/ball.png");
-						gui.agregarDibujo(disparo);				
-						mapaMunicion.ponerBalasEnLista(disparo);
-						disparo.setVelocidad(-50);
-						disparo.getDireccion().setDireccion(disparo.getVelocidad()) ;		
-
-					}
-					else
-					{
-						gui.agregarDibujo(disparo);				
-						mapaMunicion.ponerBalasEnLista(disparo);
-					}
-					
+						if(mapa.getJugador().getTipoArma()!=0)						
+						{				
+							disparo.getEntidadGrafica().setImagen("img/jugador/ball.png");
+							gui.agregarDibujo(disparo);				
+							mapaMunicion.ponerBalasEnLista(disparo);
+							disparo.setVelocidad(-50);
+							disparo.getDireccion().setDireccion(disparo.getVelocidad()) ;
+	
+						}
+						else
+						{
+							gui.agregarDibujo(disparo);				
+							mapaMunicion.ponerBalasEnLista(disparo);
+						}
+				 }
 									
 				break;
 			}
@@ -417,10 +466,14 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	
 	private void ganoJuego() {
 		movimiento.setDeboMover(false);
-		gui.gameWin(this);
-		System.out.println("pantalla gane");	
-		 
-		
+		gui.gameWin(this);		
+	}
+	
+	private void perdiJuego() {
+		movimiento.setDeboMover(false);
+		gui.gameYouLose(this,mapa.getJugador().getTipoJugador());
+
+	
 	}
 }
 

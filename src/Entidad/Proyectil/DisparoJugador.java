@@ -4,7 +4,7 @@ import java.util.List;
 
 import Entidad.Entidad;
 import EstrategiaMovimiento.EstrategiaMovimiento;
-import EstrategiaMovimiento.MovimientoVerticalDisparo;
+import EstrategiaMovimiento.MovimientoVertical;
 import Visitor.Visitor;
 import Visitor.VisitorDisparoJugador;
 
@@ -14,7 +14,7 @@ public class DisparoJugador extends Proyectil {
 		super();
 		visitor = new VisitorDisparoJugador(this);	
 		velocidad=-5;
-		direccion = new MovimientoVerticalDisparo(this,velocidad);	
+		direccion = new MovimientoVertical(this,velocidad);	
 		entidadgrafica.setImagen("img/jugador/munic.png");
 		entidadgrafica.setX(x);
 		entidadgrafica.setY(y);
@@ -66,7 +66,7 @@ public class DisparoJugador extends Proyectil {
 		 double cargaViral = obj.getVitalactual();
 		 cargaViral=cargaViral-obj.getResistencia();//que ataque le hago es mas resistente el objeto beta
 		 obj.setVitalactual(cargaViral);
-		System.out.println("carga viral:"+obj.getVitalactual());
+		//System.out.println("carga viral:"+obj.getVitalactual());
 
 	}
 

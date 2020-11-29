@@ -23,7 +23,8 @@ public class Main {
 	        	 {
 	        		 Loading load = miCargarJuego.getLoading();
 	        		 load.mostrarLoading();
-	        		 miCargarJuego.crearJuego();
+	        		 
+	        		 miCargarJuego.crearJuego(ventana_dialogos.getConfigJugador());
 
 		         }
 	        	 i++;

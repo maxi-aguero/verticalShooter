@@ -1,29 +1,26 @@
 package Entidad.Jugador;
 
-import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.List;
 
 import Entidad.Entidad;
 import Entidad.Personaje;
-import Entidad.Proyectil.DisparoJugador;
 import EstrategiaMovimiento.EstrategiaMovimiento;
 import EstrategiaMovimiento.MovimientoHorizontal;
-import Mapa.MapaProyectil;
 import Premio.PremioSuperArma;
 import Visitor.Visitor;
 import Visitor.VisitorJugador;
 
 public class Jugador extends Personaje {
 	protected int tipoArma;
+	protected int tipoJugador;
 	
 	public Jugador() {
 		
 		super(0); 
 		visitor = new VisitorJugador(this);				
 		direccion = new MovimientoHorizontal(this,1);				
-		entidadgrafica.setImagen("img/jugador/juliefrente.gif");
 		entidadgrafica.setX(50);
 		entidadgrafica.setY(420);
 		rango_x=35;
@@ -34,6 +31,14 @@ public class Jugador extends Personaje {
 	}
 	public int getTipoArma() {
 		return tipoArma;
+	}
+	
+	public int getTipoJugador() {
+		return tipoJugador;
+	}
+	
+	public void setTipoJugador(int t) {
+		tipoJugador=t;
 	}
 	
 	@Override

@@ -4,7 +4,7 @@ import java.util.List;
 
 import Entidad.Entidad;
 import EstrategiaMovimiento.EstrategiaMovimiento;
-import EstrategiaMovimiento.MovimientoVerticalVirus;
+import EstrategiaMovimiento.MovimientoVertical;
 import Visitor.Visitor;
 import Visitor.VisitorContagiarVirusAlpha;
 
@@ -14,7 +14,7 @@ public class ProyectilVirusAlpha extends Proyectil {
 		super();
 		visitor = new VisitorContagiarVirusAlpha(this);	
 		velocidad=25;
-		direccion = new MovimientoVerticalVirus(this,velocidad);	
+		direccion = new MovimientoVertical(this,velocidad);	
 		entidadgrafica.setImagen("img/infectados/fire.png");
 		entidadgrafica.setX(x);
 		entidadgrafica.setY(y);

@@ -5,7 +5,7 @@ import java.util.List;
 import Entidad.Entidad;
 import Entidad.Jugador.Jugador;
 import EstrategiaMovimiento.EstrategiaMovimiento;
-import EstrategiaMovimiento.MovimientoVerticalVirus;
+import EstrategiaMovimiento.MovimientoVertical;
 import Visitor.Visitor;
 import Visitor.VisitorPremioSuperArma;
 //premio super arma
@@ -15,7 +15,7 @@ public class PremioSuperArma extends Premio {
 		super();
 		visitor = new VisitorPremioSuperArma(this);	
 		
-		direccion = new MovimientoVerticalVirus(this,1);	
+		direccion = new MovimientoVertical(this,1);	
 		entidadgrafica.setImagen("img/juego/posionroja.png");
 		entidadgrafica.setX(x);
 		entidadgrafica.setY(y);

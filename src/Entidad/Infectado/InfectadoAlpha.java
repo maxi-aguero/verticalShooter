@@ -9,7 +9,6 @@ import Entidad.Entidad;
 import Entidad.Proyectil.Proyectil;
 import Entidad.Proyectil.ProyectilVirusAlpha;
 import EstrategiaMovimiento.MovimientoVerticalDeInfectado;
-import Premio.PremioVida;
 import Visitor.Visitor;
 import Visitor.VisitorInfectadoAlpha;
 

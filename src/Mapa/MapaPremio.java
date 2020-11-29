@@ -1,10 +1,5 @@
 package Mapa;
 import Entidad.Entidad;
-import Entidad.Personaje;
-import Entidad.Infectado.Infectado;
-import Entidad.Proyectil.Proyectil;
-
-import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.List;
 

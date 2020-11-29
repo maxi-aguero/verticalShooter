@@ -1,12 +1,8 @@
 package Entidad.Infectado;
 
 
-
 import Entidad.Personaje;
 import EstrategiaMovimiento.EstrategiaMovimiento;
-import Mapa.MapaProyectil;
-import Premio.Premio;
-import Premio.PremioVida;
 
 
 public abstract class Infectado extends Personaje   {
