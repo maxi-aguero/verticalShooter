@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.Icon;
@@ -12,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
@@ -28,6 +31,9 @@ public class GUI extends JPanel  {
 	public JLabel palabra;
 	public JLabel lbJugador;
 	public JLabel lbanimacion;	
+	public JToggleButton bt_audio;
+	private Thread audio;
+
 	
 	public GUI() {
 		
@@ -38,14 +44,15 @@ public class GUI extends JPanel  {
         crearFondo();
         //crear barra vida
         barra_vida= new JProgressBar(0,100);
-    	barra_vida.setBounds(350,10, 300, 30);
+    	barra_vida.setBounds(160,10, 300, 30);
 		barra_vida.setStringPainted(true);
 		barra_vida.setFont(new Font("Ink Free", Font.BOLD, 25));
 		barra_vida.setForeground(new Color(250, 40, 0));
 		barra_vida.setBackground(new Color(1, 250, 250));		
 		add(barra_vida);
 		
-		
+	
+
 	
 
 	}
@@ -71,10 +78,10 @@ public class GUI extends JPanel  {
 		lbfondo.setBounds(0,45, 700, 600);
 		this.setLayout(null);
 		lbfondo.setLayout(null);
-		palabra=new JLabel("Plague Inc");
+		palabra=new JLabel("Player");
 		palabra.setForeground(new Color(223, 45, 223)); 
 
-		palabra.setFont(new Font("Ink Free", Font.BOLD, 40));
+		palabra.setFont(new Font("Ink Free", Font.BOLD, 28));
 		palabra.setBounds(70,2, 300, 50);
 		//LineBorder linea = new LineBorder(Color.orange,1,true);
 		//palabra.setBorder( new TitledBorder(linea,""));
@@ -174,6 +181,8 @@ public void setDibujoJugador(String s) {
 
 	
 public void gameWin(Juego juego){	
+
+
 	
 	ImageIcon img_vacas = new ImageIcon(getClass().getClassLoader().getResource("img/juego/vacas.gif"));
 	
@@ -200,6 +209,9 @@ public void gameWin(Juego juego){
     content.setBorder(new LineBorder( Color.orange,2));        
     content.setBackground(new Color(0, 45, 0));
     
+	AudioPlayer ap = new AudioPlayer("src/img/juego/vacasaudio.mp3");
+	audio = new Thread(ap);
+	audio.start();
 	try {
 		Thread.sleep(7940);
 	} catch (InterruptedException e) {
@@ -207,8 +219,9 @@ public void gameWin(Juego juego){
 	}
 	
 	
+	
 	juego.setVisible(false);
-
+	audioOff(ap);
 	Main m= new Main();
 	m.main(null);
 	
@@ -233,6 +246,7 @@ public void gameWin(Juego juego){
 }
 
 public void gameYouLose(Juego juego,int player){
+	
 	
 	
 	ImageIcon img_gameover = new ImageIcon(getClass().getClassLoader().getResource("img/juego/gameover.gif"));
@@ -272,23 +286,49 @@ public void gameYouLose(Juego juego,int player){
     this.setBackground(new Color(0,0,0));  
 
 	
-
+    AudioPlayer ap = new AudioPlayer("src/img/juego/jajajojojo.mp3");
+	audio = new Thread(ap);
+	audio.start();
 	
 	try {
 		Thread.sleep(4500);
+		//Thread.sleep(20000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
+
 	
 	
 	juego.setVisible(false);
-	
+	audioOff(ap);
+
 	Main m= new Main();
 	m.main(null);
 	
+	
 }
 	
-	 
+	private void jToggleButtonAudioActionPerformed(ActionEvent evt) {
+			/**if(this.bt_audio.isSelected()) {
+				audioOff();
+			} else {
+				audioOn();
+			}*/
+	}
+	
+	private void audioOff(AudioPlayer ap) {
+		//bt_audio.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ar/edu/uns/cs/tdp/proyectoX/frames/resources/images/tdp-audio-off.png")));
+		ap = null;
+		audio.stop();
+		//audio = null;
+	}
+	
+	/**private void audioOn() {
+		//jToggleButtonAudio.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ar/edu/uns/cs/tdp/proyectoX/frames/resources/images/tdp-audio-on.png")));
+		ap = new AudioPlayer("img/juego/dangerzone.mp3");
+		audio = new Thread(ap);
+		audio.start();
+	}*/
 	
 	
 

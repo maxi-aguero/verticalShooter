@@ -12,6 +12,8 @@ import Entidad.Entidad;
 import Entidad.Proyectil.Arma;
 import Entidad.Proyectil.DisparoJugador;
 import EstrategiaMovimiento.MovimientoHorizontal;
+import Main.WindowInicio;
+import Main.WindowStage;
 import Mapa.Mapa;
 import Mapa.MapaProyectil;
 import Premio.Premio;
@@ -139,14 +141,38 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	 {
 		 if (tanda_actual==2)
 			 { 	tanda_actual=0;
-			 	nivel_actual=nivel_actual+1;			 
+			 	nivel_actual=nivel_actual+1;
+			 	//aca mostrar tanda 2
+			 	
 			 }
 		 
 		 
 		 else 
 		 {
 				if(tanda[nivel_actual].get(tanda_actual).size()==0)
-						tanda_actual=tanda_actual+1;
+						{
+							if (( (tanda_actual==1)&&(nivel_actual==0))||( (tanda_actual==0)&&(nivel_actual==1)) ||( (tanda_actual==0)&&(nivel_actual==0)))
+							{
+							this.setVisible(false);
+							//	(tanda_actual==1)&&(nivel_actual==0)) nivel 1, tanda 2
+							//( (tanda_actual==0)&&(nivel_actual==1)) nivel 2, tanda 1
+							//( (tanda_actual==0)&&(nivel_actual==0))) nivel 1, tanda 1
+
+							WindowStage ventana_stage = new WindowStage(nivel_actual,tanda_actual);
+					 		ventana_stage.setVisible(true);
+					 		
+					 		try {
+					 			Thread.sleep(4500);
+					 		} catch (InterruptedException e) {
+					 			e.printStackTrace();
+					 		}
+					 	
+					 		ventana_stage.setVisible(false);
+							this.setVisible(true);
+
+					 		}
+							tanda_actual=tanda_actual+1;
+						}
 				 
 			
 				if(tanda_actual<2)
