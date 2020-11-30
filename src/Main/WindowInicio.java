@@ -8,14 +8,48 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
+import Juego.AudioPlayer;
+
 
 
 public class WindowInicio extends JFrame  {
 	private WindowDialogos ventana2;
+	private Thread audio;
+	private AudioPlayer ap;
+
 	
 	public WindowInicio() {	  
+		 	
 	        init();
+	      
 	}
+	
+	public AudioPlayer getAudio() {
+		return ap;
+	}
+	
+	
+	public Thread getHiloAudio() {
+		return audio;
+	}
+	
+	public void crarAudio() {
+		 	 ap = new AudioPlayer("src/img/juego/introsam.mp3");
+			audio = new Thread(ap);
+			audio.start();
+	}
+	
+	public void setDuracion(int duracion) {
+		
+		
+		try {
+			Thread.sleep(duracion);
+			//Thread.sleep(20000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	 
 
 
 	public WindowDialogos getDialogos(){
@@ -62,6 +96,7 @@ public class WindowInicio extends JFrame  {
 		lbstart.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 			         setVisible(false);
+			         
 
 					ventana2=new WindowDialogos();
 

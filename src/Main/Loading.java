@@ -5,11 +5,14 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+import Juego.AudioPlayer;
+
  
 public class Loading extends JWindow {
      
     private int duracion;
-     
+	private Thread audio;
+  
     public Loading(int d) {
     	duracion = d;
     }
@@ -48,14 +51,25 @@ public class Loading extends JWindow {
         content.setBackground(new Color(90, 60, 90,177)); 
 
         setVisible(true);
-         
+        AudioPlayer ap = new AudioPlayer("src/img/juego/loadingaudio.mp3");
+    	audio = new Thread(ap);
+    	audio.start();
         try { 
         	Thread.sleep(duracion); 
         	
         } catch (Exception e) {}
-         
+    	audioOff(ap);
+
+        
+       
+    	
+        
+        
         setVisible(false);
          
     }
-
+    private void audioOff(AudioPlayer ap) {
+		ap = null;
+		audio.stop();
+	}
 }

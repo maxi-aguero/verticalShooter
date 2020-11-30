@@ -4,7 +4,8 @@ public class Movimiento extends Thread {
 
 	
 	private Juego juego;
-	private boolean deboMover;
+	private boolean deboMover;	
+
 	
 	public Movimiento(Juego j) {
 		juego = j;
@@ -16,6 +17,8 @@ public class Movimiento extends Thread {
 		while(deboMover) {
 			juego.interactuar();
 
+		  
+			
 			try {
 				Thread.sleep(40); // 40 anda bien
 			}catch (InterruptedException e) {
@@ -23,7 +26,7 @@ public class Movimiento extends Thread {
 			}
 		}
 			
-		
+
 		
 		/**while(deboMover) {
 			try {

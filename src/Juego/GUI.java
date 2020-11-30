@@ -33,6 +33,7 @@ public class GUI extends JPanel  {
 	public JLabel lbanimacion;	
 	public JToggleButton bt_audio;
 	private Thread audio;
+	private AudioPlayer ap_criminal;
 
 	
 	public GUI() {
@@ -51,7 +52,10 @@ public class GUI extends JPanel  {
 		barra_vida.setBackground(new Color(1, 250, 250));		
 		add(barra_vida);
 		
-	
+		
+		ap_criminal = new AudioPlayer("src/img/juego/smooth-criminal.mp3");
+		audio = new Thread(ap_criminal);
+		audio.start();
 
 	
 
@@ -181,7 +185,7 @@ public void setDibujoJugador(String s) {
 
 	
 public void gameWin(Juego juego){	
-
+	audioOff(ap_criminal);
 
 	
 	ImageIcon img_vacas = new ImageIcon(getClass().getClassLoader().getResource("img/juego/vacas.gif"));
@@ -246,7 +250,8 @@ public void gameWin(Juego juego){
 }
 
 public void gameYouLose(Juego juego,int player){
-	
+	audioOff(ap_criminal);
+
 	
 	
 	ImageIcon img_gameover = new ImageIcon(getClass().getClassLoader().getResource("img/juego/gameover.gif"));
