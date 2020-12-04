@@ -28,6 +28,7 @@ public abstract class Visitor {
 	
 	public abstract void visitarPremioSuperArma(PremioSuperArma psa);
 
+	public abstract void visitarPremioVelocidad(PremioVelocidad p);
 	
 	
 }
