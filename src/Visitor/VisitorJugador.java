@@ -67,6 +67,31 @@ public class VisitorJugador extends Visitor {
 		j.cogerPremioSuperArma(psa);
 
 	}
+	
+	public void visitarPremioVelocidad(PremioVelocidad p) {
+		int velAnt=j.getVelocidad();
+		
+	   Thread thread = new Thread() {
+		   @SuppressWarnings("deprecation")
+		public void run() {
+			  j.setVelocidad(velAnt*100); 
+			  try {
+				this.sleep(5000);
+				
+			  
+				 j.setVelocidad(velAnt);
+				 
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 
+		   }
+		   
+	   };
+	   thread.start();
+		
+	}
 
 	
 }
