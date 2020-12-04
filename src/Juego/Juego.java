@@ -245,7 +245,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 								obj_eliminar.add(tanda[nivel_actual].get(tanda_actual).get(j));
 								//creo premio vida
 								enc=true;
-								int num_premio=rd.nextInt(2);
+								int num_premio=rd.nextInt(4);
 								System.out.println(num_premio);
 								Premio recupera_vida_x=null;
 								if (num_premio==0)
@@ -262,7 +262,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 								
 								if (num_premio==2)
 									
-								{	// premio temporal velocidad del jugador
+								{	recupera_vida_x= new PremioVelocidad(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
 
 								}
 								
