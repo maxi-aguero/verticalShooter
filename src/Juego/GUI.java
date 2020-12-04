@@ -53,9 +53,9 @@ public class GUI extends JPanel  {
 		add(barra_vida);
 		
 		
-		ap_criminal = new AudioPlayer("src/img/juego/smooth-criminal.mp3");
-		audio = new Thread(ap_criminal);
-		audio.start();
+		//ap_criminal = new AudioPlayer("src/img/juego/smooth-criminal.mp3");
+		//audio = new Thread(ap_criminal);
+		//audio.start();
 
 	
 

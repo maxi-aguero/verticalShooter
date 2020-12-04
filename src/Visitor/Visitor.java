@@ -5,6 +5,7 @@ import Entidad.Proyectil.DisparoJugador;
 import Entidad.Proyectil.ProyectilVirusAlpha;
 import Entidad.Proyectil.ProyectilVirusBeta;
 import Premio.PremioSuperArma;
+import Premio.PremioVelocidad;
 import Premio.PremioVida;
 import Entidad.Infectado.InfectadoAlpha;
 import Entidad.Infectado.InfectadoBeta;

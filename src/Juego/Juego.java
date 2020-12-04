@@ -18,6 +18,7 @@ import Mapa.Mapa;
 import Mapa.MapaProyectil;
 import Premio.Premio;
 import Premio.PremioSuperArma;
+import Premio.PremioVelocidad;
 import Premio.PremioVida;
 public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyListener  {
 	private GUI gui;
@@ -75,9 +76,6 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 
     }
 	
-
-	
-	
 	private void vinculargui() {
 		gui = new GUI();
 		gui.setVisible(true);
@@ -93,11 +91,10 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	
 	
 	
-	//Nivel 1
 	public void interactuar() {	
 		
 		this.requestFocus();
-		
+
 		
 		
 	if (nivel_actual==2)
@@ -245,7 +242,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 								obj_eliminar.add(tanda[nivel_actual].get(tanda_actual).get(j));
 								//creo premio vida
 								enc=true;
-								int num_premio=rd.nextInt(4);
+								int num_premio=rd.nextInt(3);
 								System.out.println(num_premio);
 								Premio recupera_vida_x=null;
 								if (num_premio==0)
@@ -262,10 +259,12 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 								
 								if (num_premio==2)
 									
-								{	recupera_vida_x= new PremioVelocidad(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
+								{	// premio temporal velocidad del jugador
+
+									 recupera_vida_x= new PremioVelocidad(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
 
 								}
-								
+																
 								if (num_premio==3)
 									
 								{	// premio movimiento de infectados temporal
@@ -273,11 +272,15 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 								}
 								
 								
+								
 								tanda[nivel_actual].get(tanda_actual).remove(j);
 
 								gui.agregarDibujo(recupera_vida_x);
 								lista_premio.ponerBalasEnLista(recupera_vida_x);
 								
+								
+//							
+							
 								
 								
 								
@@ -411,7 +414,12 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 					mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/julieizquierda.gif");
 
 		        gui.setDibujoJugador(mapa.getJugador().getEntidadGrafica().getImagen());
-				mapa.getJugador().setVelocidad(MovimientoHorizontal.IZQUIERDA );
+				//mapa.getJugador().setVelocidad(MovimientoHorizontal.IZQUIERDA );
+				int nuevavelocidad=mapa.getJugador().getVelocidad();
+		        if (nuevavelocidad<0)
+		        	nuevavelocidad=nuevavelocidad*(-1);
+		        mapa.getJugador().setVelocidad(nuevavelocidad);
+
 				mapa.getJugador().getDireccion().setDireccion(mapa.getJugador().getVelocidad() );
 				mapa.getJugador().mover(mapa.getJugador().getDireccion());
 			
@@ -426,7 +434,14 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 		    		mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/juliederecha.gif");
 				
 				gui.setDibujoJugador(mapa.getJugador().getEntidadGrafica().getImagen());	
-				mapa.getJugador().setVelocidad(MovimientoHorizontal.DERECHA);
+				//mapa.getJugador().setVelocidad(MovimientoHorizontal.DERECHA);
+				
+				int nuevavelocidad=mapa.getJugador().getVelocidad();
+		        if (nuevavelocidad> 0)
+		        	nuevavelocidad=nuevavelocidad*(-1);
+		        mapa.getJugador().setVelocidad(nuevavelocidad);
+
+				
 				mapa.getJugador().getDireccion().setDireccion(mapa.getJugador().getVelocidad() );
 				mapa.getJugador().mover(mapa.getJugador().getDireccion());
 

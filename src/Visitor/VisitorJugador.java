@@ -5,6 +5,7 @@ import Entidad.Proyectil.DisparoJugador;
 import Entidad.Proyectil.ProyectilVirusAlpha;
 import Entidad.Proyectil.ProyectilVirusBeta;
 import Premio.PremioSuperArma;
+import Premio.PremioVelocidad;
 import Premio.PremioVida;
 import Entidad.Infectado.InfectadoAlpha;
 import Entidad.Infectado.InfectadoBeta;
@@ -67,30 +68,12 @@ public class VisitorJugador extends Visitor {
 		j.cogerPremioSuperArma(psa);
 
 	}
-	
-	public void visitarPremioVelocidad(PremioVelocidad p) {
-		int velAnt=j.getVelocidad();
+
+	@Override
+	public void visitarPremioVelocidad(PremioVelocidad pv) {
+		// TODO Auto-generated method stub
 		
-	   Thread thread = new Thread() {
-		   @SuppressWarnings("deprecation")
-		public void run() {
-			  j.setVelocidad(velAnt*100); 
-			  try {
-				this.sleep(5000);
-				
-			  
-				 j.setVelocidad(velAnt);
-				 
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			 
-		   }
-		   
-	   };
-	   thread.start();
-		
+		j.cogerPremioVelocidad(pv);
 	}
 
 	

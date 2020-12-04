@@ -9,6 +9,7 @@ import Entidad.Personaje;
 import EstrategiaMovimiento.EstrategiaMovimiento;
 import EstrategiaMovimiento.MovimientoHorizontal;
 import Premio.PremioSuperArma;
+import Premio.PremioVelocidad;
 import Visitor.Visitor;
 import Visitor.VisitorJugador;
 
@@ -158,7 +159,28 @@ public class Jugador extends Personaje {
 	}
 	
 	
-	
+	public void cogerPremioVelocidad(PremioVelocidad p) {
+		 int velAnt=this.getVelocidad();
+
+         Thread thread = new Thread() {
+             @SuppressWarnings("deprecation")
+          public void run() {
+                velocidad=velocidad+20;
+                try {
+                   this.sleep(5000);
+                   velocidad=5;
+
+              } catch (InterruptedException e) {
+                  // TODO Auto-generated catch block
+                  e.printStackTrace();
+              }
+
+             }
+
+         };
+         thread.start();
+
+    }
 	
 	
 	
