@@ -9,7 +9,7 @@ import Visitor.Visitor;
 import Visitor.VisitorPremioVida;
 //premio recuperar vida
 public class PremioVida extends Premio {
-
+	
 	public PremioVida(int x,int y) {
 		super();
 		visitor = new VisitorPremioVida(this);	
@@ -64,4 +64,5 @@ public class PremioVida extends Premio {
 		
 	}
 
+	
 }

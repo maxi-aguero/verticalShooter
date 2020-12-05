@@ -4,6 +4,7 @@ import Entidad.Jugador.Jugador;
 import Entidad.Proyectil.DisparoJugador;
 import Entidad.Proyectil.ProyectilVirusAlpha;
 import Entidad.Proyectil.ProyectilVirusBeta;
+import Premio.PremioDetener;
 import Premio.PremioSuperArma;
 import Premio.PremioVelocidad;
 import Premio.PremioVida;
@@ -31,7 +32,6 @@ public abstract class Visitor {
 
 	public abstract void visitarPremioVelocidad(PremioVelocidad p);
 	
-	//public abstract void visitarPremioVerde(PremioVelocidad p);
-	
+	public abstract void visitarPremioDetener(PremioDetener p);	
 	
 }

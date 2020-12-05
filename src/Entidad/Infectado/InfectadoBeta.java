@@ -126,7 +126,9 @@ public class InfectadoBeta extends Infectado {
 		
 			
 	}
-	
+
+
+
 
 
 

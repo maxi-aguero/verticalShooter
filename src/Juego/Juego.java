@@ -11,12 +11,11 @@ import java.util.Random;
 import Entidad.Entidad;
 import Entidad.Proyectil.Arma;
 import Entidad.Proyectil.DisparoJugador;
-import EstrategiaMovimiento.MovimientoHorizontal;
-import Main.WindowInicio;
 import Main.WindowStage;
 import Mapa.Mapa;
 import Mapa.MapaProyectil;
 import Premio.Premio;
+import Premio.PremioDetener;
 import Premio.PremioSuperArma;
 import Premio.PremioVelocidad;
 import Premio.PremioVida;
@@ -151,9 +150,6 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 							if (( (tanda_actual==1)&&(nivel_actual==0))||( (tanda_actual==0)&&(nivel_actual==1)) ||( (tanda_actual==0)&&(nivel_actual==0)))
 							{
 							this.setVisible(false);
-							//	(tanda_actual==1)&&(nivel_actual==0)) nivel 1, tanda 2
-							//( (tanda_actual==0)&&(nivel_actual==1)) nivel 2, tanda 1
-							//( (tanda_actual==0)&&(nivel_actual==0))) nivel 1, tanda 1
 
 							WindowStage ventana_stage = new WindowStage(nivel_actual,tanda_actual);
 					 		ventana_stage.setVisible(true);
@@ -238,47 +234,50 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 						if (tanda[nivel_actual].get(tanda_actual).get(j).estaVivo()==false)
 								{
 								//"crear premios al azar"
-								
-								obj_eliminar.add(tanda[nivel_actual].get(tanda_actual).get(j));
-								//creo premio vida
 								enc=true;
-								int num_premio=rd.nextInt(3);
-								System.out.println(num_premio);
-								Premio recupera_vida_x=null;
+								int num_premio=rd.nextInt(4);
+								Premio premio=null;
 								if (num_premio==0)
 								{
-									 recupera_vida_x= new PremioVida(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
+									premio= new PremioVida(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
 
 								}
 								if (num_premio==1)
 								
-								{
-									 recupera_vida_x= new PremioSuperArma(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
+								{	
+									premio= new PremioSuperArma(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
 
 								}
 								
 								if (num_premio==2)
 									
-								{	// premio temporal velocidad del jugador
+								{	
 
-									 recupera_vida_x= new PremioVelocidad(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
+									premio= new PremioVelocidad(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
 
 								}
 																
 								if (num_premio==3)
 									
-								{	// premio movimiento de infectados temporal
+								{	
 									
-									//recupera_vida_x= new PremioVerde(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
-
+									
+									premio= new PremioDetener(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
+									 
+									 mapa.getJugador().setelemQuietos(tanda[nivel_actual].get(tanda_actual));
+									 
+									
+									 
 								}
 								
+								 obj_eliminar.add(tanda[nivel_actual].get(tanda_actual).get(j));
+									
 								
-								
-								tanda[nivel_actual].get(tanda_actual).remove(j);
 
-								gui.agregarDibujo(recupera_vida_x);
-								lista_premio.ponerBalasEnLista(recupera_vida_x);
+								tanda[nivel_actual].get(tanda_actual).remove(j);
+   
+								gui.agregarDibujo(premio);
+								lista_premio.ponerBalasEnLista(premio);
 								
 								
 //							

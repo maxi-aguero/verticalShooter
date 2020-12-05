@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Image;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 
 import Juego.AudioPlayer;
 

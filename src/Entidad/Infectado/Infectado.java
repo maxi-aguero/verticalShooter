@@ -21,7 +21,6 @@ public abstract class Infectado extends Personaje   {
 	
 	
 	
-	
 	//public boolean interactuar() {		}
 
 	public void mover(EstrategiaMovimiento d) {

@@ -4,6 +4,7 @@ import Entidad.Jugador.Jugador;
 import Entidad.Proyectil.DisparoJugador;
 import Entidad.Proyectil.ProyectilVirusAlpha;
 import Entidad.Proyectil.ProyectilVirusBeta;
+import Premio.PremioDetener;
 import Premio.PremioSuperArma;
 import Premio.PremioVelocidad;
 import Premio.PremioVida;
@@ -74,6 +75,12 @@ public class VisitorJugador extends Visitor {
 		// TODO Auto-generated method stub
 		
 		j.cogerPremioVelocidad(pv);
+	}
+
+	@Override
+	public void visitarPremioDetener(PremioDetener p) {
+		// TODO Auto-generated method stub
+		j.cogerPremioQuieto(p);
 	}
 
 	

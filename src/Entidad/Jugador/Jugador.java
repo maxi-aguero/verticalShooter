@@ -8,6 +8,7 @@ import Entidad.Entidad;
 import Entidad.Personaje;
 import EstrategiaMovimiento.EstrategiaMovimiento;
 import EstrategiaMovimiento.MovimientoHorizontal;
+import Premio.PremioDetener;
 import Premio.PremioSuperArma;
 import Premio.PremioVelocidad;
 import Visitor.Visitor;
@@ -16,6 +17,7 @@ import Visitor.VisitorJugador;
 public class Jugador extends Personaje {
 	protected int tipoArma;
 	protected int tipoJugador;
+	protected List<Entidad> elemQuietos;
 	
 	public Jugador() {
 		
@@ -185,6 +187,50 @@ public class Jugador extends Personaje {
 	
 	
 	
+	public void setelemQuietos(List<Entidad> listaQuietos) {
+		elemQuietos=listaQuietos;
+	}
+	
+	public void cogerPremioQuieto(PremioDetener p) {
+		 
+		Thread thread = new Thread() {
+            @SuppressWarnings("deprecation")
+         public void run() {
+
+        		for(Entidad ent:elemQuietos)	
+        		 {
+        			 //todos los infectados
+        			 ent.getDireccion().setDireccion(0);										 
+        			 ent.mover(ent.getDireccion());
+        			 ent.getEntidadGrafica().getDibujo().setLocation(ent.getEntidadGrafica().getX(),ent.getEntidadGrafica().getY());
+
+        		 }
+
+               try {
+                  this.sleep(5000);
+
+          		for(Entidad ent:elemQuietos)	
+          		 {
+          			 //todos los infectados
+          			 ent.getDireccion().setDireccion(5);										 
+          			 ent.mover(ent.getDireccion());
+          		 }
+
+             } catch (InterruptedException e) {
+                 // TODO Auto-generated catch block
+                 e.printStackTrace();
+             }
+
+            }
+
+        };
+        thread.start();
+		
+		
+		
+		
+		
+	}
 
 
 

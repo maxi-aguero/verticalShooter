@@ -3,27 +3,16 @@ package Juego;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.swing.BorderFactory;
-import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.JToggleButton;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
@@ -40,14 +29,9 @@ public class GUI extends JPanel  {
 	public JLabel palabra;
 	public JLabel lbJugador;
 	public JLabel lbanimacion;	
-	public JLabel lbalpha;		
-	public JToggleButton bt_audio;
 	private Thread audio;
 	private JPanel []panelDescrip;
 	private JLabel [] descrip;
-
-	public static final  Map<String, ImageIcon> imageMap=null;
-
 	
 	public GUI() {
 		
@@ -64,15 +48,6 @@ public class GUI extends JPanel  {
 		barra_vida.setForeground(new Color(250, 40, 0));
 		barra_vida.setBackground(new Color(1, 250, 250));		
 		add(barra_vida);
-		
-		
-		
-
-		
-		//ap_criminal = new AudioPlayer("src/img/juego/smooth-criminal.mp3");
-		//audio = new Thread(ap_criminal);
-		//audio.start();
-
 	
 
 	}
@@ -210,7 +185,7 @@ public class GUI extends JPanel  {
 		descrip[5].setBackground(new Color(75,0,150,250)); 
 		descrip[5].repaint();
 		
-		descrip[6]=new JLabel("Hace algo");
+		descrip[6]=new JLabel("Quieto 5 seg");
 		descrip[6].setHorizontalAlignment(JLabel.CENTER);
 		descrip[6].setVerticalAlignment(JLabel.TOP);
 		descrip[6].setOpaque(true);
@@ -293,15 +268,7 @@ public class GUI extends JPanel  {
 		add(descrip[11]);
 		
 		
-
-		
-
-		
-		
-		
-		
-		lbfondo.repaint();
-        
+		lbfondo.repaint();        
         add(palabra);        
 		add(lbfondo);
 
@@ -372,7 +339,6 @@ public void setDibujoJugador(String s) {
 	
 	public void eliminacion(List<Entidad> lista_entidad) {
 		
-		//me marca como null obj2
 		for(Entidad obj2 : lista_entidad){ 			
 			if (obj2.getEntidadGrafica().getDibujo()!=null)
 			obj2.getEntidadGrafica().getDibujo().setVisible(false);	     				 
@@ -382,7 +348,6 @@ public void setDibujoJugador(String s) {
 
 	
 public void gameWin(Juego juego){	
-	//audioOff(ap_criminal);
 	
 	for(JPanel pDesc:panelDescrip) {
 		pDesc.setVisible(false);
@@ -431,30 +396,12 @@ public void gameWin(Juego juego){
 	juego.setVisible(false);
 	audioOff(ap);
 	Main m= new Main();
-	m.main(null);
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	m.main(null);	
 	
 			
 }
 
 public void gameYouLose(Juego juego,int player){
-	//audioOff(ap_criminal);
 
 	for(JPanel pDesc:panelDescrip) {
 		pDesc.setVisible(false);
@@ -507,7 +454,6 @@ public void gameYouLose(Juego juego,int player){
 	
 	try {
 		Thread.sleep(4500);
-		//Thread.sleep(20000);
 	} catch (InterruptedException e) {
 		e.printStackTrace();
 	}
@@ -523,27 +469,13 @@ public void gameYouLose(Juego juego,int player){
 	
 }
 	
-	private void jToggleButtonAudioActionPerformed(ActionEvent evt) {
-			/**if(this.bt_audio.isSelected()) {
-				audioOff();
-			} else {
-				audioOn();
-			}*/
-	}
+
 	
 	private void audioOff(AudioPlayer ap) {
-		//bt_audio.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ar/edu/uns/cs/tdp/proyectoX/frames/resources/images/tdp-audio-off.png")));
 		ap = null;
 		audio.stop();
-		//audio = null;
 	}
-	
-	/**private void audioOn() {
-		//jToggleButtonAudio.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ar/edu/uns/cs/tdp/proyectoX/frames/resources/images/tdp-audio-on.png")));
-		ap = new AudioPlayer("img/juego/dangerzone.mp3");
-		audio = new Thread(ap);
-		audio.start();
-	}*/
+
 	
 	
 

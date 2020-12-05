@@ -16,7 +16,7 @@ public class InfectadoAlpha extends Infectado {
 		
 	public InfectadoAlpha() {
 		super(100);
-;
+
 		visitor = new VisitorInfectadoAlpha(this);
 		velocidad=5;
 		direccion = new MovimientoVerticalDeInfectado(this,velocidad);		
@@ -126,6 +126,10 @@ public class InfectadoAlpha extends Infectado {
 		
 		
 	}
+
+
+
+
 	
 
 
