@@ -268,6 +268,8 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 								if (num_premio==3)
 									
 								{	// premio movimiento de infectados temporal
+									
+									//recupera_vida_x= new PremioVerde(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
 
 								}
 								

@@ -31,5 +31,7 @@ public abstract class Visitor {
 
 	public abstract void visitarPremioVelocidad(PremioVelocidad p);
 	
+	//public abstract void visitarPremioVerde(PremioVelocidad p);
+	
 	
 }

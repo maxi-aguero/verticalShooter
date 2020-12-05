@@ -1,4 +1,4 @@
-  package Main;
+ package Main;
 
 import Juego.AudioPlayer;
 
@@ -16,7 +16,7 @@ public class Main {
 		  
 	      CargarJuego miCargarJuego=null;
 	      ventana_dialogos=null;
-	      int i=0;
+	      int i=0  ;
 	      AudioPlayer audio_aux =ventana_inicio.getAudio();
 	  	 Thread hilo_aux = ventana_inicio.getHiloAudio();
 

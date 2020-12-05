@@ -160,7 +160,7 @@ public class Jugador extends Personaje {
 	
 	
 	public void cogerPremioVelocidad(PremioVelocidad p) {
-		 int velAnt=this.getVelocidad();
+		 
 
          Thread thread = new Thread() {
              @SuppressWarnings("deprecation")
