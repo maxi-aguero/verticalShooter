@@ -16,12 +16,11 @@ public class InfectadoAlpha extends Infectado {
 		
 	public InfectadoAlpha() {
 		super(100);
-
 		visitor = new VisitorInfectadoAlpha(this);
 		velocidad=5;
 		direccion = new MovimientoVerticalDeInfectado(this,velocidad);		
 		entidadgrafica.setImagen("img/infectados/zombie.gif");
-		resistencia=45;
+		resistencia=24;
 	}
 
 
@@ -126,6 +125,24 @@ public class InfectadoAlpha extends Infectado {
 		
 		
 	}
+
+
+
+	@Override
+	public void AumentarVelocidad() {
+		// TODO Auto-generated method stub
+		if (cargaViralActual<20)
+			{
+			direccion.setDireccion(8);										 
+ 			//mover(direccion);
+			
+			}
+		
+	}
+
+
+
+	
 
 
 

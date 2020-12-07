@@ -231,6 +231,11 @@ public class Jugador extends Personaje {
 		
 		
 	}
+	@Override
+	public void AumentarVelocidad() {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 

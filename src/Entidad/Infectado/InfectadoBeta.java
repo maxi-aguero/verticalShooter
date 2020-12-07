@@ -21,7 +21,7 @@ public class InfectadoBeta extends Infectado {
 		direccion = new MovimientoVerticalDeInfectado(this,velocidad);		
 		entidadgrafica.setImagen("img/infectados/stanley.gif");
 		velocidad=5;
-		resistencia=60;
+		resistencia=0.54;
 	}
 
 
@@ -126,6 +126,17 @@ public class InfectadoBeta extends Infectado {
 		
 			
 	}
+
+
+
+	@Override
+	public void AumentarVelocidad() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 
 
 

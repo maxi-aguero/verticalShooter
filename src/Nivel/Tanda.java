@@ -68,7 +68,7 @@ public class Tanda {
 	public List<List<Entidad>> crearTandaNivel2(NodoNivel nivel,int n,int p) {
 		//int p=particiones
 		int size=nivel.getSegundoNivel().getInfoNivel().getLista().size();
-		
+
 		//numero de particiones= 2, de n=5
 		
 		
@@ -88,10 +88,13 @@ public class Tanda {
 		
 		
 		List<List<Entidad>> lista_partition= new LinkedList<List<Entidad>>();
-		
+
+		//m es dos tandas
 		for(int i=0;i<m;i++)
 		
-		{	int fromIndez =i*n;
+		{	
+		
+		int fromIndez =i*n;
 		int toIndez = (i*n+n<size)?(i*n+n):size;
 		List<Entidad> sub_lista= new LinkedList<Entidad>();
 		

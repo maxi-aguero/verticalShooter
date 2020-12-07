@@ -64,5 +64,11 @@ public class PremioDetener extends Premio{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public void AumentarVelocidad() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

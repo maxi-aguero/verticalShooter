@@ -225,11 +225,18 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 						
 					}
 					
-					
+					for(int j=0;j< tanda[nivel_actual].get(tanda_actual).size();j++) {		
+						tanda[nivel_actual].get(tanda_actual).get(j).AumentarVelocidad();
+						
+
+						
+					}
 					
 					
 					 boolean enc=false;
 					for(int j=0;enc==false&&j< tanda[nivel_actual].get(tanda_actual).size();j++) {		
+						
+						
 						
 						if (tanda[nivel_actual].get(tanda_actual).get(j).estaVivo()==false)
 								{

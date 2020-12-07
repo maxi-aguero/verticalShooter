@@ -53,15 +53,15 @@ public class Nivel1 extends Lista{
 		infectado04.getEntidadGrafica().setX(numero_armado[arr[3]]);
 		infectado04.getEntidadGrafica().setY(150);
 		
-		Infectado infectado05 = new InfectadoAlpha();
+		Infectado infectado05 = new InfectadoBeta();
 		infectado05.getEntidadGrafica().setX(numero_armado[arr[4]]);
 		infectado05.getEntidadGrafica().setY(150);
 		
-		Infectado infectado06 = new InfectadoAlpha();
+		Infectado infectado06 = new InfectadoBeta();
 		infectado06.getEntidadGrafica().setX(numero_armado[arr[5]]);
 		infectado06.getEntidadGrafica().setY(150);
 		
-		Infectado infectado07 = new InfectadoAlpha();
+		Infectado infectado07 = new InfectadoBeta();
 		infectado07.getEntidadGrafica().setX(numero_armado[arr[6]]);
 		infectado07.getEntidadGrafica().setY(150);
 		
@@ -69,6 +69,16 @@ public class Nivel1 extends Lista{
 		infectado08.getEntidadGrafica().setX(numero_armado[arr[7]]);
 		infectado08.getEntidadGrafica().setY(150);
 	
+		
+		infectado01.setResistencia(0.83);
+		infectado02.setResistencia(2.23);
+		infectado03.setResistencia(2.23);
+		infectado04.setResistencia(2.23);
+		
+		infectado05.setResistencia(1.83);
+		infectado06.setResistencia(1.83);
+		infectado07.setResistencia(1.83);
+		infectado08.setResistencia(1.93);
 		
 		
 		

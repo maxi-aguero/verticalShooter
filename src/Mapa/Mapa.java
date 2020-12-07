@@ -46,8 +46,9 @@ public class Mapa {
 		List<List<Entidad>> tandas_nivel2=new LinkedList<List<Entidad>>();//tandas_nivel1=null;
 		
 		if (tamanio_lv2==nivel.getSegundoNivel().getInfoNivel().getLista().size())
-			tandas_nivel2 = tanda.crearTandaNivel2(nivel, nivel.getSegundoNivel().getInfoNivel().getLista().size()/2,2);
-		 
+			{tandas_nivel2 = tanda.crearTandaNivel2(nivel, nivel.getSegundoNivel().getInfoNivel().getLista().size()/2,2);
+
+			}
 		return tandas_nivel2;
 		
 	}

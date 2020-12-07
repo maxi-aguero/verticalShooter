@@ -82,6 +82,14 @@ public class DisparoJugador extends Proyectil {
 	public void accionar(List<Entidad>infectados) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+	@Override
+	public void AumentarVelocidad() {
+		// TODO Auto-generated method stub
+		
 	}	
 	
 

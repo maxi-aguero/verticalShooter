@@ -64,5 +64,12 @@ public class PremioVida extends Premio {
 		
 	}
 
+
+	@Override
+	public void AumentarVelocidad() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

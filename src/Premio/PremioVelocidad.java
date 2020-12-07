@@ -58,6 +58,12 @@ public class PremioVelocidad extends Premio{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public void AumentarVelocidad() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

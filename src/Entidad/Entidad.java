@@ -38,7 +38,7 @@ public abstract class Entidad {
 		return resistencia;
 	}
 	
-	public void setResistencia(int r) {
+	public void setResistencia(double r) {
 		this.resistencia=r;
 	}
 	
@@ -104,6 +104,8 @@ public abstract class Entidad {
 
 
 	public abstract boolean estaVivo();
+	
+	public abstract void AumentarVelocidad();
 
 
 	
