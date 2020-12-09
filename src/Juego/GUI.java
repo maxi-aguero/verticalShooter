@@ -382,8 +382,7 @@ public void gameWin(Juego juego){
     content.setBorder(new LineBorder( Color.orange,2));        
     content.setBackground(new Color(0, 45, 0));
     
-	AudioPlayer ap = new AudioPlayer("src/img/juego/vacasaudio.mp3");
-	audio = new Thread(ap);
+	audio = new Thread();
 	audio.start();
 	try {
 		Thread.sleep(7940);
@@ -394,7 +393,6 @@ public void gameWin(Juego juego){
 	
 	
 	juego.setVisible(false);
-	audioOff(ap);
 	Main m= new Main();
 	m.main(null);	
 	
@@ -448,8 +446,7 @@ public void gameYouLose(Juego juego,int player){
     this.setBackground(new Color(0,0,0));  
 
 	
-    AudioPlayer ap = new AudioPlayer("src/img/juego/jajajojojo.mp3");
-	audio = new Thread(ap);
+	audio = new Thread();
 	audio.start();
 	
 	try {
@@ -461,7 +458,6 @@ public void gameYouLose(Juego juego,int player){
 	
 	
 	juego.setVisible(false);
-	audioOff(ap);
 
 	Main m= new Main();
 	m.main(null);
@@ -471,10 +467,6 @@ public void gameYouLose(Juego juego,int player){
 	
 
 	
-	private void audioOff(AudioPlayer ap) {
-		ap = null;
-		audio.stop();
-	}
 
 	
 	
