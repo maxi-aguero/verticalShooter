@@ -24,76 +24,53 @@ import Main.Main;
 public class GUI extends JPanel  {
 	
 	
-	private JLabel lbfondo;
-	public JProgressBar barra_vida;
-	public JLabel palabra;
-	public JLabel lbJugador;
-	public JLabel lbanimacion;	
-	private Thread audio;
+	private JLabel lbFondo;
+	private JProgressBar barraVida;
+	private JLabel lbPlayer;
+	private JLabel lbJugador;
+	private JLabel lbAnimacion;	
 	private JPanel []panelDescrip;
 	private JLabel [] descrip;
 	
-	public GUI() {
-		
-		this.setPreferredSize(new Dimension(820, 650));
-        this.setBackground(new Color(90,60,90));  
-        this.setFocusable(true);   
-        this.setLayout(null);      
+	public GUI() {		
+		setPreferredSize(new Dimension(820, 650));
+        setBackground(new Color(90,60,90));  
+        setFocusable(true);   
+        setLayout(null);      
         crearFondo();
-        //crear barra vida
-        barra_vida= new JProgressBar(0,100);
-    	barra_vida.setBounds(160,10, 300, 30);
-		barra_vida.setStringPainted(true);
-		barra_vida.setFont(new Font("Ink Free", Font.BOLD, 25));
-		barra_vida.setForeground(new Color(250, 40, 0));
-		barra_vida.setBackground(new Color(1, 250, 250));		
-		add(barra_vida);
-	
-
+        barraVida= new JProgressBar(0,100);
+        barraVida.setBounds(160,10, 300, 30);
+        barraVida.setStringPainted(true);
+        barraVida.setFont(new Font("Ink Free", Font.BOLD, 25));
+		barraVida.setForeground(new Color(250, 40, 0));
+		barraVida.setBackground(new Color(1, 250, 250));		
+		add(barraVida);
 	}
 	
-
 	
-	
-	
-	
-
-	
-	
-	
-	private void crearFondo() {		
-		
+	private void crearFondo() {				
 		ImageIcon imagen = new ImageIcon(getClass().getClassLoader().getResource("img/juego/Level12.png"));
-		lbfondo = new JLabel(imagen,SwingConstants.CENTER);
-		lbfondo = new JLabel();
+		lbFondo = new JLabel(imagen,SwingConstants.CENTER);
+		lbFondo = new JLabel();
 		Icon imgdos= new  ImageIcon(imagen.getImage().getScaledInstance(700, 600, Image.SCALE_SMOOTH)); 
 
-		lbfondo.setIcon(imgdos);	
-		lbfondo.repaint();	
-		lbfondo.setBounds(0,45, 700, 600);
-		this.setLayout(null);
-		lbfondo.setLayout(null);
-		palabra=new JLabel("Player");
-		palabra.setForeground(new Color(223, 45, 223)); 
+		lbFondo.setIcon(imgdos);	
+		lbFondo.repaint();	
+		lbFondo.setBounds(0,45, 700, 600);
+		lbFondo.setLayout(null);
+		lbPlayer=new JLabel("Player");
+		lbPlayer.setForeground(new Color(223, 45, 223)); 
 
-		palabra.setFont(new Font("Ink Free", Font.BOLD, 28));
-		palabra.setBounds(70,2, 300, 50);
-		//LineBorder linea = new LineBorder(Color.orange,1,true);
-		//palabra.setBorder( new TitledBorder(linea,""));
-		
-		
-		
-
-	
-		
+		lbPlayer.setFont(new Font("Ink Free", Font.BOLD, 28));
+		lbPlayer.setBounds(70,2, 300, 50);		
 
         
     	ImageIcon img_soda = new ImageIcon(getClass().getClassLoader().getResource("img/juego/soda.gif"));
-		lbanimacion = new JLabel(img_soda);
-		lbanimacion.setBounds(-7, 207, 100, 100);
-		lbanimacion.repaint();
+		lbAnimacion = new JLabel(img_soda);
+		lbAnimacion.setBounds(-7, 207, 100, 100);
+		lbAnimacion.repaint();
 
-		lbfondo.add(lbanimacion);
+		lbFondo.add(lbAnimacion);
 		
 		panelDescrip=new JPanel[4];
 		descrip=new JLabel[12];
@@ -119,8 +96,6 @@ public class GUI extends JPanel  {
 		panelDescrip[3].setBounds(700, 310, 100, 60);
 		panelDescrip[3].setLayout(new GridLayout(2,0));     
 		panelDescrip[3].setBorder( new TitledBorder(linea,""));
-		
-	
 		
 		descrip[0]=new JLabel("");
 		ImageIcon img_azul = new ImageIcon(getClass().getClassLoader().getResource("img/juego/posionazul.png"));
@@ -171,8 +146,7 @@ public class GUI extends JPanel  {
 		descrip[4].setBackground(new Color(75,0,150,250));
 		descrip[4].setFont(new Font("Ink Free", Font.BOLD, 14));
 		descrip[4].setBounds(710, 176, 80, 25);
-		descrip[4].repaint();
-		
+		descrip[4].repaint();		
 		
 		panelDescrip[1].add(descrip[2]);
 		panelDescrip[1].add(descrip[3]);
@@ -256,7 +230,6 @@ public class GUI extends JPanel  {
 		descrip[11].setBounds(700, 560, 100, 80);
 		descrip[11].setLayout(null);
 		descrip[11].repaint();
-
 		
 		add(descrip[4]);
 		add(panelDescrip[0]);
@@ -265,211 +238,190 @@ public class GUI extends JPanel  {
 		add(panelDescrip[3]);
 		add(descrip[9]);
 		add(descrip[10]);
-		add(descrip[11]);
+		add(descrip[11]);		
 		
-		
-		lbfondo.repaint();        
-        add(palabra);        
-		add(lbfondo);
-
-
+		lbFondo.repaint();        
+        add(lbPlayer);        
+		add(lbFondo);
 	
 	}
 	
-	public void agregarDibujo(Entidad e) {		
-		
+	public void agregarEntidad(Entidad e) {				
 		ImageIcon img_entidad = new ImageIcon(getClass().getClassLoader().getResource(e.getEntidadGrafica().getImagen()));
-		JLabel lbdos = new JLabel(img_entidad);
-		lbdos.setBounds(e.getEntidadGrafica().getX(), e.getEntidadGrafica().getY(), e.getRangoX(), e.getRangoY());
-		//LineBorder linea = new LineBorder(Color.orange,1,true);
-		//lbdos.setBorder( new TitledBorder(linea,""));
-		
-		e.getEntidadGrafica().setDibujo(lbdos);//aca seteo el dibujo
-		
-		
-
-		
-		
-		lbdos.repaint();
-
-
-		lbfondo.add(lbdos);
-
-		lbfondo.repaint();
-		
+		JLabel lbEntidad = new JLabel(img_entidad);
+		lbEntidad.setBounds(e.getEntidadGrafica().getX(), e.getEntidadGrafica().getY(), e.getRangoX(), e.getRangoY());
+		e.getEntidadGrafica().setDibujo(lbEntidad);		
+		lbEntidad.repaint();
+		lbFondo.add(lbEntidad);
+		lbFondo.repaint();		
 	}
 	
 	
-public void agregarDibujoJugador(Entidad e) {		
-		
+	public void agregarJugador(Entidad e) {				
 		ImageIcon img_entidad = new ImageIcon(getClass().getClassLoader().getResource(e.getEntidadGrafica().getImagen()));
 		lbJugador = new JLabel(img_entidad);
-
 		lbJugador.setBounds(e.getEntidadGrafica().getX(), e.getEntidadGrafica().getY(), e.getRangoX(), e.getRangoY());
 		LineBorder linea = new LineBorder(Color.CYAN,1,true);
-		lbJugador.setBorder( new TitledBorder(linea,""));
-		
+		lbJugador.setBorder( new TitledBorder(linea,""));		
 		e.getEntidadGrafica().setDibujo(lbJugador);
 		lbJugador.repaint();
+		lbFondo.add(lbJugador);
+		lbFondo.repaint();		
+	}
+	
 
-		lbfondo.add(lbJugador);
-		lbfondo.repaint();
+	public void setDibujoJugador(String s) {			
+		ImageIcon img_entidad = new ImageIcon(getClass().getClassLoader().getResource(s));
+		lbJugador.setIcon(img_entidad);
+		lbJugador.repaint();	
+		lbFondo.add(lbJugador);
+		lbFondo.repaint();
 		
 	}
-	
-
-public void setDibujoJugador(String s) {		
-	
-	ImageIcon img_entidad = new ImageIcon(getClass().getClassLoader().getResource(s));
-	lbJugador.setIcon(img_entidad);
-	lbJugador.repaint();
-
-	lbfondo.add(lbJugador);
-	lbfondo.repaint();
-	
-}
 
 	public void estadoVida(double valor) {
-		barra_vida.setValue((int) valor);		
-		barra_vida.setString((int)valor+"/100v");
-	
+		barraVida.setValue((int) valor);		
+		barraVida.setString((int)valor+"/100v");	
 	}
 	
 	
 	
-	public void eliminacion(List<Entidad> lista_entidad) {
+	public void eliminarEntidades(List<Entidad> lista_entidad) {
 		
 		for(Entidad obj2 : lista_entidad){ 			
 			if (obj2.getEntidadGrafica().getDibujo()!=null)
-			obj2.getEntidadGrafica().getDibujo().setVisible(false);	     				 
+			{obj2.getEntidadGrafica().getDibujo().setVisible(false);
+			 obj2=null; 
+			}	     				 
  				
  		}
 	}
 
 	
-public void gameWin(Juego juego){	
+	public void gameWin(Juego juego){	
+		
+		for(JPanel pDesc:panelDescrip) {
+			pDesc.setVisible(false);
+		}
+		
+		for( JLabel lbDesc:descrip) {
+			lbDesc.setVisible(false);
+		}
+		
+		ImageIcon img_vacas = new ImageIcon(getClass().getClassLoader().getResource("img/juego/vacas.gif"));
+		
+		JLabel lbvacas = new JLabel(img_vacas,SwingConstants.CENTER);
+		lbvacas.setBounds(-83,0, 555,256);
+		lbvacas.repaint();
 	
-	for(JPanel pDesc:panelDescrip) {
-		pDesc.setVisible(false);
+		add(lbvacas);
+		repaint();
+		
+	
+		lbAnimacion.setIcon(null);
+		juego.setBounds(257,216,409,335);
+		barraVida.setVisible(false);
+		lbFondo.setIcon(null);
+		lbPlayer.setText("");
+		
+		JLabel palabraYouLose = new JLabel("You win",SwingConstants.CENTER);     	
+		palabraYouLose.setFont(new Font("Ink Free", Font.BOLD, 28));
+		palabraYouLose.setForeground(new Color(250, 250, 250)); 
+		juego.add(palabraYouLose, BorderLayout.SOUTH);
+	
+		JPanel content = (JPanel)juego.getContentPane();         
+	    content.setBorder(new LineBorder( Color.orange,2));        
+	    content.setBackground(new Color(0, 45, 0));
+	    
+	    Thread verYouWin = new Thread();
+	    verYouWin.start();
+		try {
+			Thread.sleep(7940);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		juego.setVisible(false);
+		Main m= new Main();
+		m.main(null);	
+		
+				
 	}
 	
-	for( JLabel lbDesc:descrip) {
-		lbDesc.setVisible(false);
+	public void gameYouLose(Juego juego,int player){
+	
+		for(JPanel pDesc:panelDescrip) {
+			pDesc.setVisible(false);
+		}
+		
+		for( JLabel lbDesc:descrip) {
+			lbDesc.setVisible(false);
+		}
+		
+		ImageIcon img_gameover = new ImageIcon(getClass().getClassLoader().getResource("img/juego/gameover.gif"));
+		
+		JLabel lbgameover = new JLabel(img_gameover);
+		lbgameover.setBounds(0,0, 390,100);
+		lbgameover.repaint();
+	
+		add(lbgameover);
+		repaint();
+		ImageIcon img_dead =null;
+		if (player==1)
+			{ img_dead = new ImageIcon(getClass().getClassLoader().getResource("img/juego/zakedead.gif"));}
+		else
+			{img_dead = new ImageIcon(getClass().getClassLoader().getResource("img/juego/deadjulie.gif"));}
+	
+		
+		JLabel lbdead = new JLabel(img_dead);
+		lbdead.setBounds(150,100, 100,100);
+		lbdead.repaint();
+	
+		add(lbdead);
+		repaint();
+		
+		
+		
+		lbAnimacion.setIcon(null);
+		juego.setBounds(257,216,409,335);
+		barraVida.setVisible(false);
+		lbFondo.setIcon(null);
+		lbPlayer.setText("");
+		
+		JLabel palabraYouLose = new JLabel("You Lose",SwingConstants.CENTER);     	
+		palabraYouLose.setFont(new Font("Ink Free", Font.BOLD, 28));
+		palabraYouLose.setForeground(new Color(223, 45, 223)); 
+		juego.add(palabraYouLose, BorderLayout.SOUTH);
+	    this.setBackground(new Color(0,0,0));  
+	
+		
+	    Thread verYouLose = new Thread();
+	    verYouLose.start();
+		
+		try {
+			Thread.sleep(4500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	
+		
+		
+		juego.setVisible(false);
+		juego=null;
+
+		Main m= new Main();
+		m.main(null);
+		
+		
 	}
+		
 	
-	ImageIcon img_vacas = new ImageIcon(getClass().getClassLoader().getResource("img/juego/vacas.gif"));
+		
 	
-	JLabel lbvacas = new JLabel(img_vacas,SwingConstants.CENTER);
-	lbvacas.setBounds(-83,0, 555,256);
-	lbvacas.repaint();
-
-	add(lbvacas);
-	repaint();
-	
-
-	lbanimacion.setIcon(null);
-	juego.setBounds(257,216,409,335);
-	barra_vida.setVisible(false);
-	lbfondo.setIcon(null);
-	palabra.setText("");
-	
-	JLabel palabraYouLose = new JLabel("You win",SwingConstants.CENTER);     	
-	palabraYouLose.setFont(new Font("Ink Free", Font.BOLD, 28));
-	palabraYouLose.setForeground(new Color(250, 250, 250)); 
-	juego.add(palabraYouLose, BorderLayout.SOUTH);
-
-	JPanel content = (JPanel)juego.getContentPane();         
-    content.setBorder(new LineBorder( Color.orange,2));        
-    content.setBackground(new Color(0, 45, 0));
-    
-	audio = new Thread();
-	audio.start();
-	try {
-		Thread.sleep(7940);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
-	
-	
-	
-	juego.setVisible(false);
-	Main m= new Main();
-	m.main(null);	
-	
-			
-}
-
-public void gameYouLose(Juego juego,int player){
-
-	for(JPanel pDesc:panelDescrip) {
-		pDesc.setVisible(false);
-	}
-	
-	for( JLabel lbDesc:descrip) {
-		lbDesc.setVisible(false);
-	}
-	
-	ImageIcon img_gameover = new ImageIcon(getClass().getClassLoader().getResource("img/juego/gameover.gif"));
-	
-	JLabel lbgameover = new JLabel(img_gameover);
-	lbgameover.setBounds(0,0, 390,100);
-	lbgameover.repaint();
-
-	add(lbgameover);
-	repaint();
-	ImageIcon img_dead =null;
-	if (player==1)
-		{ img_dead = new ImageIcon(getClass().getClassLoader().getResource("img/juego/zakedead.gif"));}
-	else
-		{img_dead = new ImageIcon(getClass().getClassLoader().getResource("img/juego/deadjulie.gif"));}
-
-	
-	JLabel lbdead = new JLabel(img_dead);
-	lbdead.setBounds(150,100, 100,100);
-	lbdead.repaint();
-
-	add(lbdead);
-	repaint();
-	
-	
-	
-	lbanimacion.setIcon(null);
-	juego.setBounds(257,216,409,335);
-	barra_vida.setVisible(false);
-	lbfondo.setIcon(null);
-	palabra.setText("");
-	
-	JLabel palabraYouLose = new JLabel("You Lose",SwingConstants.CENTER);     	
-	palabraYouLose.setFont(new Font("Ink Free", Font.BOLD, 28));
-	palabraYouLose.setForeground(new Color(223, 45, 223)); 
-	juego.add(palabraYouLose, BorderLayout.SOUTH);
-    this.setBackground(new Color(0,0,0));  
-
-	
-	audio = new Thread();
-	audio.start();
-	
-	try {
-		Thread.sleep(4500);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
-
-	
-	
-	juego.setVisible(false);
-
-	Main m= new Main();
-	m.main(null);
-	
-	
-}
-	
-
-	
-
-	
-	
+		
+		
 
 
 }

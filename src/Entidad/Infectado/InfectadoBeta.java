@@ -24,8 +24,7 @@ public class InfectadoBeta extends Infectado {
 		resistencia=0.54;
 	}
 
-
-
+	//condicion de vida del infectado
 	@Override
 	public boolean estaVivo() {
 		// TODO Auto-generated method stub
@@ -34,7 +33,7 @@ public class InfectadoBeta extends Infectado {
 
 
 
-
+	//el visitor v visita al infectado beta
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
@@ -42,44 +41,35 @@ public class InfectadoBeta extends Infectado {
 	}
 
 
-
-	
+	//El infectado beta detecta con quienes colisiona de la lista de entidad
 	@Override
-	public List<Entidad> detectarColisiones(List<Entidad>municiones) {
+	public List<Entidad> detectarColisiones(List<Entidad>entidad) {
 		// TODO Auto-generated method stub
-		//yo como entidad(infectado alpha a quien me choco?)
-		//me choco a un jugador, entonces hago un detectar colisionJugador privado
 		List<Entidad> conj_municiones  = new LinkedList<Entidad>();
 		Rectangle tamanioObj = getEntidadGrafica().getDibujo().getBounds();
 		tamanioObj.translate(- 0,0);
 		tamanioObj.width += 0;
-		for(Entidad ent:municiones)
+		for(Entidad obj:entidad)
 		{
-			if(ent.getEntidadGrafica().getDibujo()!=null)
-				if(ent.getEntidadGrafica().getDibujo().getBounds().intersects(tamanioObj))
-					conj_municiones.add(ent);
+			if(obj.getEntidadGrafica().getDibujo()!=null)
+				if(obj.getEntidadGrafica().getDibujo().getBounds().intersects(tamanioObj))
+					conj_municiones.add(obj);
 		}
-	
-			
 		
 		return conj_municiones;
 		
 	}
 
-
-
+//agrega visitor a el infectado beta y a las entidades que colisiona
 	@Override
-	public void accionar(List<Entidad>municiones) {
+	public void accionar(List<Entidad>entidad) {
 		// TODO Auto-generated method stub
-		List<Entidad> c = detectarColisiones(municiones);
+		List<Entidad> listaEntidad = detectarColisiones(entidad);
 		
 		//solo los veo
-		for (Entidad minimunicion:c)
-			{	minimunicion.accept(visitor);
-				this.accept(minimunicion.getVisitor());	//pero tambien me acepto a mi
-
-
-				//yo como jugador no quiero disparar, disparo solo cuando presiono space
+		for (Entidad obj:listaEntidad)
+			{	obj.accept(visitor);
+				this.accept(obj.getVisitor());	
 			}
 		
 	}
@@ -89,20 +79,10 @@ public class InfectadoBeta extends Infectado {
 	@Override
 	public void atacar(Entidad obj) {
 		// TODO Auto-generated method stub
-		//System.out.println("pium virus");
 		iniciarAtaque(obj);
-		
-		/**ImageIcon imagen = new ImageIcon(this.getClass().getClassLoader().getResource(ruta_dibujo_ataque));		
-		dibujo.setIcon(imagen);
-		if(vida>0) {  // si estoy vivo, ataco
-			if(frecuencia_ataques%velocidad_ataque == 0)
-				iniciarAtaque(obj);
-			frecuencia_ataques++;
-		} else
-			morir();*/
 	}
 
-
+	//crea y guarda los virus que lanza el infectado
 	@Override
 	public void iniciarAtaque(Entidad obj) {
 		// TODO Auto-generated method stub
@@ -119,31 +99,20 @@ public class InfectadoBeta extends Infectado {
 		virusAlpha02.getEntidadGrafica().setX(this.getEntidadGrafica().getDibujo().getX()+15);
 		virusAlpha02.getEntidadGrafica().setY(this.getEntidadGrafica().getDibujo().getY());
 		
-		ListaDeProyectil.ponerBalasEnLista(virusBeta01);
-		ListaDeProyectil.ponerBalasEnLista(virusAlpha01);
-		ListaDeProyectil.ponerBalasEnLista(virusAlpha02);
-		
+		ListaDeProyectil.ponerEnLista(virusBeta01);
+		ListaDeProyectil.ponerEnLista(virusAlpha01);
+		ListaDeProyectil.ponerEnLista(virusAlpha02);
 		
 			
 	}
 
-
+	
 
 	@Override
 	public void AumentarVelocidad() {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
-
-
-
-
-
-
 	
 
 }

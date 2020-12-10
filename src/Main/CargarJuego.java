@@ -6,23 +6,19 @@ public class CargarJuego {
 	private  Loading loading;
 	private Juego nuevojuego;
 
-    public CargarJuego() {
-    	
+    public CargarJuego() {    	
     	   loading= new Loading(14000);
     	   
     }
     
     public Loading getLoading() {
     	return loading;
-    }
-    
-    public Juego getJuego() {
-    	return nuevojuego;
-    }
+    }   
+   
     
     public void crearJuego(int tipoJugador) {
     	
-    	nuevojuego= new Juego(tipoJugador);  
+    	 nuevojuego= new Juego(tipoJugador);  
 	
     	 
     }

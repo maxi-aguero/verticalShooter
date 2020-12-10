@@ -9,18 +9,13 @@ import Entidad.Infectado.Infectado;
 import Entidad.Infectado.InfectadoAlpha;
 import Entidad.Infectado.InfectadoBeta;
 
-//modern1
 public class Nivel2 extends Lista{
 	public Nivel2() {
-		cantidad=new int[3];
-		cantidad[0]=0;
-		cantidad[1]=11;
-		cantidad[2]=33;
+		
 		listaInfectados=new LinkedList<Entidad>();
 		
 		
 		int []numero_armado=new int[14];
-		//[100-140-180-220-260-300-340-380-420-460-500-540-580-620]
 
 		int inicio=100;
 		for (int i=0;i<14;i++)
@@ -29,13 +24,10 @@ public class Nivel2 extends Lista{
 			inicio=inicio+40;
 
 		}
-
 		
 		int []arr=new int[14];
 		arr=crearNumRandomUnico();
-		
-		//numero_armado[arr[x]] es un elemento de [100-140-180-220-260-300-340-380-420-460-500-540-580-620] al azar
-		
+				
 		
 		Infectado infectado01 = new InfectadoAlpha();
 		infectado01.getEntidadGrafica().setX(numero_armado[arr[0]]);
@@ -95,10 +87,6 @@ public class Nivel2 extends Lista{
 		infectado11.setResistencia(0.73);
 
 		
-		
-		
-		
-		
 		listaInfectados.add(infectado01);
 		listaInfectados.add(infectado02);
 		listaInfectados.add(infectado03);
@@ -116,8 +104,7 @@ public class Nivel2 extends Lista{
 		
 	}
 	
-	//crea[0-1-2-3-4-5-6-7-8-9-10-11-12-13-14] en cualquier orden
-	public int[] crearNumRandomUnico(){
+	private int[] crearNumRandomUnico(){
 		int from=0;
 		int to=13;
 		int n= to -from+1;

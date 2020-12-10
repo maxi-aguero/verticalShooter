@@ -21,58 +21,51 @@ import Premio.PremioVelocidad;
 import Premio.PremioVida;
 public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyListener  {
 	private GUI gui;
-	private List<Entidad> obj_eliminar;//Entidades que elimino
+	private List<Entidad> obj_eliminar;//Entidades que elimino 
 
-	private Mapa mapa;
-	private MapaProyectil mapaVirus;	
-	private MapaProyectil mapaMunicion;
+	private Mapa mapa;//guarda infectados y al jugador	
+	private MapaProyectil mapaVirus; 	//lugar donde guardo los virus
+	private MapaProyectil mapaMunicion;//lugar donde guardo las municiones del jugador
+	private MapaProyectil lista_premio;//lugar donde guardo los premios
 
 	private Movimiento movimiento;
 	
 	private int tanda_actual=0;
 	private int nivel_actual=0;	
 
-	private List<List<Entidad>>[] tanda;
+	private List<List<Entidad>>[] nivel;
 	
-	private MapaProyectil lista_premio;
 	private Random rd;
 	
-	public Juego(int tipoJugador){
-	
+	public Juego(int tipoJugador){	
 		rd=new Random();
 		obj_eliminar=new LinkedList<Entidad>();
-
-		mapa = new Mapa();	
-		mapa.getJugador().setTipoJugador(tipoJugador);	
-		
-		tanda=new List[2] ;
-		tanda[0]  = mapa.crearTandaN1();		
-		tanda[1]  = mapa.crearTandaN2();
-		
-		mapaVirus = new MapaProyectil();//virus
-		mapaMunicion= new MapaProyectil() ;
-		lista_premio=new MapaProyectil() ;
-
-		mapa.getJugador().setMapaBalas(mapaMunicion);
+		iniciarMapa();		
 		vinculargui();
-		movimiento = new Movimiento(this);		
-        start(); 
-        movimiento.run();
+		movimiento = new Movimiento();		
+		this.addKeyListener(this);
+		iniciarJugador(tipoJugador); 
+        movimiento.run(this);//se lanza el moviento en juego
 	}
-	
-	
+		
+	private void iniciarMapa() {
+		mapa = new Mapa();		
+		nivel=new List[2] ;//creo dos niveles 
+		nivel[0]  = mapa.crearTandasN1();//a cada nivel le agrego dos tandas
+		nivel[1]  = mapa.crearTandasN2();
+		mapaVirus = new MapaProyectil();
+		lista_premio=new MapaProyectil();
+	}
 
-	private void start() {   	
-        this.addKeyListener(this);
+	private void iniciarJugador(int tipoJugador) {   	
+		mapa.getJugador().setTipoJugador(tipoJugador);	
+		mapaMunicion= new MapaProyectil();
+		mapa.getJugador().setMapaBalas(mapaMunicion);//al jugador le vinculo el lugar donde guarda las municiones 
         if (mapa.getJugador().getTipoJugador()==1)		
     		mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/zakefrente.png");
     	else    	
     		mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/juliefrente.gif");
-    	gui.agregarDibujoJugador(mapa.getJugador());
-
-
-
-
+    	gui.agregarJugador(mapa.getJugador());
     }
 	
 	private void vinculargui() {
@@ -80,7 +73,6 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 		gui.setVisible(true);
 		this.add(gui);		
 		this.setTitle("Zombielandia");		
-        //this.setResizable(false);
         this.setVisible(true);
         this.pack();
         this.setLocationRelativeTo(null);
@@ -92,316 +84,207 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	
 	public void interactuar() {	
 		
-		this.requestFocus();
-
+		this.requestFocus();		
 		
-		
-	if (nivel_actual==2)
-	 {
-		 //eliminar las balas de la gui y los virus
-		
-		 for(Entidad municion: mapaMunicion.getLista())
-		 {
-			 obj_eliminar.add(municion);
-		 }
-		 gui.eliminacion(obj_eliminar);
-		 
-		 for(Entidad virus: mapaVirus.getLista())
-		 {
-			 obj_eliminar.add(virus);
-		 }
-		 gui.eliminacion(obj_eliminar);
-		 //falta eliminar premios 
-
-		 mapaMunicion.getLista().clear();
-		 mapaVirus.getLista().clear();
-		 
-		 for(Entidad objpremio:lista_premio.getLista()) {
-			 obj_eliminar.add(objpremio);
-			//lista de premios
-		}
-		 
-		 obj_eliminar.add(mapa.getJugador());
-		 gui.eliminacion(obj_eliminar);
-
-		 
-		 //gane todos los niveles	
-		 ganoJuego();
-
-		
-
-			
-	 }
-	 
-	 else 
-	 {
-		 if (tanda_actual==2)
-			 { 	tanda_actual=0;
-			 	nivel_actual=nivel_actual+1;
-			 	//aca mostrar tanda 2
-			 	
-			 }
-		 
-		 
+		if (nivel_actual==2)
+		 		 ganoJuego();
+	
 		 else 
 		 {
-				if(tanda[nivel_actual].get(tanda_actual).size()==0)
-						{
+			 if (tanda_actual==2)
+				 { 	tanda_actual=0;
+				 	nivel_actual=nivel_actual+1;				 	
+				 }			 
+			 
+			 else 
+			 {
+				
+				 
+					if(nivel[nivel_actual].get(tanda_actual).size()==0)//ESTO SIGNIFICA QUE GANE UNA TANDA
+					  {						
 							if (( (tanda_actual==1)&&(nivel_actual==0))||( (tanda_actual==0)&&(nivel_actual==1)) ||( (tanda_actual==0)&&(nivel_actual==0)))
-							{
-							this.setVisible(false);
-
-							WindowStage ventana_stage = new WindowStage(nivel_actual,tanda_actual);
-					 		ventana_stage.setVisible(true);
-					 		
-					 		try {
-					 			Thread.sleep(4500);
-					 		} catch (InterruptedException e) {
-					 			e.printStackTrace();
-					 		}
-					 	
-					 		ventana_stage.setVisible(false);
-							this.setVisible(true);
-
-					 		}
+								{
+									//Muestro un frame que pase de tanda	
+									this.setVisible(false);	
+									WindowStage ventana_stage = new WindowStage(nivel_actual,tanda_actual);
+							 		ventana_stage.setVisible(true);
+							 		
+							 		try {
+							 			Thread.sleep(4500);
+							 		} catch (InterruptedException e) {
+							 			e.printStackTrace();
+							 		}
+							 	
+							 		ventana_stage.setVisible(false);
+									this.setVisible(true);
+		
+							 	}
 							tanda_actual=tanda_actual+1;
-						}
-				 
-			
-				if(tanda_actual<2)
-				{
-					
-					if(mapa.getJugador().estaVivo()==false)
+					  }
+					 
+					 
+					if(tanda_actual<2)
 					{
 						
-						for(Entidad municion: mapaMunicion.getLista())
-						 {
-							 obj_eliminar.add(municion);
-						 }
-						 gui.eliminacion(obj_eliminar);
-						 
-						 for(Entidad objpremio:lista_premio.getLista()) {
-							 obj_eliminar.add(objpremio);
-							//lista de premios
-						}
-						 gui.eliminacion(obj_eliminar);
-
-						 for(Entidad virus: mapaVirus.getLista())
-						 {
-							 obj_eliminar.add(virus);
-							 
-						 }
-						 gui.eliminacion(obj_eliminar);
-						 
-						 for(Entidad infectados :  tanda[nivel_actual].get(tanda_actual)) 
-						 {		
-							 obj_eliminar.add(infectados);
-						 }
-						 gui.eliminacion(obj_eliminar);
-
-						 obj_eliminar.add(mapa.getJugador());
-						 gui.eliminacion(obj_eliminar);
+						if(mapa.getJugador().estaVivo()==false)//SI EL JUGADOR ESTA MUERTO
+							 perdiJuego();
 						
 						
 						
-						perdiJuego();
-					}
-					
-					List<Entidad> lista_m = mapa.getJugador().detectarColisiones(lista_premio.getLista());
-					if (lista_m.size()!=0)
-					{
-					
-						//si hay una colision, acciono, luego elimino este premio
-						//acciono
-						mapa.getJugador().accionar(lista_premio.getLista());
-						
-						for(Entidad premio_m:lista_m)
+						List<Entidad> lista_m = mapa.getJugador().detectarColisiones(lista_premio.getLista());
+						if (lista_m.size()!=0)//conjunto de premios que tengo en juego
 						{
-							obj_eliminar.add(premio_m);
-							lista_premio.getLista().remove(premio_m);
-						}
-						gui.eliminacion(obj_eliminar);
-
-						
-					}
-					
-					for(int j=0;j< tanda[nivel_actual].get(tanda_actual).size();j++) {		
-						tanda[nivel_actual].get(tanda_actual).get(j).AumentarVelocidad();
-						
-
-						
-					}
-					
-					
-					 boolean enc=false;
-					for(int j=0;enc==false&&j< tanda[nivel_actual].get(tanda_actual).size();j++) {		
-						
-						
-						
-						if (tanda[nivel_actual].get(tanda_actual).get(j).estaVivo()==false)
-								{
-								//"crear premios al azar"
-								enc=true;
-								int num_premio=rd.nextInt(4);
-								Premio premio=null;
-								if (num_premio==0)
-								{
-									premio= new PremioVida(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
-
-								}
-								if (num_premio==1)
-								
-								{	
-									premio= new PremioSuperArma(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
-
-								}
-								
-								if (num_premio==2)
-									
-								{	
-
-									premio= new PremioVelocidad(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
-
-								}
-																
-								if (num_premio==3)
-									
-								{	
-									
-									
-									premio= new PremioDetener(tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),tanda[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
-									 
-									 mapa.getJugador().setelemQuietos(tanda[nivel_actual].get(tanda_actual));
-									 
-									
-									 
-								}
-								
-								 obj_eliminar.add(tanda[nivel_actual].get(tanda_actual).get(j));
-									
-								
-
-								tanda[nivel_actual].get(tanda_actual).remove(j);
-   
-								gui.agregarDibujo(premio);
-								lista_premio.ponerBalasEnLista(premio);
-								
-								
-//							
+												
+							mapa.getJugador().accionar(lista_premio.getLista()); //jugador acciona a premios porque lo acabo de agarrrar
+														
+							//si ya agarre el premio, al premio lo elimino de la gui
+							for(Entidad premio_m:lista_m)
+							{
+								obj_eliminar.add(premio_m);
+								lista_premio.getLista().remove(premio_m);
+							}
+							gui.eliminarEntidades(obj_eliminar);
+	
 							
-								
-								
-								
-								
-
-								
-								
-								}
-					 }	
-					gui.eliminacion(obj_eliminar);
-
-					for(Entidad objpremio:lista_premio.getLista()) {
-							//pero tambien me acepto a mi
-
-						objpremio.getDireccion().setDireccion(objpremio.getVelocidad()) ;			
-						objpremio.mover(objpremio.getDireccion());
+						}
 						
-						//lista de premios
-
+						//si es infectado alpha y si tiene menos de 20% de vida, le aumento la velociodad
+						for(int j=0;j< nivel[nivel_actual].get(tanda_actual).size();j++) {		
+							nivel[nivel_actual].get(tanda_actual).get(j).AumentarVelocidad();						
+						}
 						
-					}
-					
+						
+						//SI ENCUENTRO A UN INFECTADO QUE SE MURIO
+						boolean enc=false;
+						for(int j=0;enc==false&&j< nivel[nivel_actual].get(tanda_actual).size();j++) {						
+							
+							if (nivel[nivel_actual].get(tanda_actual).get(j).estaVivo()==false)//SI UN INFECTADO ESTA MUERTO
+							  {
+									enc=true;
+									int num_premio=rd.nextInt(4);//Otorgo un premio al azar
+									Premio premio=null;
+									if (num_premio==0)
+									{
+										premio= new PremioVida(nivel[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),nivel[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
+	
+									}
+									if (num_premio==1)
+									
+									{	
+										premio= new PremioSuperArma(nivel[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),nivel[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
+	
+									}
+									
+									if (num_premio==2)
 										
-				
-					
-					for(int i=0;i< mapaMunicion.getLista().size()-1;i++) 		
-					{
-						//de municiones de jugador
-						mapaMunicion.getLista().get(i).mover(mapaMunicion.getLista().get(i).getDireccion());
-						
-					}
-					
-					
-					
-					
-					
-					//elimino las municiones
-					for(int i=0;i< mapaMunicion.getLista().size();i++) { 		
-						if (mapaMunicion.getLista().get(i).getEntidadGrafica().getDibujo().getY()==0)
-								obj_eliminar.add(mapaMunicion.getLista().get(i));
-					 }
-						
-						
-		
-				
-					//hacer que las virus se muevan
-				
-					gui.estadoVida(mapa.getJugador().getVitalactual());
-			
-					
-					for(Entidad virus : mapaVirus.getLista()) 			
-					{
-						if (virus.getEntidadGrafica().getDibujo()==null)
-							gui.agregarDibujo(virus);
-						virus.mover(virus.getDireccion());
-					}
-						
-					
-					
-					
-					for(Entidad infect : tanda[nivel_actual].get(tanda_actual))		
-					{
-						
-						infect.setMapaBalas(mapaVirus);	
-					}
-					//tandas_nivel1[nivel_actual].get(tanda_actual).clear();
-						
-			
-
-
-					mapa.getJugador().accionar(tanda[nivel_actual].get(tanda_actual));
-					mapa.getJugador().accionar(mapaVirus.getLista());
-
-					
-				
-						
-				
-					
-					for(Entidad obj :  tanda[nivel_actual].get(tanda_actual)) {		
-						
-					 //cada infectado con lista municion
-						if (obj.getEntidadGrafica().getDibujo()==null)
-								{gui.agregarDibujo(obj);
-								 
+									{	
+	
+										premio= new PremioVelocidad(nivel[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),nivel[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
+	
+									}
+																	
+									if (num_premio==3)
+										
+									{					
+										premio= new PremioDetener(nivel[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getX(),nivel[nivel_actual].get(tanda_actual).get(j).getEntidadGrafica().getDibujo().getY());
+										//a jugador le aviso que jugadores cuales infectados son los actuales y los setea quietos por un tiempo 
+										mapa.getJugador().setelemQuietos(nivel[nivel_actual].get(tanda_actual));
+										 
+									}
+									//elimino de la gui al infectado muerto
+									obj_eliminar.add(nivel[nivel_actual].get(tanda_actual).get(j));				
+									//elimino al infectado muerto de la tanda
+									nivel[nivel_actual].get(tanda_actual).remove(j);
+	   
+									
+									gui.agregarEntidad(premio);
+									lista_premio.ponerEnLista(premio);
+	
+									
+									
 								}
-						obj.accionar(mapaMunicion.getLista());	
-						obj.mover(obj.getDireccion());//muevo a infectado
+						 }//end del for
+						
+						gui.eliminarEntidades(obj_eliminar);
+	
+						
+						
+						//a cada premio le asigno movimiento
+						for(Entidad objpremio:lista_premio.getLista()) {	
+							objpremio.getDireccion().setDireccion(objpremio.getVelocidad()) ;			
+							objpremio.mover(objpremio.getDireccion());
+						}
+						
+											
+					
+						//a cada municion del jugador le asigno movimiento
+						for(int i=0;i< mapaMunicion.getLista().size()-1;i++) 		
+						{
+							mapaMunicion.getLista().get(i).mover(mapaMunicion.getLista().get(i).getDireccion());
+							
+						}
+						
+						
+						//a cada municion del jugador que llegue a la posicion superior la elimino
+						for(int i=0;i< mapaMunicion.getLista().size();i++) { 		
+							if (mapaMunicion.getLista().get(i).getEntidadGrafica().getDibujo().getY()==0)
+									obj_eliminar.add(mapaMunicion.getLista().get(i));
+						}				
+			
+					
+						//muestra el estado actual de la vida del jugador
+						gui.estadoVida(mapa.getJugador().getVitalactual());
+				
+						//a cada virus le asigno movimiento
+						for(Entidad virus : mapaVirus.getLista()) 			
+						{
+							if (virus.getEntidadGrafica().getDibujo()==null)
+								gui.agregarEntidad(virus);//agrego el virus por a la gui 
+							virus.mover(virus.getDireccion());
+						}
+							
+						
+						//le asigno  a los infectados un lugar para que guarde los virus que lanza
+						for(Entidad infect : nivel[nivel_actual].get(tanda_actual))		
+						{
+							infect.setMapaBalas(mapaVirus);	
+						}
+							
+				
+	
+						//el jugador acciona con los infectados y los virus
+						mapa.getJugador().accionar(nivel[nivel_actual].get(tanda_actual));
+						mapa.getJugador().accionar(mapaVirus.getLista());
+	
+						
+					
+							
+					
+						//para cada infectado si lo agrego a gui, y lo acciono con el jugador y le doy un movimiento
+						for(Entidad infectado :  nivel[nivel_actual].get(tanda_actual)) {		
+							
+							if (infectado.getEntidadGrafica().getDibujo()==null)
+									{gui.agregarEntidad(infectado);
+									 
+									}
+							infectado.accionar(mapaMunicion.getLista());	
+							infectado.mover(infectado.getDireccion());
+						}
+						
+						
 					}
+					 
+										
+						
 					
 					
-				}
-				 
-					
-				
-				
-				
 			
-					
-				
-			
-				
-				
-					
-					
-				
-				
+			 }
+						
 		
+		
+				
 		 }
-					
-	
-	
-			
-	 }
 		
 	
 	}	
@@ -422,7 +305,6 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 					mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/julieizquierda.gif");
 
 		        gui.setDibujoJugador(mapa.getJugador().getEntidadGrafica().getImagen());
-				//mapa.getJugador().setVelocidad(MovimientoHorizontal.IZQUIERDA );
 				int nuevavelocidad=mapa.getJugador().getVelocidad();
 		        if (nuevavelocidad<0)
 		        	nuevavelocidad=nuevavelocidad*(-1);
@@ -442,7 +324,6 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 		    		mapa.getJugador().getEntidadGrafica().setImagen("img/jugador/juliederecha.gif");
 				
 				gui.setDibujoJugador(mapa.getJugador().getEntidadGrafica().getImagen());	
-				//mapa.getJugador().setVelocidad(MovimientoHorizontal.DERECHA);
 				
 				int nuevavelocidad=mapa.getJugador().getVelocidad();
 		        if (nuevavelocidad> 0)
@@ -474,16 +355,16 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 						if(mapa.getJugador().getTipoArma()!=0)						
 						{				
 							disparo.getEntidadGrafica().setImagen("img/jugador/ball.png");
-							gui.agregarDibujo(disparo);				
-							mapaMunicion.ponerBalasEnLista(disparo);
+							gui.agregarEntidad(disparo);				
+							mapaMunicion.ponerEnLista(disparo);
 							disparo.setVelocidad(-50);
 							disparo.getDireccion().setDireccion(disparo.getVelocidad()) ;
 	
 						}
 						else
 						{
-							gui.agregarDibujo(disparo);				
-							mapaMunicion.ponerBalasEnLista(disparo);
+							gui.agregarEntidad(disparo);				
+							mapaMunicion.ponerEnLista(disparo);
 						}
 				 }
 									
@@ -514,11 +395,64 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 	
 	
 	private void ganoJuego() {
+		//Elimino todas las entidades que quedaron en juego
+		
+		for(Entidad municion: mapaMunicion.getLista())
+		 {
+			 obj_eliminar.add(municion);
+		 }
+		gui.eliminarEntidades(obj_eliminar);
+		 
+		 for(Entidad virus: mapaVirus.getLista())
+		 {
+			 obj_eliminar.add(virus);
+		 }
+		gui.eliminarEntidades(obj_eliminar);
+
+		mapaMunicion.getLista().clear();
+		mapaVirus.getLista().clear();
+		 
+		for(Entidad objpremio:lista_premio.getLista()) {
+			 obj_eliminar.add(objpremio);
+		}
+		 
+		obj_eliminar.add(mapa.getJugador());
+		gui.eliminarEntidades(obj_eliminar);
+
+		
 		movimiento.setDeboMover(false);
-		gui.gameWin(this);		
+		gui.gameWin(this);	//gui muestra que gane el juego 	
 	}
 	
 	private void perdiJuego() {
+		
+		for(Entidad municion: mapaMunicion.getLista())
+		 {
+			 obj_eliminar.add(municion);
+		 }
+		gui.eliminarEntidades(obj_eliminar);
+		 
+		for(Entidad objpremio:lista_premio.getLista()) {
+			 obj_eliminar.add(objpremio);
+		}
+		gui.eliminarEntidades(obj_eliminar);
+
+		for(Entidad virus: mapaVirus.getLista())
+		 {
+			 obj_eliminar.add(virus);
+			 
+		 }
+		gui.eliminarEntidades(obj_eliminar);
+		 
+		for(Entidad infectados :  nivel[nivel_actual].get(tanda_actual)) 
+		 {		
+			 obj_eliminar.add(infectados);
+		 }
+		gui.eliminarEntidades(obj_eliminar);
+
+		obj_eliminar.add(mapa.getJugador());
+		gui.eliminarEntidades(obj_eliminar);
+		
 		movimiento.setDeboMover(false);
 		gui.gameYouLose(this,mapa.getJugador().getTipoJugador());
 

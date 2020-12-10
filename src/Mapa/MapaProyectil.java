@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MapaProyectil {
-	protected List<Entidad> conj_proyectil;//guarda tanto virus y proyectiles de arma sanitaria
+	protected List<Entidad> conj_proyectil;//guarda tanto virus, proyectiles de arma sanitaria y premio
 	
 	
 	public  MapaProyectil() {
@@ -16,7 +16,7 @@ public class MapaProyectil {
 		return conj_proyectil;
 	}
 	
-	public void ponerBalasEnLista(Entidad obj) {
+	public void ponerEnLista(Entidad obj) {
 		conj_proyectil.add(obj);
 	}
 	

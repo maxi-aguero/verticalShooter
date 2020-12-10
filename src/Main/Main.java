@@ -1,9 +1,8 @@
- package Main;
+    package Main;
 
 
 public class Main {
 	  private static WindowInicio ventana_inicio;
-	  private static WindowDialogos ventana_dialogos;
 	 
 	  public static void main(String args []){
 		 
@@ -13,10 +12,9 @@ public class Main {
 
 	      while(miCargarJuego==null) {
 	    	  
-	    	  	 ventana_dialogos = ventana_inicio.getDialogos();
-	        	 if(ventana_dialogos!=null)
+	        	 if(ventana_inicio.getWindowDialogos()!=null)
 	        	 {
-	        		 miCargarJuego=ventana_dialogos.getCargarJuego();
+	        		 miCargarJuego=ventana_inicio.getWindowDialogos().getCargarJuego();
 	        		 
 	        	 }
 	        	 
@@ -24,7 +22,7 @@ public class Main {
 	        	 { 		       		  	
 	        		Loading load = miCargarJuego.getLoading();
 	        		load.mostrarLoading();	        		 
-	        		miCargarJuego.crearJuego(ventana_dialogos.getConfigJugador()); 
+	        		miCargarJuego.crearJuego(ventana_inicio.getWindowDialogos().getConfigJugador()); 
 
 		         }
 	        	 

@@ -13,16 +13,7 @@ public abstract class Infectado extends Personaje   {
 		
 	}	
 	
-
- 
-	
-	
-	
-	
-	
-	
-	//public boolean interactuar() {		}
-
+	//muevo al infectado en una direccion 
 	public void mover(EstrategiaMovimiento d) {
 		// TODO Auto-generated method stub
 		d.mover();

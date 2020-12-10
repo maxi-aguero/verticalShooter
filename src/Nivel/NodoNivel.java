@@ -27,7 +27,6 @@ public class NodoNivel {
 		
 	}
 	
-	//get primer nivel
 	
 	public NodoNivel getPrimerNivel() {
 		return sig;

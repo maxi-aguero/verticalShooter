@@ -6,20 +6,14 @@ import java.awt.Image;
 
 import javax.swing.*;
 
-import Juego.AudioPlayer;
 
 public class WindowStage extends JFrame  {
 	
-	private Thread audio;
 
 	public WindowStage(int nivel,int tanda) {	
         init(nivel,tanda);
 	}
-	
-	
-	
-
-	
+		
 	private void init(int n,int t) {
 	    JPanel panel = new JPanel();
     	
@@ -68,9 +62,6 @@ public class WindowStage extends JFrame  {
 	     
 		panel.add(fondo);
 		panel.repaint();
-		AudioPlayer ap = new AudioPlayer("src/img/juego/changedstage.mp3");
-		audio = new Thread(ap);
-		audio.start();
     	
     
     }

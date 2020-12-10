@@ -24,7 +24,7 @@ public class InfectadoAlpha extends Infectado {
 	}
 
 
-
+	//condicion de vida del infectado
 	@Override
 	public boolean estaVivo() {
 		// TODO Auto-generated method stub
@@ -32,10 +32,7 @@ public class InfectadoAlpha extends Infectado {
 	}
 
 
-
-
-
-
+	//el visitor v visita al infectado alpha
 	@Override
 	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
@@ -44,20 +41,19 @@ public class InfectadoAlpha extends Infectado {
 
 
 
-	
+	//El infectado alpha detecta con quienes colisiona de la lista de entidad
 	@Override
-	public List<Entidad> detectarColisiones(List<Entidad>municiones) {
+	public List<Entidad> detectarColisiones(List<Entidad>entidad) {
 		// TODO Auto-generated method stub
-
 		List<Entidad> conj_municiones  = new LinkedList<Entidad>();
 		Rectangle tamanioObj = getEntidadGrafica().getDibujo().getBounds();
 		tamanioObj.translate(- 0,0);
 		tamanioObj.width += 0;
-		for(Entidad ent:municiones)
+		for(Entidad obj:entidad)
 		{
-			if(ent.getEntidadGrafica().getDibujo()!=null)
-				if(ent.getEntidadGrafica().getDibujo().getBounds().intersects(tamanioObj))
-					conj_municiones.add(ent);
+			if(obj.getEntidadGrafica().getDibujo()!=null)
+				if(obj.getEntidadGrafica().getDibujo().getBounds().intersects(tamanioObj))
+					conj_municiones.add(obj);
 		}
 	
 			
@@ -67,18 +63,16 @@ public class InfectadoAlpha extends Infectado {
 	}
 
 
-
+//agrega visitor a infectado alpha y a las entidades que colisiona
 	@Override
-	public void accionar(List<Entidad>municiones) {
+	public void accionar(List<Entidad>entidad) {
 		// TODO Auto-generated method stub
-		List<Entidad> c = detectarColisiones(municiones);
+		List<Entidad> listaEntidad = detectarColisiones(entidad);
 		
-		for (Entidad minimunicion:c)
-			{	minimunicion.accept(visitor);
-				this.accept(minimunicion.getVisitor());	
-
-
-				//yo como jugador no quiero disparar, disparo solo cuando presiono space
+		for (Entidad obj:listaEntidad)
+			{	obj.accept(visitor);
+				this.accept(obj.getVisitor());	
+		
 			}
 		
 	}
@@ -88,20 +82,11 @@ public class InfectadoAlpha extends Infectado {
 	@Override
 	public void atacar(Entidad obj) {
 		// TODO Auto-generated method stub
-		//System.out.println("pium virus");
 		iniciarAtaque(obj);
 		
-		/**ImageIcon imagen = new ImageIcon(this.getClass().getClassLoader().getResource(ruta_dibujo_ataque));		
-		dibujo.setIcon(imagen);
-		if(vida>0) {  // si estoy vivo, ataco
-			if(frecuencia_ataques%velocidad_ataque == 0)
-				iniciarAtaque(obj);
-			frecuencia_ataques++;
-		} else
-			morir();*/
 	}
 
-
+//crea y guarda los virus que lanza el infectado
 	@Override
 	public void iniciarAtaque(Entidad obj) {
 		// TODO Auto-generated method stub
@@ -119,25 +104,20 @@ public class InfectadoAlpha extends Infectado {
 		virusAlpha03.getEntidadGrafica().setY(this.getEntidadGrafica().getDibujo().getY());
 		
 		
-		ListaDeProyectil.ponerBalasEnLista(virusAlpha01);
-		ListaDeProyectil.ponerBalasEnLista(virusAlpha02);
-		ListaDeProyectil.ponerBalasEnLista(virusAlpha03);
+		ListaDeProyectil.ponerEnLista(virusAlpha01);
+		ListaDeProyectil.ponerEnLista(virusAlpha02);
+		ListaDeProyectil.ponerEnLista(virusAlpha03);
 		
 		
 	}
 
 
-
+//aumenta la velocidad del infecado alpha cuando su vida es menor del 20%
 	@Override
 	public void AumentarVelocidad() {
 		// TODO Auto-generated method stub
-		if (cargaViralActual<20)
-			{
-			direccion.setDireccion(8);										 
- 			//mover(direccion);
-			
-			}
-		
+		if (cargaViralActual<20)			
+			direccion.setDireccion(8);	
 	}
 
 
