@@ -1,0 +1,3 @@
+Aqui esta el link que lleva a los dos diagramas uml , tanto el extendido , como el reducio
+https://app.diagrams.net/#G1YPb2GLuV0P191yUYP5p08IaGg6Q7iQJ2
+Trate de convertilo en pdf, pero lo guardaba en varias hojas, un mismo diagrama
