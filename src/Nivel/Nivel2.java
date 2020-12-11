@@ -6,14 +6,15 @@ import java.util.Random;
 
 import Entidad.Entidad;
 import Entidad.Infectado.Infectado;
-import Entidad.Infectado.InfectadoAlpha;
-import Entidad.Infectado.InfectadoBeta;
 
 public class Nivel2 extends Lista{
 	public Nivel2() {
 		
 		listaInfectados=new LinkedList<Entidad>();
 		
+		miFabrica=new Factory[2];
+		miFabrica[0]=new FactoryAlpha();
+		miFabrica[1]=new FactoryBeta();
 		
 		int []numero_armado=new int[14];
 
@@ -29,47 +30,47 @@ public class Nivel2 extends Lista{
 		arr=crearNumRandomUnico();
 				
 		
-		Infectado infectado01 = new InfectadoAlpha();
+		Infectado infectado01 = miFabrica[0].getAlpha();
 		infectado01.getEntidadGrafica().setX(numero_armado[arr[0]]);
 		infectado01.getEntidadGrafica().setY(150);
 		
-		Infectado infectado02 = new InfectadoBeta();		
+		Infectado infectado02 = miFabrica[1].getBeta();		
 		infectado02.getEntidadGrafica().setX(numero_armado[arr[1]]);
 		infectado02.getEntidadGrafica().setY(150);
 		
-		Infectado infectado03 = new InfectadoBeta();
+		Infectado infectado03 = miFabrica[1].getBeta();
 		infectado03.getEntidadGrafica().setX(numero_armado[arr[2]]);
 		infectado03.getEntidadGrafica().setY(150);
 		
-		Infectado infectado04 = new InfectadoBeta();
+		Infectado infectado04 = miFabrica[1].getBeta();
 		infectado04.getEntidadGrafica().setX(numero_armado[arr[3]]);
 		infectado04.getEntidadGrafica().setY(150);
 		
-		Infectado infectado05 = new InfectadoBeta();
+		Infectado infectado05 = miFabrica[1].getBeta();
 		infectado05.getEntidadGrafica().setX(numero_armado[arr[4]]);
 		infectado05.getEntidadGrafica().setY(150);
 		
-		Infectado infectado06 = new InfectadoAlpha();
+		Infectado infectado06 = miFabrica[0].getAlpha();
 		infectado06.getEntidadGrafica().setX(numero_armado[arr[5]]);
 		infectado06.getEntidadGrafica().setY(150);
 		
-		Infectado infectado07 = new InfectadoBeta();
+		Infectado infectado07 = miFabrica[1].getBeta();
 		infectado07.getEntidadGrafica().setX(numero_armado[arr[6]]);
 		infectado07.getEntidadGrafica().setY(150);
 		
-		Infectado infectado08 = new InfectadoBeta();
+		Infectado infectado08 = miFabrica[1].getBeta();
 		infectado08.getEntidadGrafica().setX(numero_armado[arr[7]]);
 		infectado08.getEntidadGrafica().setY(150);
 		
-		Infectado infectado09 = new InfectadoBeta();
+		Infectado infectado09 = miFabrica[1].getBeta();
 		infectado09.getEntidadGrafica().setX(numero_armado[arr[8]]);
 		infectado09.getEntidadGrafica().setY(150);
 		
-		Infectado infectado10 = new InfectadoBeta();
+		Infectado infectado10 = miFabrica[1].getBeta();
 		infectado10.getEntidadGrafica().setX(numero_armado[arr[9]]);
 		infectado10.getEntidadGrafica().setY(150);
 		
-		Infectado infectado11= new InfectadoBeta();
+		Infectado infectado11= miFabrica[1].getBeta();
 		infectado11.getEntidadGrafica().setX(numero_armado[arr[9]]);
 		infectado11.getEntidadGrafica().setY(150);
 	

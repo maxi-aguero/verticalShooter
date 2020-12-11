@@ -8,12 +8,12 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
-public class WindowDialogos extends JFrame  {
+public class WindowDialogo extends JFrame  {
 	
 	private int tipoJugador;
 	private CargarJuego cargarJuego;
 
-	public WindowDialogos() {	
+	public WindowDialogo() {	
 		tipoJugador=0;
         init();
 	}
