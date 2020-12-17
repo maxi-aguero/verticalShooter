@@ -47,10 +47,7 @@ public class PremioSuperArma extends Premio {
 		
 	}
 	
-	public void cambiarConfig(Jugador j) {
-		j.settipoArma(1);//cambia velocidad del disparo
-		
-	}
+	
 
 	@Override
 	public void iniciarAtaque(Entidad obj) {

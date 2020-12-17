@@ -17,7 +17,7 @@ public class Loading extends JWindow {
 
     public void mostrarLoading() {
         setBounds(257,216,509,335);
-        
+        //this.setVisible(true);
         ImageIcon imagen = new ImageIcon(getClass().getClassLoader().getResource("img/juego/loading.png"));
         JLabel label = new JLabel(imagen,SwingConstants.CENTER);
         label = new JLabel();

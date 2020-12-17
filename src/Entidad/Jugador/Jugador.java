@@ -6,6 +6,8 @@ import java.util.List;
 
 import Entidad.Entidad;
 import Entidad.Personaje;
+import Entidad.Proyectil.Arma;
+import Entidad.Proyectil.DisparoJugador;
 import EstrategiaMovimiento.EstrategiaMovimiento;
 import EstrategiaMovimiento.MovimientoHorizontal;
 import Premio.PremioDetener;
@@ -16,6 +18,9 @@ import Visitor.VisitorJugador;
 
 public class Jugador extends Personaje {
 	protected int tipoArma;
+	protected Arma arma;
+	protected DisparoJugador disparoActual=null;
+	
 	protected int tipoJugador;
 	protected List<Entidad> elemQuietos;
 	
@@ -28,7 +33,6 @@ public class Jugador extends Personaje {
 		rango_x=35;
 		velocidad=5;
 		tipoArma=0;
-
 	}
 	
 	public int getTipoArma() {
@@ -59,11 +63,6 @@ public class Jugador extends Personaje {
 		d.mover();
 	}
 
-//setea la carga viral actual en 0, cuando ha agarrado un premio vida	
-	public void cogerPremioVida(Entidad obj) {
-		// TODO Auto-generated method stub
-		cargaViralActual=0;		
-	}
 //cuando ha agarrado un premio SuperArma setea el arma en tipo 1( que es una SuperArma)
 	public void cogerPremioSuperArma(PremioSuperArma obj) {
 		// TODO Auto-generated method stub
@@ -124,28 +123,7 @@ public class Jugador extends Personaje {
 			}
 	}
 	
-	//setea la velocidad de Jugador si ha agarrado un PremioVelocidad
-	public void cogerPremioVelocidad(PremioVelocidad p) {		 
-
-         Thread thread = new Thread() {
-             @SuppressWarnings("deprecation")
-          public void run() {
-                velocidad=velocidad+20;
-                try {
-                   this.sleep(5000);
-                   velocidad=5;
-
-              } catch (InterruptedException e) {
-                  // TODO Auto-generated catch block
-                  e.printStackTrace();
-              }
-
-             }
-
-         };
-         thread.start();
-
-    }
+	
 	
 	
 	//setea la velocidad de una lista de Entidad si ha agarrado un PremioDetener
@@ -153,53 +131,43 @@ public class Jugador extends Personaje {
 		elemQuietos=listaEntidad;
 	}
 	
-	public void cogerPremioQuieto(PremioDetener p) {
-		 
-		Thread thread = new Thread() {
-            @SuppressWarnings("deprecation")
-         public void run() {
-
-        		for(Entidad ent:elemQuietos)	
-        		 {
-        			 //a todos los infectados de la tanda actual seteo la velocidad en 0.
-        			 ent.getDireccion().setDireccion(0);										 
-        			 ent.mover(ent.getDireccion());
-        			 ent.getEntidadGrafica().getDibujo().setLocation(ent.getEntidadGrafica().getX(),ent.getEntidadGrafica().getY());
-
-        		 }
-
-               try {
-                  this.sleep(5000);
-
-          		for(Entidad ent:elemQuietos)	
-          		 {
-          			 ent.getDireccion().setDireccion(5);										 
-          			 ent.mover(ent.getDireccion());
-          		 }
-
-             } catch (InterruptedException e) {
-                 // TODO Auto-generated catch block
-                 e.printStackTrace();
-             }
-
-            }
-
-        };
-        thread.start();
-		
-		
-		
-		
-		
-	}
+	public List<Entidad> getelemQuietos(){
+		return elemQuietos;
+	}	
+	
+	
 	@Override
 	public void AumentarVelocidad() {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
 	
+	public void setDisparoJugador(DisparoJugador d) {
+		disparoActual=d;
+	}
+	
+	public DisparoJugador getDisparoJugador() {
+		return clone(disparoActual);
+		
+	}
+
+	public void setArma(Arma a) {
+		arma = a;
+		if(disparoActual==null) {
+		  disparoActual=a.crearArmaBasica(this.getEntidadGrafica().getDibujo().getX(),this.getEntidadGrafica().getDibujo().getY());
+		}
+	}
+	
+	public Arma getArma () {
+		return arma;
+	}
+	
+	public DisparoJugador clone(DisparoJugador d) {
+		DisparoJugador salida= new DisparoJugador(this.getEntidadGrafica().getDibujo().getX(),this.getEntidadGrafica().getDibujo().getY());
+		salida.setVelocidad(d.getVelocidad());
+		salida.getEntidadGrafica().setImagen(d.getEntidadGrafica().getImagen());
+	
+		return salida;
+	}
 
 }

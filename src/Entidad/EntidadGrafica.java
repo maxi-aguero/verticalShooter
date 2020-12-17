@@ -22,8 +22,10 @@ public class EntidadGrafica {
 	}
 	
 	public void setImagen(String s) {
-		 ruta_dibujo=s;
+		 ruta_dibujo=""+s;
 	}
+	
+	
 	
 	public void setX(int x) {
 		this.coorInicialx=x;

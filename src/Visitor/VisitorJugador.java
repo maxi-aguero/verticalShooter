@@ -8,6 +8,7 @@ import Premio.PremioDetener;
 import Premio.PremioSuperArma;
 import Premio.PremioVelocidad;
 import Premio.PremioVida;
+import Entidad.Entidad;
 import Entidad.Infectado.InfectadoAlpha;
 import Entidad.Infectado.InfectadoBeta;
 
@@ -39,7 +40,7 @@ public class VisitorJugador extends Visitor {
 	public void visitarPremioVida(PremioVida pv) {
 		// TODO Auto-generated method stub
 		//coger el premio
-		j.cogerPremioVida(pv);
+		j.setVitalactual(0);
 
 	}
 
@@ -62,25 +63,72 @@ public class VisitorJugador extends Visitor {
 		
 	}
 
-	@Override
+	
 	public void visitarPremioSuperArma(PremioSuperArma psa) {
 		// TODO Auto-generated method stub
+		System.out.println("tengo un premio de suerp arma");
+		j.getDisparoJugador().getEntidadGrafica().getDibujo().repaint();
+		j.getDisparoJugador().getEntidadGrafica().setImagen("img/jugador/ball.png");	
+		j.setVelocidad(-50);
+		j.getDisparoJugador().getDireccion().setDireccion(j.getDisparoJugador().getVelocidad());
 		
-		j.cogerPremioSuperArma(psa);
-
 	}
 
-	@Override
+	
 	public void visitarPremioVelocidad(PremioVelocidad pv) {
-		// TODO Auto-generated method stub
 		
-		j.cogerPremioVelocidad(pv);
+        Thread thread = new Thread() {
+            @SuppressWarnings("deprecation")
+         public void run() {
+               j.setVelocidad(j.getVelocidad()+20);
+               try {
+                  this.sleep(5000);
+                  j.setVelocidad(5);
+
+             } catch (InterruptedException e) {
+                 // TODO Auto-generated catch block
+                 e.printStackTrace();
+             }
+
+            }
+
+        };
+        thread.start();
 	}
 
 	@Override
 	public void visitarPremioDetener(PremioDetener p) {
-		// TODO Auto-generated method stub
-		j.cogerPremioQuieto(p);
+		Thread thread = new Thread() {
+            @SuppressWarnings("deprecation")
+         public void run() {
+
+        		for(Entidad ent:j.getelemQuietos())	
+        		 {
+        			 //a todos los infectados de la tanda actual seteo la velocidad en 0.
+        			 ent.getDireccion().setDireccion(0);										 
+        			 ent.mover(ent.getDireccion());
+        			 ent.getEntidadGrafica().getDibujo().setLocation(ent.getEntidadGrafica().getX(),ent.getEntidadGrafica().getY());
+
+        		 }
+
+               try {
+                  this.sleep(5000);
+
+          		for(Entidad ent:j.getelemQuietos())	
+          		 {
+          			 ent.getDireccion().setDireccion(5);										 
+          			 ent.mover(ent.getDireccion());
+          		 }
+
+             } catch (InterruptedException e) {
+                 // TODO Auto-generated catch block
+                 e.printStackTrace();
+             }
+
+            }
+
+        };
+        thread.start();
 	}
 
 	

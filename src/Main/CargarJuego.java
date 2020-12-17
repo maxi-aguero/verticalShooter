@@ -7,7 +7,7 @@ public class CargarJuego {
 	private Juego nuevojuego;
 
     public CargarJuego() {    	
-    	   loading= new Loading(14000);
+    	   loading= new Loading(4000);
     	   
     }
     
@@ -22,13 +22,6 @@ public class CargarJuego {
 	
     	 
     }
-    
-    
-    
-    
-
-    	
-      
     
 }
 

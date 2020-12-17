@@ -19,6 +19,7 @@ import Premio.PremioDetener;
 import Premio.PremioSuperArma;
 import Premio.PremioVelocidad;
 import Premio.PremioVida;
+
 public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyListener  {
 	private GUI gui;
 	private List<Entidad> obj_eliminar;//Entidades que elimino 
@@ -161,7 +162,7 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 							if (nivel[nivel_actual].get(tanda_actual).get(j).estaVivo()==false)//SI UN INFECTADO ESTA MUERTO
 							  {
 									enc=true;
-									int num_premio=rd.nextInt(4);//Otorgo un premio al azar
+									int num_premio=rd.nextInt(2);//Otorgo un premio al azar
 									Premio premio=null;
 									if (num_premio==0)
 									{
@@ -348,24 +349,14 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 			    	
 						gui.setDibujoJugador(mapa.getJugador().getEntidadGrafica().getImagen());	
 						Arma arma=new Arma();
-						DisparoJugador disparo = arma.crearArmaBasica(mapa.getJugador().getEntidadGrafica().getDibujo().getX(),mapa.getJugador().getEntidadGrafica().getDibujo().getY());
+						mapa.getJugador().setArma(arma);
+						DisparoJugador disparo = mapa.getJugador().getDisparoJugador();
+						
 						disparo.getEntidadGrafica().setX(mapa.getJugador().getEntidadGrafica().getDibujo().getX());
 						disparo.getEntidadGrafica().setY(mapa.getJugador().getEntidadGrafica().getDibujo().getY());
 						
-						if(mapa.getJugador().getTipoArma()!=0)						
-						{				
-							disparo.getEntidadGrafica().setImagen("img/jugador/ball.png");
-							gui.agregarEntidad(disparo);				
-							mapaMunicion.ponerEnLista(disparo);
-							disparo.setVelocidad(-50);
-							disparo.getDireccion().setDireccion(disparo.getVelocidad()) ;
-	
-						}
-						else
-						{
-							gui.agregarEntidad(disparo);				
-							mapaMunicion.ponerEnLista(disparo);
-						}
+						gui.agregarEntidad(disparo);				
+						mapaMunicion.ponerEnLista(disparo);
 				 }
 									
 				break;

@@ -19,7 +19,7 @@ public class WindowInicio extends JFrame  {
 	        init();      
 	}	
 
-	public WindowDialogo getWindowDialogos(){
+	public WindowDialogo getWindowDialogo(){
 		return ventana;
 	}
 	    

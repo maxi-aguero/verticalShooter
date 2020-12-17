@@ -20,7 +20,14 @@ public class VisitorPremioSuperArma extends Visitor {
 
 	@Override
 	public void visitarJugador(Jugador j) {
-		p.cambiarConfig(j);
+		DisparoJugador salida= new DisparoJugador(j.getEntidadGrafica().getDibujo().getX(),j.getEntidadGrafica().getDibujo().getY());
+		salida.setVelocidad(155);
+		salida.getEntidadGrafica().setImagen("img/jugador/ball.png");
+		j.getDisparoJugador().getDireccion().setDireccion(j.getDisparoJugador().getVelocidad());
+
+		j.setDisparoJugador(salida);
+		
+		
 
 	}
 
