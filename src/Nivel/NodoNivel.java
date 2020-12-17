@@ -4,11 +4,11 @@ public class NodoNivel {
 	protected NodoNivel sig;
 	protected Lista info;
 	
-	public NodoNivel() {
+	public NodoNivel(Lista listaNuevaNivel) {
 		sig=null;
-		info=null;
+		info=listaNuevaNivel;
 	}
-	
+	/**
 	public void agregarNivel1() {
 		
 		Lista nuevaListaNivel1=new Nivel1();
@@ -35,9 +35,19 @@ public class NodoNivel {
 	public NodoNivel getSegundoNivel() {
 		return sig.sig;
 	}
+	*/
+	public NodoNivel getSiguiente() {
+		return sig;
+	}
 	
 	public Lista getInfoNivel() {
 		return info;
+	}
+	
+	public void setSiguienteNodoNivel(Lista listaNuevaNivel) {
+		sig=new NodoNivel(listaNuevaNivel);
+		
+		
 	}
 	
 	
