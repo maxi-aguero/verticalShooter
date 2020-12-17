@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import Entidad.Entidad;
 import Entidad.Jugador.Jugador;
+import Nivel.Lista;
+import Nivel.Nivel1;
+import Nivel.Nivel2;
 import Nivel.NodoNivel;
 import Nivel.Tanda;
 
@@ -16,6 +19,10 @@ public class Mapa {
 	
 	public Mapa() {
 		jugador=new Jugador();	
+		
+		Lista listaNuevaNivel1 = new Nivel1();
+		Lista listaNuevaNivel2 = new Nivel2();
+		
 		nivel=new NodoNivel();
 		nivel.agregarNivel1();
 		nivel.agregarNivel2();
