@@ -6,16 +6,9 @@ import Entidad.Infectado.InfectadoAlpha;
 public class FactoryAlpha extends Factory{
 
 	@Override
-	protected Infectado getAlpha() {
+	protected Infectado getInfectado() {
 		// TODO Auto-generated method stub
 		return new InfectadoAlpha();
 	}
-
-	@Override
-	protected Infectado getBeta() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 }

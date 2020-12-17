@@ -27,35 +27,35 @@ public class Nivel1 extends Lista{
 		int []arr=new int[14];
 		arr=crearNumRandomUnico();
 		
-		Infectado infectado01 = miFabrica[1].getBeta();
+		Infectado infectado01 = miFabrica[1].getInfectado();
 		infectado01.getEntidadGrafica().setX(numero_armado[arr[0]]);
 		infectado01.getEntidadGrafica().setY(150);
 		
-		Infectado infectado02 = miFabrica[0].getAlpha();		
+		Infectado infectado02 = miFabrica[0].getInfectado();		
 		infectado02.getEntidadGrafica().setX(numero_armado[arr[1]]);
 		infectado02.getEntidadGrafica().setY(150);
 		
-		Infectado infectado03 = miFabrica[0].getAlpha();
+		Infectado infectado03 = miFabrica[0].getInfectado();
 		infectado03.getEntidadGrafica().setX(numero_armado[arr[2]]);
 		infectado03.getEntidadGrafica().setY(150);
 		
-		Infectado infectado04 = miFabrica[0].getAlpha();
+		Infectado infectado04 = miFabrica[0].getInfectado();
 		infectado04.getEntidadGrafica().setX(numero_armado[arr[3]]);
 		infectado04.getEntidadGrafica().setY(150);
 		
-		Infectado infectado05 = miFabrica[1].getBeta();
+		Infectado infectado05 = miFabrica[1].getInfectado();
 		infectado05.getEntidadGrafica().setX(numero_armado[arr[4]]);
 		infectado05.getEntidadGrafica().setY(150);
 		
-		Infectado infectado06 = miFabrica[1].getBeta();
+		Infectado infectado06 = miFabrica[1].getInfectado();
 		infectado06.getEntidadGrafica().setX(numero_armado[arr[5]]);
 		infectado06.getEntidadGrafica().setY(150);
 		
-		Infectado infectado07 = miFabrica[1].getBeta();
+		Infectado infectado07 = miFabrica[1].getInfectado();
 		infectado07.getEntidadGrafica().setX(numero_armado[arr[6]]);
 		infectado07.getEntidadGrafica().setY(150);
 		
-		Infectado infectado08 = miFabrica[0].getAlpha();
+		Infectado infectado08 = miFabrica[0].getInfectado();
 		infectado08.getEntidadGrafica().setX(numero_armado[arr[7]]);
 		infectado08.getEntidadGrafica().setY(150);
 	

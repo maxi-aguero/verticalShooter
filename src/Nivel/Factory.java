@@ -4,7 +4,6 @@ import Entidad.Infectado.Infectado;
 
 public abstract class Factory {
 	
-	protected abstract Infectado getAlpha();
-	protected abstract Infectado getBeta();
+	protected abstract Infectado getInfectado();
 
 }
