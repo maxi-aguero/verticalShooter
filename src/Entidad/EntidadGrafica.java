@@ -9,13 +9,11 @@ public class EntidadGrafica {
 	protected String ruta_dibujo_der;
 	protected int coorInicialx;
 	protected int coorInicialy;
-
-
 	
 	public EntidadGrafica() {}
-	public JLabel getDibujo() { return dibujo ;}
-	public void setDibujo(JLabel dibujo) { this.dibujo = dibujo ;}
 	
+	public JLabel getDibujo() { return dibujo ;}
+	public void setDibujo(JLabel dibujo) { this.dibujo = dibujo ;}	
 
 	public String getImagen() {
 		return ruta_dibujo;
@@ -24,9 +22,7 @@ public class EntidadGrafica {
 	public void setImagen(String s) {
 		 ruta_dibujo=""+s;
 	}
-	
-	
-	
+		
 	public void setX(int x) {
 		this.coorInicialx=x;
 	}

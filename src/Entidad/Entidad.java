@@ -13,14 +13,14 @@ public abstract class Entidad {
 	protected int velocidad;
 	protected Visitor visitor;		
 	protected EstrategiaMovimiento direccion; 
-	protected EntidadGrafica entidadgrafica;
+	protected EntidadGrafica entidadGrafica;
 	protected int rango_x;
 	protected int rango_y;
-	protected MapaProyectil ListaDeProyectil;//lista de proyectil virus para infectados
+	protected MapaProyectil ListaDeProyectil;//listaDeProyectil: guarda virus para infectados
 
 	
 	protected Entidad() {
-		entidadgrafica=new EntidadGrafica();
+		entidadGrafica=new EntidadGrafica();
 		rango_x=25;
 		rango_y=50;
 		resistencia=20;
@@ -30,9 +30,9 @@ public abstract class Entidad {
 		return rango_x;
 	}
 	
-	public void setRangoX(int x) {
-		this.rango_x=x;
-	}
+	public int getRangoY() {
+		return rango_y;
+	}	
 	
 	public double getResistencia() {
 		return resistencia;
@@ -52,25 +52,11 @@ public abstract class Entidad {
 	
 	
 	public EntidadGrafica getEntidadGrafica() {
-		return entidadgrafica;
+		return entidadGrafica;
 	}
 	
 	public double getVitalactual() { return cargaViralActual ;}
 	public void setVitalactual(double cvital) { this.cargaViralActual = cvital ;}
-	
-	
-	public int getRangoY() {
-		return rango_y;
-	}
-	
-	public void setRangoY(int y) {
-		this.rango_y=y;
-	}
-	
-	
-	public abstract List<Entidad> detectarColisiones(List<Entidad>infectados);//por hacer-lo hace mapa?
-
-	
 	
 	
 	public int getVelocidad() {
@@ -82,31 +68,24 @@ public abstract class Entidad {
 		this.velocidad=velocidad;
 	}
 	
-	
+	public abstract List<Entidad> detectarColisiones(List<Entidad>infectados);
 
 	public abstract void accept(Visitor v);	
-	public abstract void mover(EstrategiaMovimiento d);
 	public abstract void atacar(Entidad obj); 
 	public abstract void iniciarAtaque(Entidad obj);
-	public abstract void accionar(List<Entidad>infectados); 
-
-	public void morir() {
-		
-	}
+	public abstract void accionar(List<Entidad>infectados); 	
 	
-	
-	
-
-		
 	public Visitor getVisitor() { return visitor ;}	
 	
-	public EstrategiaMovimiento getDireccion() { return direccion ;}	
-
-
-	public abstract boolean estaVivo();
+	public EstrategiaMovimiento getDireccion() { return direccion ;}
 	
+
+	public abstract boolean estaVivo();	
 	public abstract void AumentarVelocidad();
 
-
-	
+	//muevo a una Entidad en una direccion d
+	public void mover(EstrategiaMovimiento d) {
+		// TODO Auto-generated method stub
+		d.mover();
+	}
 }

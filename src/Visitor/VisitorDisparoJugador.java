@@ -23,7 +23,6 @@ public class VisitorDisparoJugador extends Visitor {
 	}
 
 
-
 	@Override
 	public void visitarArmaSanitaria(DisparoJugador d) {
 

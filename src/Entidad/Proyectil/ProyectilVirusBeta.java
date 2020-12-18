@@ -16,9 +16,9 @@ public class ProyectilVirusBeta extends Proyectil {
 		visitor = new VisitorContagiarVirusBeta(this);	
 		velocidad=25;
 		direccion = new MovimientoVertical(this,velocidad);	
-		entidadgrafica.setImagen("img/infectados/fire.png");
-		entidadgrafica.setX(x);
-		entidadgrafica.setY(y);
+		entidadGrafica.setImagen("img/infectados/fire.png");
+		entidadGrafica.setX(x);
+		entidadGrafica.setY(y);
 		danio=2;
 	}
 	
@@ -29,34 +29,12 @@ public class ProyectilVirusBeta extends Proyectil {
 		v.visitarVirusBeta(this);
 
 	}
-
-	@Override
-	public void mover(EstrategiaMovimiento d) {
-		// TODO Auto-generated method stub
-		d.mover();
-	}
-
-
-
 	
-	
-	
-	
-	//no estan en disparo-enemigo
 
-	@Override
-	public boolean estaVivo() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
 
 
-	@Override
-	public void atacar(Entidad obj) {
-		// TODO Auto-generated method stub
-		iniciarAtaque(obj);		
-	}
+	
 
 	@Override
 	public void iniciarAtaque(Entidad obj) {
@@ -68,24 +46,10 @@ public class ProyectilVirusBeta extends Proyectil {
 
 
 
-	@Override
-	public List<Entidad> detectarColisiones(List<Entidad>infectados) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void accionar(List<Entidad>infectados) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
-	@Override
-	public void AumentarVelocidad() {
-		// TODO Auto-generated method stub
-		
-	}	
+	
 	
 
 }

@@ -24,10 +24,7 @@ public class VisitorPremioSuperArma extends Visitor {
 		salida.setVelocidad(155);
 		salida.getEntidadGrafica().setImagen("img/jugador/ball.png");
 		j.getDisparoJugador().getDireccion().setDireccion(j.getDisparoJugador().getVelocidad());
-
 		j.setDisparoJugador(salida);
-		
-		
 
 	}
 

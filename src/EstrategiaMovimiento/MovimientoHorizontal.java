@@ -3,10 +3,6 @@ package EstrategiaMovimiento;
 import Entidad.Entidad;
 
 public class MovimientoHorizontal extends EstrategiaMovimiento{
-	public static final int  DERECHA=-5;
-	public static final int  IZQUIERDA=5;
-	
-	
 	
 	public MovimientoHorizontal(Entidad e, int d) {
 		super(e, d);

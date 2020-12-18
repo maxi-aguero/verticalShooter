@@ -116,7 +116,7 @@ public class Nivel2 extends Lista{
 		int []result=new int[n];
 		
 		int x=n;
-		Random rd=new Random(); //0-10		
+		Random rd=new Random(); 		
 		
 		for(int i=from;i<n;i++)
 		{

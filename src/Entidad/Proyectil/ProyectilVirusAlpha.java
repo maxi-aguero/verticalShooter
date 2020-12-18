@@ -15,9 +15,9 @@ public class ProyectilVirusAlpha extends Proyectil {
 		visitor = new VisitorContagiarVirusAlpha(this);	
 		velocidad=25;
 		direccion = new MovimientoVertical(this,velocidad);	
-		entidadgrafica.setImagen("img/infectados/fire.png");
-		entidadgrafica.setX(x);
-		entidadgrafica.setY(y);
+		entidadGrafica.setImagen("img/infectados/fire.png");
+		entidadGrafica.setX(x);
+		entidadGrafica.setY(y);
 		danio=1;
 		
 	}
@@ -31,39 +31,9 @@ public class ProyectilVirusAlpha extends Proyectil {
 		v.visitarVirusAlpha(this);
 
 	}
-
-	@Override
-	public void mover(EstrategiaMovimiento d) {
-		// TODO Auto-generated method stub
-		d.mover();
-	}
-
-
-
-	
-	
-	
-	
-	//no estan en disparo-enemigo
-
-	@Override
-	public boolean estaVivo() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 	
 
-
-
-	@Override
-	public void atacar(Entidad obj) {
-		// TODO Auto-generated method stub
-		iniciarAtaque(obj);
-		//ataco el jugador
-		//postdata: no esta el jugador, entonces recibo ataque desde jugador
-		
-	}
+	
 
 	@Override
 	public void iniciarAtaque(Entidad obj) {
@@ -72,30 +42,8 @@ public class ProyectilVirusAlpha extends Proyectil {
 		double cargaActualJugador= obj.getVitalactual();
 		cargaActualJugador=cargaActualJugador+danio;
 		obj.setVitalactual(cargaActualJugador);		
-	
 	}
 
-
-	@Override
-	public List<Entidad> detectarColisiones(List<Entidad>infectados) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void accionar(List<Entidad>infectados) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
-	@Override
-	public void AumentarVelocidad() {
-		// TODO Auto-generated method stub
-		
-	}	
 	
 
 }
