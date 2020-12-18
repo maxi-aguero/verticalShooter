@@ -4,8 +4,6 @@ package Entidad;
 import EstrategiaMovimiento.EstrategiaMovimiento;
 import Mapa.MapaProyectil;
 import Visitor.Visitor;
-import java.util.List;
-
 
 public abstract class Entidad {
 	protected double resistencia;
@@ -68,12 +66,9 @@ public abstract class Entidad {
 		this.velocidad=velocidad;
 	}
 	
-	public abstract List<Entidad> detectarColisiones(List<Entidad>infectados);
-
 	public abstract void accept(Visitor v);	
 	public abstract void atacar(Entidad obj); 
 	public abstract void iniciarAtaque(Entidad obj);
-	public abstract void accionar(List<Entidad>infectados); 	
 	
 	public Visitor getVisitor() { return visitor ;}	
 	
@@ -88,4 +83,9 @@ public abstract class Entidad {
 		// TODO Auto-generated method stub
 		d.mover();
 	}
+	
+	
+	
+	
+
 }

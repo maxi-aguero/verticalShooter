@@ -1,6 +1,8 @@
 package Entidad.Proyectil;
 
 
+import java.awt.Rectangle;
+import java.util.LinkedList;
 import java.util.List;
 
 import Entidad.Entidad;
@@ -25,23 +27,9 @@ public abstract class Proyectil extends Entidad {
 	}
 	
 	@Override
-	public List<Entidad> detectarColisiones(List<Entidad>infectados) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
-	public void accionar(List<Entidad>infectados) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
 	public void AumentarVelocidad() {
 		// TODO Auto-generated method stub
 		
 	}	
-		
-
 
 }

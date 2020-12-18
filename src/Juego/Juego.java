@@ -1,5 +1,6 @@
 package Juego;
 
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -135,12 +136,22 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 						
 						
 						
-						List<Entidad> lista_m = mapa.getJugador().detectarColisiones(lista_premio.getLista());
+						List<Entidad> lista_m = detectarColisiones(lista_premio.getLista(),mapa.getJugador());
+						//
+
+							
 						if (lista_m.size()!=0)//conjunto de premios que tengo en juego
 						{
 												
-							mapa.getJugador().accionar(lista_premio.getLista()); //jugador acciona a premios porque lo acabo de agarrrar
-														
+							//mapa.getJugador().accionar(lista_premio.getLista()); //jugador acciona a premios porque lo acabo de agarrrar
+							accionar(lista_premio.getLista(),mapa.getJugador());
+							//public void accionar(List<Entidad>entidad,Entidad ob) {
+
+							
+				//aca acciona
+							
+							
+							
 							//si ya agarre el premio, al premio lo elimino de la gui
 							for(Entidad premio_m:lista_m)
 							{
@@ -258,10 +269,14 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 				
 	
 						//el jugador acciona con los infectados y los virus
-						mapa.getJugador().accionar(nivel[nivel_actual].get(tanda_actual));
-						mapa.getJugador().accionar(mapaVirus.getLista());
-	
+						//mapa.getJugador().accionar(nivel[nivel_actual].get(tanda_actual));
+						accionar(nivel[nivel_actual].get(tanda_actual),mapa.getJugador());
+
 						
+						//mapa.getJugador().accionar(mapaVirus.getLista());
+						accionar(mapaVirus.getLista(),mapa.getJugador());
+
+	
 					
 							
 					
@@ -271,8 +286,8 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 							if (infectado.getEntidadGrafica().getDibujo()==null)
 									{gui.agregarEntidad(infectado);
 									 
-									}
-							infectado.accionar(mapaMunicion.getLista());	
+									}						
+							accionar(mapaMunicion.getLista(),infectado);
 							infectado.mover(infectado.getDireccion());
 						}
 						
@@ -451,6 +466,32 @@ public class Juego  extends  javax.swing.JFrame implements ActionListener,KeyLis
 		gui.gameYouLose(this,mapa.getJugador().getTipoJugador());
 
 	
+	}
+	
+	
+	private List<Entidad> detectarColisiones(List<Entidad>entidad,Entidad ob) {
+				List<Entidad> conj_infectados  = new LinkedList<Entidad>();
+				Rectangle tamanioObj = ob.getEntidadGrafica().getDibujo().getBounds();
+				
+				for(Entidad ent:entidad)
+				{
+					if(ent.getEntidadGrafica().getDibujo()!=null)
+						if(ent.getEntidadGrafica().getDibujo().getBounds().intersects(tamanioObj))
+							conj_infectados.add(ent);
+				}
+				
+				return conj_infectados;
+	}	
+	
+
+	private void accionar(List<Entidad>entidad,Entidad ob) {
+			List<Entidad> listaEntidad = detectarColisiones(entidad,ob);	
+			
+			for (Entidad obj:listaEntidad)
+				{	obj.accept(ob.getVisitor());
+					ob.accept(obj.getVisitor());	
+			
+			}		
 	}
 }
 

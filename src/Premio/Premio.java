@@ -1,10 +1,7 @@
 package Premio;
 
 
-import java.util.List;
-
 import Entidad.Entidad;
-import EstrategiaMovimiento.EstrategiaMovimiento;
 
 
 public abstract class Premio extends Entidad {
@@ -32,22 +29,8 @@ public abstract class Premio extends Entidad {
 	}
 	
 	@Override
-	public void accionar(List<Entidad> infectados) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
 	public void AumentarVelocidad() {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	@Override
-	public List<Entidad> detectarColisiones(List<Entidad>infectados) {
-		// TODO Auto-generated method stub
-		return null;
-	}	
-
-
 }
